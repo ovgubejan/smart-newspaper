@@ -1,0 +1,107 @@
+{
+  "users": [
+    {
+      "id": "user_demo",
+      "name": "Kullanıcı",
+      "email": "demo@example.com",
+      "passwordHash": "demo",
+      "passwordSalt": "demo",
+      "createdAt": "2026-05-12T08:00:00.000Z"
+    }
+  ],
+  "preferences": {
+    "user_demo": {
+      "interests": [
+        "Teknoloji",
+        "Bilim",
+        "Dünya"
+      ],
+      "preferredSources": [
+        "Tekno Günlük",
+        "Bilim Postası",
+        "Dünya Bülteni"
+      ],
+      "readingMode": "daily",
+      "language": "tr",
+      "readingGoal": 20
+    }
+  },
+  "articles": [
+    {
+      "id": "art_1",
+      "title": "Yeni nesil yapay zeka araçları günlük iş akışlarını hızlandırıyor",
+      "summary": "Üretken yapay zeka servisleri metin özetleme, araştırma ve kişisel planlama alanlarında daha fazla kullanıcıya ulaşıyor.",
+      "fullText": "Üretken yapay zeka araçları, günlük iş akışlarında araştırma, özetleme ve yazım desteği gibi alanlarda daha görünür hale geldi. Kullanıcılar bu araçları haber okuma, kişisel takvim yönetimi ve uzun metinleri hızlı anlama için kullanıyor. Uzmanlar, bu araçların verimlilik sağlayabileceğini ancak veri gizliliği ve kaynak doğrulama konularında dikkatli olunması gerektiğini belirtiyor.",
+      "category": "Teknoloji",
+      "tags": [
+        "yapay zeka",
+        "verimlilik",
+        "dijital araçlar",
+        "Yapay Zeka"
+      ],
+      "sourceName": "Tekno Günlük",
+      "sourceUrl": "https://example.com/teknoloji/yapay-zeka-araclari",
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+      "author": "Editör",
+      "publishedAt": "2026-05-12T17:07:00.000Z",
+      "aiSummary": "Yapay zeka araçları haber okuma ve kişisel üretkenlikte daha fazla kullanılıyor; gizlilik ve doğrulama dikkat gerektiriyor.",
+      "subcategory": "Yapay Zeka"
+    },
+    {
+      "id": "art_2",
+      "title": "Araştırmacılar okyanus sıcaklıklarında yeni rekor ölçümler bildirdi",
+      "summary": "Son veriler, iklim modellerinin kıyı kentleri için daha ayrıntılı risk haritaları üretmesini sağlıyor.",
+      "fullText": "Yeni ölçümler, okyanus yüzey sıcaklıklarında bölgesel rekorların görüldüğünü ortaya koydu. Bilim insanları bu verilerin fırtına yoğunluğu, deniz seviyesi ve kıyı kentleri üzerindeki riskleri daha iyi anlamak için kullanılacağını söylüyor. Çalışma, uzun dönemli iklim gözlemlerinin şehir planlaması açısından kritik önem taşıdığını vurguluyor.",
+      "category": "Bilim",
+      "tags": [
+        "iklim",
+        "okyanus",
+        "bilim",
+        "Siber Güvenlik"
+      ],
+      "sourceName": "Bilim Postası",
+      "sourceUrl": "https://example.com/bilim/okyanus-sicakligi",
+      "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "author": "Bilim Servisi",
+      "publishedAt": "2026-05-12T14:25:00.000Z",
+      "aiSummary": "Okyanus sıcaklığı verileri, iklim risklerini ve kıyı kentlerine dönük planlama ihtiyaçlarını daha görünür hale getiriyor.",
+      "subcategory": "Siber Güvenlik"
+    },
+    {
+      "id": "art_3",
+      "title": "Küresel piyasalarda teknoloji hisseleri haftaya güçlü başladı",
+      "summary": "Yatırımcılar çip üretimi, bulut altyapısı ve yapay zeka talebindeki büyümeyi yakından izliyor.",
+      "fullText": "Teknoloji hisseleri haftaya güçlü bir başlangıç yaptı. Analistler, çip üretimi ve bulut altyapısı talebinin piyasa beklentilerini desteklediğini belirtiyor. Buna karşın yüksek değerlemeler ve regülasyon tartışmaları yatırımcıların izlediği başlıca riskler arasında yer alıyor.",
+      "category": "Ekonomi",
+      "tags": [
+        "piyasa",
+        "teknoloji",
+        "ekonomi",
+        "Yapay Zeka"
+      ],
+      "sourceName": "Piyasa Notları",
+      "sourceUrl": "https://example.com/ekonomi/teknoloji-hisseleri",
+      "imageUrl": "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80",
+      "author": "Piyasa Masası",
+      "publishedAt": "2026-05-12T11:30:00.000Z",
+      "aiSummary": "Teknoloji hisseleri yapay zeka ve bulut talebiyle güçlenirken regülasyon ve değerleme riskleri izleniyor.",
+      "subcategory": "Yapay Zeka"
+    }
+  ],
+  "bookmarks": [
+    {
+      "userId": "user_demo",
+      "articleId": "art_1",
+      "createdAt": "2026-05-12T18:00:00.000Z"
+    }
+  ],
+  "readStatus": [
+    {
+      "userId": "user_demo",
+      "articleId": "art_2",
+      "status": "read",
+      "updatedAt": "2026-05-12T18:20:00.000Z"
+    }
+  ],
+  "events": []
+}

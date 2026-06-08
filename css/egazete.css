@@ -1,0 +1,263 @@
+/* AI Kişisel E-Gazete Okuma Modu */
+.egazete-modal[hidden] { display: none !important; }
+.egazete-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  color: #172033;
+}
+.egazete-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 13, 21, 0.72);
+  backdrop-filter: blur(12px);
+}
+.egazete-shell {
+  position: relative;
+  width: min(1500px, calc(100vw - 28px));
+  height: min(920px, calc(100vh - 28px));
+  margin: 14px auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 28%),
+    linear-gradient(135deg, rgba(16,24,39,0.95), rgba(10,16,27,0.96));
+  box-shadow: 0 32px 80px rgba(0,0,0,0.42);
+}
+.egazete-toolbar,
+.egazete-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 22px;
+  color: #f8fafc;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.egazete-footer {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 0;
+  color: #cbd5e1;
+  font-size: .88rem;
+}
+.egazete-kicker {
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 800;
+  font-size: .73rem;
+  color: #b13f31;
+}
+.egazete-toolbar .egazete-kicker { color: #fbbf24; }
+.egazete-toolbar h2 {
+  margin: 0;
+  font: 800 clamp(1.3rem, 2vw, 2.1rem)/1.05 "Playfair Display", Georgia, serif;
+}
+.egazete-toolbar-actions { display: flex; align-items: center; gap: 10px; }
+.egazete-tool-btn,
+.egazete-nav,
+.egazete-story-actions button {
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 14px;
+  background: #f8fafc;
+  color: #111827;
+  font-weight: 800;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+}
+.egazete-tool-btn:hover,
+.egazete-nav:hover:not(:disabled),
+.egazete-story-actions button:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,0,0,0.24); }
+.egazete-tool-btn.is-ghost { background: rgba(255,255,255,0.08); color: #f8fafc; }
+.egazete-reader-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 54px 1fr 54px;
+  gap: 10px;
+  align-items: center;
+  padding: 18px 18px 8px;
+  min-height: 0;
+}
+.egazete-nav {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  padding: 0;
+  align-self: center;
+}
+.egazete-nav:disabled { opacity: .38; cursor: not-allowed; }
+.egazete-book {
+  min-height: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  perspective: 1600px;
+  transform-style: preserve-3d;
+}
+.egazete-book.turn-next .egazete-page { animation: egazeteTurnNext .26s ease both; }
+.egazete-book.turn-prev .egazete-page { animation: egazeteTurnPrev .26s ease both; }
+@keyframes egazeteTurnNext { from { opacity: .6; transform: rotateY(-8deg) translateX(18px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes egazeteTurnPrev { from { opacity: .6; transform: rotateY(8deg) translateX(-18px) scale(.985); } to { opacity: 1; transform: none; } }
+.egazete-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 8px 20px 20px 8px;
+  padding: 24px 28px 38px;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.055), transparent 5%, transparent 96%, rgba(0,0,0,0.05)),
+    radial-gradient(circle at 14% 8%, rgba(164,63,47,0.08), transparent 30%),
+    #f8f5ef;
+  box-shadow: inset 22px 0 30px rgba(0,0,0,0.045), 0 24px 50px rgba(0,0,0,0.26);
+  font-family: Georgia, "Times New Roman", serif;
+}
+.egazete-page:nth-child(2) { border-radius: 20px 8px 8px 20px; box-shadow: inset -22px 0 30px rgba(0,0,0,0.045), 0 24px 50px rgba(0,0,0,0.26); }
+.egazete-page-head,
+.egazete-page-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(17,24,39,0.22);
+  color: #475569;
+  font: 700 .78rem Inter, system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.egazete-page-foot {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 14px;
+  padding: 8px 0 0;
+  border-bottom: 0;
+  border-top: 1px solid rgba(17,24,39,0.16);
+  text-transform: none;
+  letter-spacing: 0;
+  color: #64748b;
+}
+.egazete-page-foot em { font-style: normal; font-weight: 600; font-size: .7rem; }
+.egazete-cover { display: flex; flex-direction: column; justify-content: center; min-height: 100%; text-align: center; }
+.egazete-cover h1,
+.egazete-cover h2,
+.egazete-editorial-block h2,
+.egazete-news-story h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #111827;
+  line-height: 1.02;
+}
+.egazete-cover h1 { margin: 4px 0 8px; font-size: clamp(2.6rem, 5vw, 5.4rem); }
+.egazete-cover-sub { margin: 0 auto 20px; max-width: 560px; font: 600 1rem Inter, system-ui; color: #475569; }
+.egazete-cover-visual {
+  min-height: 180px;
+  border-radius: 24px;
+  overflow: hidden;
+  margin: 10px 0 22px;
+  background: linear-gradient(135deg, #18212f, #a43f2f);
+  display: grid;
+  place-items: center;
+  color: white;
+}
+.egazete-cover-visual img { width: 100%; height: 100%; object-fit: cover; }
+.egazete-cover-art { display: grid; gap: 8px; place-items: center; }
+.egazete-cover-art span { font: 900 4rem Inter, sans-serif; }
+.egazete-cover-art em { font-style: normal; letter-spacing: .22em; }
+.egazete-cover h2 { font-size: clamp(1.55rem, 2.4vw, 2.8rem); margin: 0 0 12px; }
+.egazete-cover p { color: #334155; font-size: 1rem; }
+.egazete-cover-meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 auto 12px;
+  font: 800 .78rem Inter, system-ui;
+  color: #8f2f25;
+}
+.egazete-cover-meta span {
+  border: 1px solid rgba(164,63,47,.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  padding: 6px 10px;
+}
+.egazete-cover-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.egazete-cover-actions button {
+  border: 1px solid rgba(17,24,39,.14);
+  border-radius: 999px;
+  background: #111827;
+  color: #fff;
+  font: 800 .9rem Inter, system-ui;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.egazete-cover-actions button:hover,
+.egazete-cover-actions button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(17,24,39,.18);
+}
+.egazete-cover small { margin-top: 10px; color: #64748b; font: 700 .8rem Inter, system-ui; }
+.egazete-editorial-block { padding-top: 22px; overflow: auto; }
+.egazete-editorial-block h2 { font-size: clamp(1.8rem, 3vw, 3rem); margin: 0 0 20px; border-bottom: 3px solid #111827; padding-bottom: 10px; }
+.egazete-summary-list { display: grid; gap: 14px; }
+.egazete-summary-item { display: grid; grid-template-columns: 52px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(17,24,39,0.14); }
+.egazete-summary-item > strong { font: 900 1.1rem Inter, system-ui; color: #a43f2f; }
+.egazete-summary-item h3 { margin: 0 0 5px; font: 800 1.08rem Georgia, serif; color: #0f172a; }
+.egazete-summary-item p { margin: 0; color: #64748b; font: 500 .9rem Inter, system-ui; }
+.egazete-news-story { break-inside: avoid; page-break-inside: avoid; padding: 14px 0 20px; border-bottom: 1px solid rgba(17,24,39,0.18); }
+.egazete-story-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; font: 800 .75rem Inter, system-ui; color: #a43f2f; text-transform: uppercase; letter-spacing: .06em; }
+.egazete-news-story h2 { font-size: clamp(1.45rem, 2.2vw, 2.4rem); margin: 0 0 10px; }
+.egazete-reason { margin: 8px 0 12px; color: #a43f2f; font: italic 600 .96rem Georgia, serif; }
+.egazete-columns { column-count: 2; column-gap: 28px; color: #263142; font-size: 1rem; line-height: 1.72; }
+.egazete-story-image,
+.egazete-story-placeholder { width: 44%; max-height: 170px; object-fit: cover; border-radius: 18px; margin: 4px 16px 10px 0; box-shadow: 0 18px 32px rgba(0,0,0,0.14); }
+.egazete-story-placeholder { height: 130px; display: grid; place-items: center; background: linear-gradient(135deg, #111827, #a43f2f); color: #fff; font: 900 1.1rem Inter, sans-serif; }
+.egazete-story-image.is-left,
+.egazete-story-placeholder.is-left { float: left; }
+.egazete-story-image.is-right,
+.egazete-story-placeholder.is-right { float: right; margin: 4px 0 10px 16px; }
+.egazete-story-actions { clear: both; display: flex; gap: 8px; padding-top: 10px; }
+.egazete-story-actions button { background: #111827; color: #fff; padding: 8px 12px; border-color: rgba(17,24,39,.12); }
+.egazete-sources-block ul { display: grid; gap: 10px; padding-left: 22px; color: #334155; line-height: 1.6; }
+.egazete-progress { flex: 1; max-width: 320px; height: 7px; border-radius: 999px; background: rgba(255,255,255,0.14); overflow: hidden; }
+.egazete-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #fbbf24, #ef4444); border-radius: inherit; transition: width .24s ease; }
+.egazete-print-source { display: none; }
+
+.egazete-open-trigger {
+  background: linear-gradient(135deg, #111827, #263547) !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,0.16) !important;
+}
+
+@media (max-width: 920px) {
+  .egazete-shell { width: calc(100vw - 14px); height: calc(100vh - 14px); margin: 7px auto; border-radius: 20px; }
+  .egazete-toolbar { align-items: flex-start; flex-direction: column; }
+  .egazete-toolbar-actions { width: 100%; justify-content: space-between; }
+  .egazete-reader-wrap { grid-template-columns: 42px 1fr 42px; padding: 10px; }
+  .egazete-book { grid-template-columns: 1fr; gap: 0; }
+  .egazete-page { padding: 18px 18px 34px; }
+  .egazete-page-foot { left: 18px; right: 18px; }
+  .egazete-columns { column-count: 1; }
+  .egazete-story-image,
+  .egazete-story-placeholder { width: 100%; float: none !important; margin: 4px 0 12px !important; }
+}
+
+/* ============================================================
+   PRINT / PDF
+   ============================================================ */
+@media print {
+  body > *:not(#egazete-modal) { display: none; }
+}

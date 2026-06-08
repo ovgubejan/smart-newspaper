@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartNewspaper Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f1f5f9; color: #1e293b; min-height: 100vh; }
+    .admin-topbar {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #fff;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .admin-topbar h1 { font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+    .admin-topbar h1 i { color: #60a5fa; }
+    .admin-topbar-actions { display: flex; gap: 10px; align-items: center; }
+    .admin-topbar-actions a, .admin-topbar-actions button {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .admin-topbar-actions a:hover, .admin-topbar-actions button:hover { background: rgba(255,255,255,0.2); }
+    .admin-layout { display: flex; min-height: calc(100vh - 60px); }
+    .admin-sidebar {
+      width: 220px;
+      background: #1e293b;
+      padding: 20px 0;
+      flex-shrink: 0;
+    }
+    .admin-sidebar button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 24px;
+      border: none;
+      background: none;
+      color: #94a3b8;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s, color 0.15s;
+    }
+    .admin-sidebar button:hover { background: rgba(255,255,255,0.05); color: #e2e8f0; }
+    .admin-sidebar button.active { background: rgba(59,130,246,0.15); color: #60a5fa; border-left: 3px solid #3b82f6; }
+    .admin-sidebar button i { width: 20px; text-align: center; }
+    .admin-main { flex: 1; padding: 28px; overflow-y: auto; }
+    .admin-page { display: none; }
+    .admin-page.active { display: block; }
+    .admin-section-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .admin-section-title i { color: #3b82f6; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .stat-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .stat-card .stat-label { font-size: 0.78rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-card .stat-value { font-size: 1.8rem; font-weight: 800; color: #1e293b; margin-top: 4px; }
+    .stat-card .stat-icon { font-size: 1.3rem; float: right; opacity: 0.3; }
+    .admin-table-wrap {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .admin-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .admin-table th {
+      text-align: left;
+      padding: 12px 16px;
+      background: #f8fafc;
+      font-weight: 600;
+      color: #475569;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .admin-table td { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; }
+    .admin-table tr:hover td { background: #f8fafc; }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .badge-admin { background: #dbeafe; color: #1d4ed8; }
+    .badge-user { background: #f1f5f9; color: #64748b; }
+    .admin-chart-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      margin-bottom: 24px;
+    }
+    .admin-chart-card h3 { font-size: 0.95rem; margin-bottom: 16px; }
+    .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 160px; }
+    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .bar-fill {
+      width: 100%;
+      max-width: 48px;
+      background: linear-gradient(180deg, #3b82f6, #2563eb);
+      border-radius: 6px 6px 0 0;
+      min-height: 4px;
+      transition: height 0.4s;
+    }
+    .bar-label { font-size: 0.68rem; color: #64748b; }
+    .bar-value { font-size: 0.72rem; font-weight: 600; color: #1e293b; }
+    .source-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .source-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      font-size: 0.85rem;
+    }
+    .source-card strong { display: block; margin-bottom: 4px; }
+    .source-card small { color: #64748b; }
+    .source-card .source-meta { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+    .source-tag {
+      background: #f1f5f9;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      color: #475569;
+    }
+    .category-dist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+    .category-dist-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .category-dist-item .cat-name { font-size: 0.82rem; color: #64748b; }
+    .category-dist-item .cat-count { font-size: 1.4rem; font-weight: 700; color: #1e293b; }
+    .admin-empty { text-align: center; padding: 48px; color: #94a3b8; }
+    .admin-empty i { font-size: 2rem; margin-bottom: 12px; display: block; }
+    #admin-login-overlay {
+      position: fixed; inset: 0; background: rgba(15,23,42,0.9);
+      display: flex; align-items: center; justify-content: center; z-index: 200;
+    }
+    .admin-login-card {
+      background: #fff; border-radius: 16px; padding: 40px; width: 380px; max-width: 90vw;
+      text-align: center;
+    }
+    .admin-login-card h2 { margin-bottom: 8px; }
+    .admin-login-card p { color: #64748b; font-size: 0.88rem; margin-bottom: 24px; }
+    .admin-login-card input {
+      width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 10px;
+      margin-bottom: 12px; font-size: 0.9rem;
+    }
+    .admin-login-card button {
+      width: 100%; padding: 12px; background: #2563eb; color: #fff; border: none;
+      border-radius: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    }
+    .admin-login-card button:hover { background: #1d4ed8; }
+    .admin-login-error { color: #ef4444; font-size: 0.82rem; margin-top: 8px; }
+    @media (max-width: 768px) {
+      .admin-layout { flex-direction: column; }
+      .admin-sidebar { width: 100%; flex-direction: row; overflow-x: auto; display: flex; padding: 0; }
+      .admin-sidebar button { padding: 10px 16px; white-space: nowrap; }
+      .admin-main { padding: 16px; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="admin-login-overlay">
+    <div class="admin-login-card">
+      <h2><i class="fa-solid fa-shield-halved"></i> Admin Girişi</h2>
+      <p>SmartNewspaper admin paneline giriş yapın.</p>
+      <input id="admin-email" type="email" placeholder="E-posta" />
+      <input id="admin-password" type="password" placeholder="Şifre" />
+      <button id="admin-login-btn">Giriş Yap</button>
+      <div class="admin-login-error" id="admin-login-error"></div>
+    </div>
+  </div>
+
+  <div class="admin-topbar">
+    <h1><i class="fa-solid fa-gauge-high"></i> SmartNewspaper Admin</h1>
+    <div class="admin-topbar-actions">
+      <a href="/"><i class="fa-solid fa-arrow-left"></i> Siteye Dön</a>
+      <button id="admin-logout"><i class="fa-solid fa-right-from-bracket"></i> Çıkış</button>
+    </div>
+  </div>
+
+  <div class="admin-layout">
+    <nav class="admin-sidebar" id="admin-sidebar">
+      <button class="active" data-admin-page="dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</button>
+      <button data-admin-page="users"><i class="fa-solid fa-users"></i> Kullanıcılar</button>
+      <button data-admin-page="articles"><i class="fa-solid fa-newspaper"></i> Haberler</button>
+      <button data-admin-page="sources"><i class="fa-solid fa-rss"></i> Kaynaklar</button>
+      <button data-admin-page="categories"><i class="fa-solid fa-tags"></i> Kategoriler</button>
+      <button data-admin-page="analytics"><i class="fa-solid fa-chart-bar"></i> Analitik</button>
+    </nav>
+
+    <div class="admin-main">
+      <!-- Dashboard -->
+      <div class="admin-page active" id="page-dashboard">
+        <h2 class="admin-section-title"><i class="fa-solid fa-gauge-high"></i> Dashboard</h2>
+        <div class="stat-grid" id="stat-grid"></div>
+        <div class="admin-chart-card">
+          <h3><i class="fa-solid fa-layer-group"></i> Kategori Dağılımı</h3>
+          <div class="category-dist-grid" id="category-dist"></div>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Son Kayıt Olan Kullanıcılar</th><th>E-posta</th><th>Tarih</th></tr></thead>
+            <tbody id="recent-users-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Users -->
+      <div class="admin-page" id="page-users">
+        <h2 class="admin-section-title"><i class="fa-solid fa-users"></i> Kullanıcı Yönetimi</h2>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Ad</th><th>E-posta</th><th>Rol</th><th>İlgi Alanları</th><th>Kayıt Tarihi</th></tr></thead>
+            <tbody id="users-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Articles -->
+      <div class="admin-page" id="page-articles">
+        <h2 class="admin-section-title"><i class="fa-solid fa-newspaper"></i> Haber Yönetimi</h2>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Başlık</th><th>Kategori</th><th>Kaynak</th><th>Tarih</th></tr></thead>
+            <tbody id="articles-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Sources -->
+      <div class="admin-page" id="page-sources">
+        <h2 class="admin-section-title"><i class="fa-solid fa-rss"></i> Haber Kaynakları</h2>
+        <div class="source-grid" id="sources-grid"></div>
+      </div>
+
+      <!-- Categories -->
+      <div class="admin-page" id="page-categories">
+        <h2 class="admin-section-title"><i class="fa-solid fa-tags"></i> Kategori ve Alt Kategoriler</h2>
+        <div id="categories-content"></div>
+      </div>
+
+      <!-- Analytics -->
+      <div class="admin-page" id="page-analytics">
+        <h2 class="admin-section-title"><i class="fa-solid fa-chart-bar"></i> Analitik ve Raporlar</h2>
+        <div class="admin-chart-card">
+          <h3>Son 7 Gün — Günlük Okuma ve Aktif Kullanıcı</h3>
+          <div class="bar-chart" id="analytics-chart"></div>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>En Çok Okunan Haberler</th><th>Kategori</th><th>Etkileşim</th></tr></thead>
+            <tbody id="top-articles-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let adminToken = localStorage.getItem("newspaperAuthToken") || "";
+
+    const loginOverlay = document.getElementById("admin-login-overlay");
+    const loginBtn = document.getElementById("admin-login-btn");
+    const loginError = document.getElementById("admin-login-error");
+
+    async function adminFetch(url, opts = {}) {
+      const headers = { "Content-Type": "application/json", ...(adminToken ? { Authorization: "Bearer " + adminToken } : {}), ...(opts.headers || {}) };
+      const res = await fetch(url, { ...opts, headers });
+      if (res.status === 403) { loginOverlay.style.display = "flex"; throw new Error("Unauthorized"); }
+      return res.json();
+    }
+
+    loginBtn.addEventListener("click", async () => {
+      const email = document.getElementById("admin-email").value.trim();
+      const password = document.getElementById("admin-password").value;
+      loginError.textContent = "";
+      try {
+        const res = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (data.token) {
+          adminToken = data.token;
+          localStorage.setItem("newspaperAuthToken", adminToken);
+          loginOverlay.style.display = "none";
+          loadDashboard();
+        } else {
+          loginError.textContent = data.error || "Giriş başarısız.";
+        }
+      } catch { loginError.textContent = "Bağlantı hatası."; }
+    });
+
+    document.getElementById("admin-logout").addEventListener("click", () => {
+      localStorage.removeItem("newspaperAuthToken");
+      adminToken = "";
+      loginOverlay.style.display = "flex";
+    });
+
+    document.querySelectorAll("[data-admin-page]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".admin-sidebar button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(".admin-page").forEach(p => p.classList.remove("active"));
+        document.getElementById("page-" + btn.dataset.adminPage).classList.add("active");
+        const loaders = { dashboard: loadDashboard, users: loadUsers, articles: loadArticles, sources: loadSources, categories: loadCategories, analytics: loadAnalytics };
+        loaders[btn.dataset.adminPage]?.();
+      });
+    });
+
+    async function loadDashboard() {
+      try {
+        const data = await adminFetch("/api/admin/stats");
+        document.getElementById("stat-grid").innerHTML = [
+          statCard("fa-users", "Kullanıcılar", data.totalUsers),
+          statCard("fa-newspaper", "Haberler", data.totalArticles),
+          statCard("fa-bookmark", "Kaydedilenler", data.totalBookmarks),
+          statCard("fa-rss", "Kaynaklar", data.sourcesCount),
+          statCard("fa-eye", "Bugün Okunan", data.todayReads),
+          statCard("fa-calendar", "Etkinlikler", data.totalEvents),
+        ].join("");
+
+        const dist = data.categoryDistribution || {};
+        document.getElementById("category-dist").innerHTML = Object.entries(dist)
+          .sort((a, b) => b[1] - a[1])
+          .map(([cat, count]) => `<div class="category-dist-item"><div class="cat-count">${count}</div><div class="cat-name">${esc(cat)}</div></div>`)
+          .join("");
+
+        document.getElementById("recent-users-body").innerHTML = (data.recentUsers || [])
+          .map(u => `<tr><td>${esc(u.name)}</td><td>${esc(u.email)}</td><td>${new Date(u.createdAt).toLocaleDateString("tr-TR")}</td></tr>`)
+          .join("");
+      } catch {}
+    }
+
+    async function loadUsers() {
+      try {
+        const data = await adminFetch("/api/admin/users");
+        document.getElementById("users-body").innerHTML = (data.users || [])
+          .map(u => `<tr>
+            <td>${esc(u.name)}</td>
+            <td>${esc(u.email)}</td>
+            <td><span class="badge ${u.role === 'admin' ? 'badge-admin' : 'badge-user'}">${u.role || 'user'}</span></td>
+            <td>${(u.interests || []).join(", ")}</td>
+            <td>${new Date(u.createdAt).toLocaleDateString("tr-TR")}</td>
+          </tr>`).join("") || '<tr><td colspan="5" class="admin-empty">Kullanıcı yok</td></tr>';
+      } catch {}
+    }
+
+    async function loadArticles() {
+      try {
+        const data = await adminFetch("/api/admin/articles");
+        document.getElementById("articles-body").innerHTML = (data.articles || [])
+          .map(a => `<tr>
+            <td>${esc((a.title || "").slice(0, 80))}</td>
+            <td><span class="source-tag">${esc(a.category || "—")}</span></td>
+            <td>${esc(a.source || "—")}</td>
+            <td>${a.publishedAt ? new Date(a.publishedAt).toLocaleDateString("tr-TR") : "—"}</td>
+          </tr>`).join("") || '<tr><td colspan="4" class="admin-empty">Haber yok</td></tr>';
+      } catch {}
+    }
+
+    async function loadSources() {
+      try {
+        const data = await adminFetch("/api/admin/sources");
+        document.getElementById("sources-grid").innerHTML = (data.sources || [])
+          .map(s => `<div class="source-card">
+            <strong>${esc(s.sourceName)}</strong>
+            <small>${esc(s.country || "")} · ${esc(s.language || "")}</small>
+            <div class="source-meta">
+              <span class="source-tag">${esc(s.region)}</span>
+              <span class="source-tag">${esc(s.category || "")}</span>
+              <span class="source-tag">${s.trustLevel}</span>
+            </div>
+          </div>`).join("");
+      } catch {}
+    }
+
+    async function loadCategories() {
+      try {
+        const data = await adminFetch("/api/admin/categories");
+        document.getElementById("categories-content").innerHTML = (data.categories || [])
+          .map(cat => {
+            const subs = (data.subcategories || {})[cat] || [];
+            return `<div class="admin-chart-card">
+              <h3><i class="fa-solid fa-tag"></i> ${esc(cat)}</h3>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+                ${subs.map(s => `<span class="source-tag">${esc(s)}</span>`).join("")}
+                ${subs.length === 0 ? '<span style="color:#94a3b8;font-size:0.82rem;">Alt kategori tanımlı değil</span>' : ""}
+              </div>
+            </div>`;
+          }).join("");
+      } catch {}
+    }
+
+    async function loadAnalytics() {
+      try {
+        const data = await adminFetch("/api/admin/analytics");
+        const daily = data.dailyData || [];
+        const maxReads = Math.max(...daily.map(d => d.reads), 1);
+        document.getElementById("analytics-chart").innerHTML = daily.map(d =>
+          `<div class="bar-col">
+            <div class="bar-value">${d.reads}</div>
+            <div class="bar-fill" style="height:${Math.max((d.reads / maxReads) * 140, 4)}px"></div>
+            <div class="bar-label">${d.date.slice(5)}</div>
+          </div>`
+        ).join("");
+
+        document.getElementById("top-articles-body").innerHTML = (data.topArticles || [])
+          .map(a => `<tr>
+            <td>${esc((a.title || "").slice(0, 70))}</td>
+            <td><span class="source-tag">${esc(a.category || "—")}</span></td>
+            <td><strong>${a.interactionCount}</strong></td>
+          </tr>`).join("") || '<tr><td colspan="3" class="admin-empty">Veri yok</td></tr>';
+      } catch {}
+    }
+
+    function statCard(icon, label, value) {
+      return `<div class="stat-card"><i class="fa-solid ${icon} stat-icon"></i><div class="stat-label">${label}</div><div class="stat-value">${value ?? 0}</div></div>`;
+    }
+
+    function esc(str) {
+      const d = document.createElement("div");
+      d.textContent = str || "";
+      return d.innerHTML;
+    }
+
+    // Init
+    if (adminToken) {
+      loginOverlay.style.display = "none";
+      loadDashboard();
+    }
+  </script>
+</body>
+</html>

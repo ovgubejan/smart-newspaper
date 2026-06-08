@@ -1,0 +1,4849 @@
+{
+  "users": [
+    {
+      "id": "user_demo",
+      "name": "ibrahim",
+      "email": "demo@example.com",
+      "passwordHash": "09e3bee418f41fdcd1fffa4bb62eb85aba8d44c864acdfcc7ac57ba51579d365",
+      "passwordSalt": "a49facbff6eeef548aecc147f3f2c801",
+      "createdAt": "2026-05-12T08:00:00.000Z"
+    },
+    {
+      "id": "user_f57f60cb-aae6-416a-b8cd-e3358240b776",
+      "name": "azragur",
+      "email": "azragur@kisisel-gazetem.local",
+      "passwordHash": "df5cb305badf439a04a201e512e9650357cb69effde85b4d70ca39523ba474de",
+      "passwordSalt": "fc5aa793d316051bd040a7ef3482cdac",
+      "createdAt": "2026-05-13T11:33:07.824Z"
+    },
+    {
+      "id": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "name": "azra123",
+      "email": "azra123@kisisel-gazetem.local",
+      "passwordHash": "64ad6eb455a4fe4b52f8f3314f52372d3fb79c91970532c2e5d6fa61fcc4822f",
+      "passwordSalt": "4698894140128225186ce07bf6f81c3b",
+      "createdAt": "2026-05-13T11:34:05.507Z"
+    },
+    {
+      "id": "user_d261134e-d264-4059-9e1a-f2766068837e",
+      "name": "testuser_fix4",
+      "email": "testuser_fix4@kisisel-gazetem.local",
+      "passwordHash": "42e031c3d5799e34724856ed52a3ffa8f8ddde1eb536eabe9825c79ed59d35d9",
+      "passwordSalt": "6ee92ee44d6a9f632f80ab271bd3cecc",
+      "createdAt": "2026-05-13T11:58:23.174Z"
+    },
+    {
+      "id": "user_d5c15001-6184-49ef-81d1-6867f8f14812",
+      "name": "samed ünal",
+      "email": "fevzi.samed.unal@kisisel-gazetem.local",
+      "passwordHash": "75d489903eb7b8fac9c1ca53290e9d48eeed853a256a6a5c29faa7147a3498f2",
+      "passwordSalt": "647fe63c9914eda9552efd80af9539f5",
+      "createdAt": "2026-05-13T17:38:54.424Z"
+    },
+    {
+      "id": "user_78ffa757-34b9-4fe5-9a3a-ca61fa55d040",
+      "name": "türkel holding",
+      "email": "turkel.holding@kisisel-gazetem.local",
+      "passwordHash": "4ca7cd6d7ebcc37b52db45fddb7ccf75a31c4eeb20e88ec8286832c78e651ebb",
+      "passwordSalt": "8dafda5ba803c7fefffa979cc2c401d0",
+      "createdAt": "2026-05-13T17:50:22.013Z"
+    },
+    {
+      "id": "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed",
+      "name": "ATAM",
+      "email": "deneme.kullanici@kisisel-gazetem.local",
+      "passwordHash": "0c28db916646b0faeac22b556a8925c077ce0a3c74cf6b75612d91df51a56d2b",
+      "passwordSalt": "f77941af6b342a6afec575e145a32101",
+      "createdAt": "2026-05-13T18:33:54.674Z"
+    },
+    {
+      "id": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "name": "ıbrahım",
+      "email": "ibrahim@kisisel-gazetem.local",
+      "passwordHash": "7498ec2358422fb6851820e0a1e06fdef23a13b7f5d0525b842c12fc8a2cb9e2",
+      "passwordSalt": "269e7abe6e4bc3ca290d2e54b2bcd0d1",
+      "createdAt": "2026-05-16T14:17:08.867Z"
+    },
+    {
+      "id": "user_8c6d0510-a9b4-4c11-8fa9-2d863ed304a3",
+      "name": "İbrahim",
+      "email": "test-layout-1779054722@example.com",
+      "passwordHash": "62e8f2eeda11f73d145596e90c8dcbff8b0bb13feeb407c95832c3cb5e607bb9",
+      "passwordSalt": "bd60976df99b7b8f14ee02e879472b3e",
+      "createdAt": "2026-05-17T21:52:02.601Z"
+    },
+    {
+      "id": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "name": "elif",
+      "email": "elif@kisisel-gazetem.local",
+      "passwordHash": "b05e4fecced299d79b84a815e18e2b6e2333af773cb9395cf95fc3331da8b27d",
+      "passwordSalt": "fd98902969e80c74c718a56359a8e3ea",
+      "createdAt": "2026-05-18T23:35:13.429Z"
+    },
+    {
+      "id": "user_8db9a986-4e9f-4a9a-b960-33a059322b15",
+      "name": "yagiz",
+      "email": "yagiz@kisisel-gazetem.local",
+      "passwordHash": "a2cb74ee195d401348022b19a8e869d63aab34b8d329e75e99cb7f9ab6d6413b",
+      "passwordSalt": "1d3dea50ffe3dfba22b51eb05e5d169d",
+      "createdAt": "2026-05-23T20:09:14.781Z"
+    },
+    {
+      "id": "user_a404573d-4e3b-46d3-8d67-9b72f2fa6ecd",
+      "name": "azra",
+      "email": "azra@kisisel-gazetem.local",
+      "passwordHash": "f8ee7656329305c392ba3c99137008bfd958a131484e1f84355deed870d38559",
+      "passwordSalt": "dfbb57197e72caba72f46a5f343dd083",
+      "createdAt": "2026-05-24T12:44:21.975Z"
+    },
+    {
+      "id": "user_739542b3-3626-4aa4-bdc6-ab4693732965",
+      "name": "samed ünal",
+      "email": "samed.unal@kisisel-gazetem.local",
+      "passwordHash": "2d581b91d98417b7a93914096372e8d4caf277e8f7fa3637f47b974d7dc56f64",
+      "passwordSalt": "67260f75ad58d22465552f55edca4d91",
+      "createdAt": "2026-05-28T15:44:52.929Z"
+    },
+    {
+      "id": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "name": "Samed ÜNALL",
+      "email": "samed.unall@kisisel-gazetem.local",
+      "passwordHash": "37ae1b54a8b9da2090578bf5e65f6cf99464a6c1ebc57cd393c208eafb1045ad",
+      "passwordSalt": "47daaae1d8ed32cd26dec36608382134",
+      "createdAt": "2026-05-28T17:27:18.748Z"
+    },
+    {
+      "id": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "name": "deneme",
+      "email": "deneme@kisisel-gazetem.local",
+      "passwordHash": "e0a6d61f855967778ae0151218b60a9468a6ffc1118082ad5d6ef7a834916e99",
+      "passwordSalt": "1d0721cb3510f9e2046c113bfe366a85",
+      "createdAt": "2026-05-28T19:13:29.977Z"
+    },
+    {
+      "id": "user_115b6746-069b-4770-adae-a88514624c31",
+      "name": "ornek",
+      "email": "ornek@kisisel-gazetem.local",
+      "passwordHash": "e5cd1ea49002d033ae25ce2a88db42a2bc3b8d85e7341200a64dc8cd90ed8f9e",
+      "passwordSalt": "201ae1878d7a3020be2d6a0f2e5415b4",
+      "createdAt": "2026-06-02T10:21:27.511Z"
+    },
+    {
+      "id": "user_efb63952-0c7e-4d2c-a6ca-d40b2e6080b1",
+      "name": "testlogin",
+      "email": "testlogin@kisisel-gazetem.local",
+      "passwordHash": "284aaaa6c7878b95cacd3f8278786813b32fb8f58a43bed4155b493deb7fc428",
+      "passwordSalt": "08532e8f2b84c52e67487842930594ed",
+      "createdAt": "2026-06-05T12:40:34.142Z"
+    }
+  ],
+  "preferences": {
+    "user_demo": {
+      "interests": [
+        "Teknoloji",
+        "Bilim",
+        "Dünya",
+        "Gündem",
+        "Ekonomi",
+        "Kültür-Sanat",
+        "Spor"
+      ],
+      "preferredSources": [],
+      "readingTimes": [],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 105,
+      "readingGoal": 20
+    },
+    "user_f57f60cb-aae6-416a-b8cd-e3358240b776": {
+      "interests": [
+        "Teknoloji",
+        "Bilim"
+      ],
+      "preferredSources": [],
+      "readingTimes": [],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 20
+    },
+    "user_5765c242-72fe-4441-963c-602dd6b77d01": {
+      "interests": [
+        "Teknoloji",
+        "Bilim",
+        "Dünya",
+        "Gündem",
+        "Ekonomi",
+        "Kültür-Sanat",
+        "Spor"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "morning",
+        "evening"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 95,
+      "readingGoal": 10
+    },
+    "user_d261134e-d264-4059-9e1a-f2766068837e": {
+      "interests": [
+        "Teknoloji",
+        "Bilim",
+        "Dünya"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "morning"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 20
+    },
+    "user_d5c15001-6184-49ef-81d1-6867f8f14812": {
+      "interests": [
+        "Teknoloji",
+        "Bilim"
+      ],
+      "preferredSources": [],
+      "readingTimes": [],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 20
+    },
+    "user_78ffa757-34b9-4fe5-9a3a-ca61fa55d040": {
+      "interests": [
+        "Bilim",
+        "Kültür-Sanat",
+        "Teknoloji",
+        "Ekonomi",
+        "Gündem",
+        "Spor",
+        "Sağlık",
+        "Eğitim"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "morning",
+        "noon",
+        "evening",
+        "night"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 10
+    },
+    "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed": {
+      "interests": [
+        "Ekonomi",
+        "Kültür-Sanat",
+        "Spor",
+        "Gündem",
+        "Dünya"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "morning",
+        "noon",
+        "evening",
+        "night"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 10
+    },
+    "user_3df62556-503b-4379-a48e-8a8cddba52a1": {
+      "interests": [
+        "Gündem",
+        "Eğitim",
+        "Finans",
+        "Teknoloji",
+        "Kültür-Sanat"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "morning",
+        "evening",
+        "night"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 18
+    },
+    "user_8c6d0510-a9b4-4c11-8fa9-2d863ed304a3": {
+      "interests": [
+        "Teknoloji",
+        "Bilim",
+        "Ekonomi"
+      ],
+      "preferredSources": [],
+      "readingTimes": [],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 18
+    },
+    "user_c65470b5-db02-47b9-ade4-fc8d278951a1": {
+      "interests": [
+        "Teknoloji",
+        "Bilim",
+        "Dünya"
+      ],
+      "preferredSources": [],
+      "readingTimes": [],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 20
+    },
+    "user_13090a2a-36e2-477c-afaa-61911e6471b9": {
+      "interests": [
+        "Sağlık",
+        "Gündem",
+        "Eğitim"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "evening"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 10
+    },
+    "user_8db9a986-4e9f-4a9a-b960-33a059322b15": {
+      "interests": [
+        "Spor",
+        "Bilim",
+        "Dünya"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "evening",
+        "night"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 10
+    },
+    "user_a404573d-4e3b-46d3-8d67-9b72f2fa6ecd": {
+      "interests": [
+        "Ekonomi",
+        "Teknoloji",
+        "Spor",
+        "Bilim"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "noon"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 10
+    },
+    "user_739542b3-3626-4aa4-bdc6-ab4693732965": {
+      "interests": [
+        "Gündem",
+        "Ekonomi",
+        "Teknoloji",
+        "Spor",
+        "Sağlık",
+        "Bilim",
+        "Eğitim",
+        "Finans",
+        "Dünya"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "morning",
+        "noon",
+        "evening",
+        "night"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 10
+    },
+    "user_ced11082-2da2-435a-b753-5fe82b4e34fe": {
+      "interests": [
+        "Gündem",
+        "Ekonomi",
+        "Teknoloji",
+        "Spor",
+        "Sağlık",
+        "Bilim",
+        "Eğitim",
+        "Finans",
+        "Dünya"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "morning",
+        "noon",
+        "evening",
+        "night"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 10
+    },
+    "user_f3359742-d409-488c-8239-bee38f2889e9": {
+      "interests": [
+        "Gündem",
+        "Teknoloji",
+        "Sağlık"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "noon",
+        "evening"
+      ],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 10
+    },
+    "user_115b6746-069b-4770-adae-a88514624c31": {
+      "interests": [
+        "Gündem",
+        "Ekonomi",
+        "Teknoloji",
+        "Spor",
+        "Sağlık",
+        "Bilim",
+        "Eğitim",
+        "Finans",
+        "Dünya"
+      ],
+      "preferredSources": [],
+      "readingTimes": [
+        "evening"
+      ],
+      "contentDepth": "detailed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 10
+    },
+    "user_efb63952-0c7e-4d2c-a6ca-d40b2e6080b1": {
+      "interests": [
+        "Teknoloji",
+        "Spor",
+        "Ekonomi"
+      ],
+      "preferredSources": [],
+      "readingTimes": [],
+      "contentDepth": "mixed",
+      "readingMode": "daily",
+      "language": "tr",
+      "notifications": true,
+      "darkMode": false,
+      "fontScale": 100,
+      "readingGoal": 20
+    }
+  },
+  "articles": [
+    {
+      "id": "art_1",
+      "title": "Yeni nesil yapay zeka araçları günlük iş akışlarını hızlandırıyor",
+      "summary": "Üretken yapay zeka servisleri metin özetleme, araştırma ve kişisel planlama alanlarında daha fazla kullanıcıya ulaşıyor.",
+      "fullText": "Üretken yapay zeka araçları, günlük iş akışlarında araştırma, özetleme ve yazım desteği gibi alanlarda daha görünür hale geldi. Kullanıcılar bu araçları haber okuma, kişisel takvim yönetimi ve uzun metinleri hızlı anlama için kullanıyor. Uzmanlar, bu araçların verimlilik sağlayabileceğini ancak veri gizliliği ve kaynak doğrulama konularında dikkatli olunması gerektiğini belirtiyor.",
+      "category": "Gündem",
+      "tags": [
+        "Gündem",
+        "Politika"
+      ],
+      "sourceName": "Tekno Günlük",
+      "sourceUrl": "https://example.com/teknoloji/yapay-zeka-araclari",
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+      "author": "Editör",
+      "publishedAt": "2026-05-12T17:07:00.000Z",
+      "aiSummary": "Yapay zeka araçları haber okuma ve kişisel üretkenlikte daha fazla kullanılıyor; gizlilik ve doğrulama dikkat gerektiriyor.",
+      "subcategory": "Politika",
+      "continent": "Asya",
+      "duplicates": [],
+      "multiSourceAnalysis": {
+        "commonPoints": [
+          "Yeterli karşılaştırma verisi bulunamadı"
+        ],
+        "differentPoints": [
+          "Kaynaklar aynı olayı benzer şekilde aktarıyor"
+        ],
+        "overallComparison": "1 kaynak karşılaştırıldı: Tekno Günlük."
+      },
+      "originalTitle": "Yeni nesil yapay zeka araçları günlük iş akışlarını hızlandırıyor",
+      "originalSummary": "Üretken yapay zeka servisleri metin özetleme, araştırma ve kişisel planlama alanlarında daha fazla kullanıcıya ulaşıyor.",
+      "originalContent": "Üretken yapay zeka araçları, günlük iş akışlarında araştırma, özetleme ve yazım desteği gibi alanlarda daha görünür hale geldi. Kullanıcılar bu araçları haber okuma, kişisel takvim yönetimi ve uzun metinleri hızlı anlama için kullanıyor. Uzmanlar, bu araçların verimlilik sağlayabileceğini ancak veri gizliliği ve kaynak doğrulama konularında dikkatli olunması gerektiğini belirtiyor.",
+      "originalLanguage": "tr",
+      "translatedTitle": "",
+      "translatedSummary": "",
+      "translatedContent": "",
+      "displayTitle": "Yeni nesil yapay zeka araçları günlük iş akışlarını hızlandırıyor",
+      "displaySummary": "Üretken yapay zeka servisleri metin özetleme, araştırma ve kişisel planlama alanlarında daha fazla kullanıcıya ulaşıyor.",
+      "displayContent": "Üretken yapay zeka araçları, günlük iş akışlarında araştırma, özetleme ve yazım desteği gibi alanlarda daha görünür hale geldi. Kullanıcılar bu araçları haber okuma, kişisel takvim yönetimi ve uzun metinleri hızlı anlama için kullanıyor. Uzmanlar, bu araçların verimlilik sağlayabileceğini ancak veri gizliliği ve kaynak doğrulama konularında dikkatli olunması gerektiğini belirtiyor.",
+      "namedEntities": {
+        "people": [],
+        "organizations": [],
+        "locations": [],
+        "countries": [],
+        "diseases": [],
+        "events": [],
+        "topics": []
+      },
+      "mentionedRegions": [],
+      "mentionedCountries": [],
+      "detectedEventRegion": "global",
+      "topics": [
+        "Gündem",
+        "Politika"
+      ],
+      "fetchedAt": "2026-05-12T17:07:00.000Z"
+    },
+    {
+      "id": "art_2",
+      "title": "Araştırmacılar okyanus sıcaklıklarında yeni rekor ölçümler bildirdi",
+      "summary": "Son veriler, iklim modellerinin kıyı kentleri için daha ayrıntılı risk haritaları üretmesini sağlıyor.",
+      "fullText": "Yeni ölçümler, okyanus yüzey sıcaklıklarında bölgesel rekorların görüldüğünü ortaya koydu. Bilim insanları bu verilerin fırtına yoğunluğu, deniz seviyesi ve kıyı kentleri üzerindeki riskleri daha iyi anlamak için kullanılacağını söylüyor. Çalışma, uzun dönemli iklim gözlemlerinin şehir planlaması açısından kritik önem taşıdığını vurguluyor.",
+      "category": "Bilim",
+      "tags": [
+        "Bilim",
+        "Doğa"
+      ],
+      "sourceName": "Bilim Postası",
+      "sourceUrl": "https://example.com/bilim/okyanus-sicakligi",
+      "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "author": "Bilim Servisi",
+      "publishedAt": "2026-05-12T14:25:00.000Z",
+      "aiSummary": "Okyanus sıcaklığı verileri, iklim risklerini ve kıyı kentlerine dönük planlama ihtiyaçlarını daha görünür hale getiriyor.",
+      "subcategory": "Doğa",
+      "continent": "Asya",
+      "originalTitle": "Araştırmacılar okyanus sıcaklıklarında yeni rekor ölçümler bildirdi",
+      "originalSummary": "Son veriler, iklim modellerinin kıyı kentleri için daha ayrıntılı risk haritaları üretmesini sağlıyor.",
+      "originalContent": "Yeni ölçümler, okyanus yüzey sıcaklıklarında bölgesel rekorların görüldüğünü ortaya koydu. Bilim insanları bu verilerin fırtına yoğunluğu, deniz seviyesi ve kıyı kentleri üzerindeki riskleri daha iyi anlamak için kullanılacağını söylüyor. Çalışma, uzun dönemli iklim gözlemlerinin şehir planlaması açısından kritik önem taşıdığını vurguluyor.",
+      "originalLanguage": "tr",
+      "translatedTitle": "",
+      "translatedSummary": "",
+      "translatedContent": "",
+      "displayTitle": "Araştırmacılar okyanus sıcaklıklarında yeni rekor ölçümler bildirdi",
+      "displaySummary": "Son veriler, iklim modellerinin kıyı kentleri için daha ayrıntılı risk haritaları üretmesini sağlıyor.",
+      "displayContent": "Yeni ölçümler, okyanus yüzey sıcaklıklarında bölgesel rekorların görüldüğünü ortaya koydu. Bilim insanları bu verilerin fırtına yoğunluğu, deniz seviyesi ve kıyı kentleri üzerindeki riskleri daha iyi anlamak için kullanılacağını söylüyor. Çalışma, uzun dönemli iklim gözlemlerinin şehir planlaması açısından kritik önem taşıdığını vurguluyor.",
+      "namedEntities": {
+        "people": [],
+        "organizations": [],
+        "locations": [],
+        "countries": [],
+        "diseases": [],
+        "events": [],
+        "topics": []
+      },
+      "mentionedRegions": [],
+      "mentionedCountries": [],
+      "detectedEventRegion": "global",
+      "topics": [
+        "Bilim",
+        "Doğa"
+      ],
+      "fetchedAt": "2026-05-12T14:25:00.000Z"
+    },
+    {
+      "id": "art_3",
+      "title": "Küresel piyasalarda teknoloji hisseleri haftaya güçlü başladı",
+      "summary": "Yatırımcılar çip üretimi, bulut altyapısı ve yapay zeka talebindeki büyümeyi yakından izliyor.",
+      "fullText": "Teknoloji hisseleri haftaya güçlü bir başlangıç yaptı. Analistler, çip üretimi ve bulut altyapısı talebinin piyasa beklentilerini desteklediğini belirtiyor. Buna karşın yüksek değerlemeler ve regülasyon tartışmaları yatırımcıların izlediği başlıca riskler arasında yer alıyor.",
+      "category": "Gündem",
+      "tags": [
+        "Gündem",
+        "Politika"
+      ],
+      "sourceName": "Piyasa Notları",
+      "sourceUrl": "https://example.com/ekonomi/teknoloji-hisseleri",
+      "imageUrl": "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80",
+      "author": "Piyasa Masası",
+      "publishedAt": "2026-05-12T11:30:00.000Z",
+      "aiSummary": "Teknoloji hisseleri yapay zeka ve bulut talebiyle güçlenirken regülasyon ve değerleme riskleri izleniyor.",
+      "subcategory": "Politika",
+      "continent": "Global",
+      "originalTitle": "Küresel piyasalarda teknoloji hisseleri haftaya güçlü başladı",
+      "originalSummary": "Yatırımcılar çip üretimi, bulut altyapısı ve yapay zeka talebindeki büyümeyi yakından izliyor.",
+      "originalContent": "Teknoloji hisseleri haftaya güçlü bir başlangıç yaptı. Analistler, çip üretimi ve bulut altyapısı talebinin piyasa beklentilerini desteklediğini belirtiyor. Buna karşın yüksek değerlemeler ve regülasyon tartışmaları yatırımcıların izlediği başlıca riskler arasında yer alıyor.",
+      "originalLanguage": "tr",
+      "translatedTitle": "",
+      "translatedSummary": "",
+      "translatedContent": "",
+      "displayTitle": "Küresel piyasalarda teknoloji hisseleri haftaya güçlü başladı",
+      "displaySummary": "Yatırımcılar çip üretimi, bulut altyapısı ve yapay zeka talebindeki büyümeyi yakından izliyor.",
+      "displayContent": "Teknoloji hisseleri haftaya güçlü bir başlangıç yaptı. Analistler, çip üretimi ve bulut altyapısı talebinin piyasa beklentilerini desteklediğini belirtiyor. Buna karşın yüksek değerlemeler ve regülasyon tartışmaları yatırımcıların izlediği başlıca riskler arasında yer alıyor.",
+      "namedEntities": {
+        "people": [],
+        "organizations": [],
+        "locations": [],
+        "countries": [],
+        "diseases": [],
+        "events": [],
+        "topics": []
+      },
+      "mentionedRegions": [],
+      "mentionedCountries": [],
+      "detectedEventRegion": "global",
+      "topics": [
+        "Gündem",
+        "Politika"
+      ],
+      "fetchedAt": "2026-05-12T11:30:00.000Z"
+    }
+  ],
+  "bookmarks": [
+    {
+      "userId": "user_demo",
+      "articleId": "rss_673dd8ec77c9c697",
+      "createdAt": "2026-05-12T20:02:13.290Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_d1f5f02aa0c566e7",
+      "createdAt": "2026-05-12T20:02:14.433Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_e04027ac9c4c1d52",
+      "createdAt": "2026-05-13T10:04:46.064Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_95be1defef39b6c7",
+      "createdAt": "2026-05-13T10:10:19.121Z"
+    },
+    {
+      "userId": "user_78ffa757-34b9-4fe5-9a3a-ca61fa55d040",
+      "articleId": "api_f7bd1c294e6230ca",
+      "createdAt": "2026-05-13T18:13:20.354Z"
+    },
+    {
+      "userId": "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed",
+      "articleId": "rss_7d527381e1f0e2a6",
+      "createdAt": "2026-05-13T19:09:07.924Z"
+    },
+    {
+      "userId": "user_30c2c0a0-d89d-4e69-8679-bcb6d9bc6e18",
+      "articleId": "rss_9c4f6bce1d3ab72f",
+      "createdAt": "2026-05-18T17:54:01.912Z"
+    },
+    {
+      "userId": "user_30c2c0a0-d89d-4e69-8679-bcb6d9bc6e18",
+      "articleId": "rss_498f2b4194492851",
+      "createdAt": "2026-05-18T17:54:03.148Z"
+    },
+    {
+      "userId": "user_30c2c0a0-d89d-4e69-8679-bcb6d9bc6e18",
+      "articleId": "rss_492cbc40fc7b044f",
+      "createdAt": "2026-05-18T17:54:05.955Z"
+    },
+    {
+      "userId": "user_30c2c0a0-d89d-4e69-8679-bcb6d9bc6e18",
+      "articleId": "rss_70dbf1d40114913e",
+      "createdAt": "2026-05-18T17:54:07.769Z"
+    },
+    {
+      "userId": "user_30c2c0a0-d89d-4e69-8679-bcb6d9bc6e18",
+      "articleId": "rss_dbc2d913e6162794",
+      "createdAt": "2026-05-18T17:54:09.042Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_e7e731ff71ca7762",
+      "createdAt": "2026-05-20T20:32:42.237Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_86cc97b9a3d046eb",
+      "createdAt": "2026-05-28T19:23:28.502Z"
+    }
+  ],
+  "readStatus": [
+    {
+      "userId": "user_demo",
+      "articleId": "art_2",
+      "status": "read",
+      "updatedAt": "2026-05-12T18:20:00.000Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "api_e10389376bd92072",
+      "status": "unread",
+      "updatedAt": "2026-05-12T20:44:41.234Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_68504b41286c5ed3",
+      "status": "read",
+      "updatedAt": "2026-05-13T10:39:02.181Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_77c4f9be9f5d0008",
+      "status": "read",
+      "updatedAt": "2026-05-13T10:39:11.270Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_77c4f9be9f5d0008",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:03:42.792Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_b342e0712c37d76f",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:06:49.119Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "api_17309b7daa684885",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:08:21.503Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "api_5053a3dd39549963",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:08:24.914Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "api_bd72b07766118884",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:08:29.169Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "api_ca0ba46747ea1865",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:15:39.418Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_fd20ac2ff187865d",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:16:13.229Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_b6f60a299a97f37c",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:16:16.714Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "art_2",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:39:14.236Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_18a4da20d89b38ce",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:39:37.825Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_95a9a5027c002072",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:53:15.560Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_ec5f7431e934189a",
+      "status": "read",
+      "updatedAt": "2026-05-13T12:53:45.850Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_ebc74b3721696bd6",
+      "status": "read",
+      "updatedAt": "2026-05-13T13:02:58.732Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_cd6a1af52b82aa53",
+      "status": "read",
+      "updatedAt": "2026-05-13T13:03:28.852Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_bf6329ceef380c2d",
+      "status": "read",
+      "updatedAt": "2026-05-13T13:18:39.709Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_45cc75eeb60817da",
+      "status": "read",
+      "updatedAt": "2026-05-13T13:18:50.292Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_b90e9a309560a20d",
+      "status": "read",
+      "updatedAt": "2026-05-13T13:23:47.149Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_52a316fcde4ad080",
+      "status": "read",
+      "updatedAt": "2026-05-13T13:24:03.638Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_305f2093929a810c",
+      "status": "read",
+      "updatedAt": "2026-05-13T13:26:32.658Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_8e8bea2592f4f55c",
+      "status": "read",
+      "updatedAt": "2026-05-13T13:26:40.708Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_3926694a022ec1ce",
+      "status": "read",
+      "updatedAt": "2026-05-13T13:51:36.252Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_bcfb25a27eae39a6",
+      "status": "read",
+      "updatedAt": "2026-05-13T14:01:52.477Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_1644b3e66a38d199",
+      "status": "read",
+      "updatedAt": "2026-05-13T14:02:16.714Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_66231f3fed333631",
+      "status": "read",
+      "updatedAt": "2026-05-13T14:07:02.935Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_7ba7879cb33f2c8d",
+      "status": "read",
+      "updatedAt": "2026-05-13T14:07:25.725Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_ae049f80283e608f",
+      "status": "read",
+      "updatedAt": "2026-05-13T14:09:22.407Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_a26d94e292cbaef9",
+      "status": "read",
+      "updatedAt": "2026-05-13T14:09:47.362Z"
+    },
+    {
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_7d527381e1f0e2a6",
+      "status": "read",
+      "updatedAt": "2026-05-13T14:10:26.724Z"
+    },
+    {
+      "userId": "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed",
+      "articleId": "rss_2b0b77495734d942",
+      "status": "read",
+      "updatedAt": "2026-05-13T19:02:27.998Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_1e3ecdb0eced81ee",
+      "status": "read",
+      "updatedAt": "2026-05-16T14:18:13.574Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_0b542aa5222f6296",
+      "status": "read",
+      "updatedAt": "2026-05-16T14:18:20.909Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "api_837afce2aee64d75",
+      "status": "read",
+      "updatedAt": "2026-05-16T14:18:29.014Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_bca2cc8199fc0dd2",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:49:29.790Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_5c9f72ff397b07ee",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:49:57.343Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_29fbc1bd967141ba",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:50:00.993Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_f490953a2ad78b7e",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:50:13.306Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7924a6b8514321f1",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:53:32.877Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:53:54.660Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_f08af257b9d6a943",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:53:54.843Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_1afa822fdbc3a013",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:54:29.252Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_5a67867c99ab2319",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:54:29.316Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_01e0bc9639d7f1d6",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:56:36.106Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_3b435cf3605b3d8b",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:56:39.480Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_ef84ece300792750",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:57:16.147Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_016795427de2938c",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:57:37.007Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_93a2276f6b90599b",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:57:37.012Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_be00dd3861bf6964",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:57:37.026Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_c4f8349ddf4a7127",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:57:37.049Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_1b86c70c01999216",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:59:25.475Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7c3078c2d9cb56a6",
+      "status": "read",
+      "updatedAt": "2026-05-17T12:59:51.502Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_816aa3372bd7ea6c",
+      "status": "read",
+      "updatedAt": "2026-05-17T13:29:42.957Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_acdb3617136bfd77",
+      "status": "read",
+      "updatedAt": "2026-05-17T13:30:04.537Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_71af21c1441d1980",
+      "status": "read",
+      "updatedAt": "2026-05-17T13:30:04.607Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_19bf126968220757",
+      "status": "read",
+      "updatedAt": "2026-05-17T13:39:16.056Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_fce5bc5a3d2e972e",
+      "status": "read",
+      "updatedAt": "2026-05-17T13:40:23.872Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_22fae0e92dc74ce0",
+      "status": "read",
+      "updatedAt": "2026-05-17T13:48:05.970Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_e5563ffbfe2ee0b9",
+      "status": "read",
+      "updatedAt": "2026-05-17T13:48:33.195Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_37d336ce86058b12",
+      "status": "read",
+      "updatedAt": "2026-05-17T14:18:25.571Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4dc92d70326b3e49",
+      "status": "read",
+      "updatedAt": "2026-05-17T14:37:15.380Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7fffd8e53a21bae8",
+      "status": "read",
+      "updatedAt": "2026-05-17T14:37:30.745Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_77b91750756ce27e",
+      "status": "read",
+      "updatedAt": "2026-05-17T14:50:49.556Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_06e5b5008699d64d",
+      "status": "read",
+      "updatedAt": "2026-05-17T14:51:25.069Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_cfb71a690d7060a0",
+      "status": "read",
+      "updatedAt": "2026-05-17T14:51:42.539Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_8cdad7398920d1ff",
+      "status": "read",
+      "updatedAt": "2026-05-17T14:51:55.433Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_bf6ac73dbf29fdf4",
+      "status": "read",
+      "updatedAt": "2026-05-17T14:52:54.381Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_b3cd893f446d080c",
+      "status": "read",
+      "updatedAt": "2026-05-17T14:53:06.971Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_00913c452633367c",
+      "status": "read",
+      "updatedAt": "2026-05-17T15:12:27.326Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_a2e3852c1f396c08",
+      "status": "read",
+      "updatedAt": "2026-05-17T15:12:43.254Z"
+    },
+    {
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_ee4161f6fee97939",
+      "status": "read",
+      "updatedAt": "2026-05-17T15:13:10.729Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_b3cd893f446d080c",
+      "status": "read",
+      "updatedAt": "2026-05-17T15:53:01.667Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_00913c452633367c",
+      "status": "read",
+      "updatedAt": "2026-05-17T17:09:13.672Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_c5907f8c2a62b023",
+      "status": "read",
+      "updatedAt": "2026-05-17T17:09:43.968Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_fd629ba729ee6361",
+      "status": "read",
+      "updatedAt": "2026-05-17T17:09:56.864Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_ff196eaea02b35ac",
+      "status": "read",
+      "updatedAt": "2026-05-17T17:11:52.645Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_a9d145b8da0a901e",
+      "status": "read",
+      "updatedAt": "2026-05-17T17:13:37.442Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_ffdb134b5230917b",
+      "status": "read",
+      "updatedAt": "2026-05-17T17:13:41.976Z"
+    },
+    {
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_87abec515f33f031",
+      "status": "read",
+      "updatedAt": "2026-05-17T17:13:55.247Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "art_1",
+      "status": "read",
+      "updatedAt": "2026-05-17T21:55:22.991Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_4cfe3c800f1dbd54",
+      "status": "read",
+      "updatedAt": "2026-05-18T19:41:07.845Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_eae28b53aa24264e",
+      "status": "read",
+      "updatedAt": "2026-05-18T19:41:40.985Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_24897fbe9d60b8e9",
+      "status": "read",
+      "updatedAt": "2026-05-18T19:45:50.938Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_711793c6fa5eb066",
+      "status": "read",
+      "updatedAt": "2026-05-18T19:46:06.636Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_263c77c0c3764638",
+      "status": "read",
+      "updatedAt": "2026-05-18T19:49:11.655Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_df935d49c548aeac",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:01:59.931Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_60a5c18b8000c836",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:02:23.569Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_75e1fb445236b7b5",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:02:37.858Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_9850aed33fe82e42",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:02:59.020Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_a5094204d094c3f5",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:03:07.778Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_ae7ba42f29854301",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:03:19.921Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_b6b4bbb45f1ddb94",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:03:28.693Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_b1b51390421851ed",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:03:58.208Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_b0ed560a367ef49d",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:06:59.291Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "api_dd109b6c6063b0d5",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:08:19.404Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_737beaa431f3d3e5",
+      "status": "read",
+      "updatedAt": "2026-05-18T20:11:26.346Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_60a5c18b8000c836",
+      "status": "read",
+      "updatedAt": "2026-05-18T23:36:28.542Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_498f2b4194492851",
+      "status": "read",
+      "updatedAt": "2026-05-18T23:37:36.496Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_b74f47f3d39b1079",
+      "status": "read",
+      "updatedAt": "2026-05-19T00:22:42.693Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_1ae08839bce6bf38",
+      "status": "read",
+      "updatedAt": "2026-05-19T09:48:12.558Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_0fcacea6084536d7",
+      "status": "read",
+      "updatedAt": "2026-05-19T10:10:39.287Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_7a345e97da4bf9d8",
+      "status": "read",
+      "updatedAt": "2026-05-19T10:25:13.913Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_53fd290f5bbf795d",
+      "status": "read",
+      "updatedAt": "2026-05-19T10:25:42.453Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_24897fbe9d60b8e9",
+      "status": "read",
+      "updatedAt": "2026-05-19T10:26:01.611Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_8fa39a2ecc219361",
+      "status": "read",
+      "updatedAt": "2026-05-19T10:26:31.410Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_859317417eef8e37",
+      "status": "read",
+      "updatedAt": "2026-05-19T11:01:00.853Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_c37dd859c6285ef6",
+      "status": "read",
+      "updatedAt": "2026-05-19T11:24:54.908Z"
+    },
+    {
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_c4831e9a280a964a",
+      "status": "read",
+      "updatedAt": "2026-05-19T11:56:39.198Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_d2b1d57c41fa5f53",
+      "status": "read",
+      "updatedAt": "2026-05-20T20:32:26.270Z"
+    },
+    {
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_9b86f64c292946de",
+      "status": "read",
+      "updatedAt": "2026-05-20T20:46:17.555Z"
+    },
+    {
+      "userId": "user_8db9a986-4e9f-4a9a-b960-33a059322b15",
+      "articleId": "rss_a8a8f41a88981587",
+      "status": "read",
+      "updatedAt": "2026-05-23T20:18:32.005Z"
+    },
+    {
+      "userId": "user_a404573d-4e3b-46d3-8d67-9b72f2fa6ecd",
+      "articleId": "rss_75ef23e0c4c90b04",
+      "status": "read",
+      "updatedAt": "2026-05-24T12:57:32.456Z"
+    },
+    {
+      "userId": "user_a404573d-4e3b-46d3-8d67-9b72f2fa6ecd",
+      "articleId": "rss_7bef5b08d87eac8b",
+      "status": "read",
+      "updatedAt": "2026-05-24T13:08:03.154Z"
+    },
+    {
+      "userId": "user_739542b3-3626-4aa4-bdc6-ab4693732965",
+      "articleId": "rss_a0cfa257cd59aa7d",
+      "status": "read",
+      "updatedAt": "2026-05-28T15:45:48.144Z"
+    },
+    {
+      "userId": "user_739542b3-3626-4aa4-bdc6-ab4693732965",
+      "articleId": "rss_aff58f18c55a6f1f",
+      "status": "read",
+      "updatedAt": "2026-05-28T15:46:00.810Z"
+    },
+    {
+      "userId": "user_739542b3-3626-4aa4-bdc6-ab4693732965",
+      "articleId": "rss_ee1e16fcd892b496",
+      "status": "read",
+      "updatedAt": "2026-05-28T15:46:14.183Z"
+    },
+    {
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_d769f4653ab674f1",
+      "status": "read",
+      "updatedAt": "2026-05-28T17:28:15.518Z"
+    },
+    {
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_4fa4ef04202db7d8",
+      "status": "read",
+      "updatedAt": "2026-05-28T17:34:04.356Z"
+    },
+    {
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_fdca0e862166257a",
+      "status": "read",
+      "updatedAt": "2026-05-28T17:34:16.845Z"
+    },
+    {
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_181ef51e8bf6a8be",
+      "status": "read",
+      "updatedAt": "2026-05-28T17:34:30.860Z"
+    },
+    {
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_47035be852401e2a",
+      "status": "read",
+      "updatedAt": "2026-05-28T17:34:43.422Z"
+    },
+    {
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_ee1e16fcd892b496",
+      "status": "read",
+      "updatedAt": "2026-05-28T17:44:45.600Z"
+    },
+    {
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_aff58f18c55a6f1f",
+      "status": "read",
+      "updatedAt": "2026-05-28T17:45:15.210Z"
+    },
+    {
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_912d8568bf951c69",
+      "status": "read",
+      "updatedAt": "2026-05-28T17:45:46.692Z"
+    },
+    {
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_a0cfa257cd59aa7d",
+      "status": "read",
+      "updatedAt": "2026-05-28T17:46:06.781Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_cdb89ecc17924f67",
+      "status": "read",
+      "updatedAt": "2026-05-28T19:22:23.598Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "api_3745239b788b80af",
+      "status": "read",
+      "updatedAt": "2026-05-28T19:22:49.863Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_86cc97b9a3d046eb",
+      "status": "read",
+      "updatedAt": "2026-05-28T19:22:58.907Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_0c6dfa6f41096bad",
+      "status": "read",
+      "updatedAt": "2026-05-28T19:25:10.741Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_71f60567c89b5f1f",
+      "status": "read",
+      "updatedAt": "2026-05-28T19:25:14.639Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_142c8df64f985e6d",
+      "status": "read",
+      "updatedAt": "2026-05-28T19:25:21.645Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_babdb9ab844a3bfc",
+      "status": "read",
+      "updatedAt": "2026-05-29T07:25:45.931Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_a0cfa257cd59aa7d",
+      "status": "read",
+      "updatedAt": "2026-05-29T07:31:18.783Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "api_a8450f4315e0f972",
+      "status": "read",
+      "updatedAt": "2026-05-29T07:41:40.021Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_9681f861d1db7196",
+      "status": "read",
+      "updatedAt": "2026-05-29T07:42:05.890Z"
+    },
+    {
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_ed3c48ebf21bbe12",
+      "status": "read",
+      "updatedAt": "2026-05-29T09:07:45.799Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "api_80043c50c480f8c8",
+      "status": "read",
+      "updatedAt": "2026-06-01T17:13:28.469Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_b5437944c3675cea",
+      "status": "read",
+      "updatedAt": "2026-06-02T10:22:54.294Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_c73f3fdf700315e6",
+      "status": "read",
+      "updatedAt": "2026-06-02T11:42:40.670Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_35f17805acc28239",
+      "status": "read",
+      "updatedAt": "2026-06-05T13:15:44.751Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_ddc03404a5f978ab",
+      "status": "read",
+      "updatedAt": "2026-06-05T13:16:09.974Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_cf6231a2e77a4fd9",
+      "status": "read",
+      "updatedAt": "2026-06-05T13:16:30.861Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_20d2f10874efd031",
+      "status": "read",
+      "updatedAt": "2026-06-05T13:18:22.377Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_32e97ebeee9df4ac",
+      "status": "read",
+      "updatedAt": "2026-06-05T13:23:45.577Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_516d0caa3e66d713",
+      "status": "read",
+      "updatedAt": "2026-06-05T20:32:38.072Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "api_65f9010a8e856e0d",
+      "status": "read",
+      "updatedAt": "2026-06-06T19:47:22.932Z"
+    },
+    {
+      "userId": "user_demo",
+      "articleId": "rss_74d24700864b8129",
+      "status": "read",
+      "updatedAt": "2026-06-06T19:47:37.090Z"
+    }
+  ],
+  "events": [
+    {
+      "id": "evt_1eb582f0-46cc-4f62-97d6-8a999084e0ef",
+      "userId": "user_demo",
+      "articleId": "art_1",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-12T20:40:13.329Z"
+    }
+  ],
+  "userArticleEvents": [
+    {
+      "id": "evt_1eb582f0-46cc-4f62-97d6-8a999084e0ef",
+      "userId": "user_demo",
+      "articleId": "art_1",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-12T20:40:13.329Z"
+    },
+    {
+      "id": "evt_28ba540b-421b-4c7b-bfcc-631455936393",
+      "userId": "user_demo",
+      "articleId": "api_e10389376bd92072",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-12T20:44:40.076Z"
+    },
+    {
+      "id": "evt_ec52bedd-fbbf-42d0-a0d5-6f00f3fd02b7",
+      "userId": "user_demo",
+      "articleId": "api_e10389376bd92072",
+      "eventType": "mark_unread",
+      "createdAt": "2026-05-12T20:44:41.234Z"
+    },
+    {
+      "id": "evt_5f508a2e-74ba-47bf-a82a-c02a2495dfcf",
+      "userId": "user_demo",
+      "articleId": "rss_68504b41286c5ed3",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T10:39:02.181Z"
+    },
+    {
+      "id": "evt_4b141fef-1cd7-47fe-b886-a7b1e1e91cc3",
+      "userId": "user_demo",
+      "articleId": "rss_77c4f9be9f5d0008",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T10:39:11.270Z"
+    },
+    {
+      "id": "evt_810e0293-14ca-4008-9e96-6ab282462b5f",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_77c4f9be9f5d0008",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:03:42.294Z"
+    },
+    {
+      "id": "evt_9cf6c200-09d4-4b7c-8b6f-a36903570959",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_77c4f9be9f5d0008",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:03:42.793Z"
+    },
+    {
+      "id": "evt_cb62fe84-a63e-4e42-a157-e287f11b43ac",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_b342e0712c37d76f",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:06:49.113Z"
+    },
+    {
+      "id": "evt_cdc44d1d-e3a6-4350-bba4-9a8826eaf0cf",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_b342e0712c37d76f",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:06:49.119Z"
+    },
+    {
+      "id": "evt_65804d0b-d5cf-4cc8-8e6c-6135d1f7d582",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "api_17309b7daa684885",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:08:21.504Z"
+    },
+    {
+      "id": "evt_6effe2dc-08ae-4fed-8596-1a1856114ba1",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "api_5053a3dd39549963",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:08:24.914Z"
+    },
+    {
+      "id": "evt_da913bb6-5a50-40d6-894c-837a31a78b59",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "api_bd72b07766118884",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:08:29.169Z"
+    },
+    {
+      "id": "evt_c48185ff-44af-40a3-992a-1ae5160b7c99",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "api_ca0ba46747ea1865",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:15:39.418Z"
+    },
+    {
+      "id": "evt_c83090ed-02a0-489f-975b-fee30fdfccde",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_fd20ac2ff187865d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:16:13.229Z"
+    },
+    {
+      "id": "evt_cb23b5d5-07f1-4257-b5d2-03e6476447b1",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_b6f60a299a97f37c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:16:16.714Z"
+    },
+    {
+      "id": "evt_54bb0d82-35e4-4c27-a4bf-959d55227e06",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "art_2",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:39:14.238Z"
+    },
+    {
+      "id": "evt_4d2c7203-3149-42e2-a40c-b77741b724c2",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_18a4da20d89b38ce",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:39:37.822Z"
+    },
+    {
+      "id": "evt_27cfbf38-ff13-493a-960c-aa85238a6b47",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_18a4da20d89b38ce",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:39:37.825Z"
+    },
+    {
+      "id": "evt_f9ed8e52-a085-42ca-9f6d-2c6c900d1493",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_95a9a5027c002072",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:53:15.560Z"
+    },
+    {
+      "id": "evt_d04fcf02-fd34-4d02-9ce4-d4e50c902f3a",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_ec5f7431e934189a",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T12:53:45.850Z"
+    },
+    {
+      "id": "evt_055dec80-e649-458b-a32f-9f683d65716a",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_ebc74b3721696bd6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T13:02:58.732Z"
+    },
+    {
+      "id": "evt_e9d740fc-a7e1-43db-b596-be63004b6222",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_cd6a1af52b82aa53",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T13:03:28.852Z"
+    },
+    {
+      "id": "evt_a394dc47-d510-4b3f-94ae-dc3cfa684c19",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_bf6329ceef380c2d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T13:18:39.709Z"
+    },
+    {
+      "id": "evt_e5d377db-38f7-498d-9daa-b1a5ab02206f",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_45cc75eeb60817da",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T13:18:50.292Z"
+    },
+    {
+      "id": "evt_943f506c-028e-48c5-b8eb-4c8712660d88",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_b90e9a309560a20d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T13:23:47.150Z"
+    },
+    {
+      "id": "evt_2cc4cabd-7b07-44df-adc6-1488a95c3030",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_52a316fcde4ad080",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T13:24:03.638Z"
+    },
+    {
+      "id": "evt_f191637d-d7b1-4edf-8bb9-fde262b941cd",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_305f2093929a810c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T13:26:32.658Z"
+    },
+    {
+      "id": "evt_0776a112-94cd-4bea-9208-0bcdaa7f1551",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_8e8bea2592f4f55c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T13:26:40.708Z"
+    },
+    {
+      "id": "evt_b68caa3f-2e67-444d-8f28-12871374b825",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_3926694a022ec1ce",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T13:51:36.252Z"
+    },
+    {
+      "id": "evt_ac53ecea-1ff0-4362-b37d-076d989e65e8",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_bcfb25a27eae39a6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T14:01:52.478Z"
+    },
+    {
+      "id": "evt_11af85c7-f9c7-4678-ba50-4fad51a964af",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_1644b3e66a38d199",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T14:02:16.714Z"
+    },
+    {
+      "id": "evt_630c2240-bd33-4ecd-801f-98d0a4ec805b",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_66231f3fed333631",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T14:07:02.935Z"
+    },
+    {
+      "id": "evt_98eeed84-4bb7-49e3-ba17-67214f33d8a9",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_7ba7879cb33f2c8d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T14:07:25.725Z"
+    },
+    {
+      "id": "evt_2d2abfb8-c183-4b8e-a7b0-e28df9a1d808",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_ae049f80283e608f",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T14:09:22.407Z"
+    },
+    {
+      "id": "evt_19b311c5-10de-4154-ac85-88400b8a7bc2",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_a26d94e292cbaef9",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T14:09:47.362Z"
+    },
+    {
+      "id": "evt_af81a465-8237-41de-adc4-d44f912ee1de",
+      "userId": "user_5765c242-72fe-4441-963c-602dd6b77d01",
+      "articleId": "rss_7d527381e1f0e2a6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T14:10:26.724Z"
+    },
+    {
+      "id": "evt_cff5e7d6-8779-4ffc-843b-50dbf84d0747",
+      "userId": "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed",
+      "articleId": "rss_2b0b77495734d942",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-13T19:02:27.998Z"
+    },
+    {
+      "id": "evt_2b01c67d-5155-4ea9-a779-b56e57c93e22",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_1e3ecdb0eced81ee",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-16T14:18:13.574Z"
+    },
+    {
+      "id": "evt_a44c77cf-4e34-4fce-8957-abcc0558f693",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_0b542aa5222f6296",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-16T14:18:20.909Z"
+    },
+    {
+      "id": "evt_2c0741c7-8dd2-4ab1-aeec-848c4dd6e564",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "api_837afce2aee64d75",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-16T14:18:29.014Z"
+    },
+    {
+      "id": "evt_7b25c87e-627b-431e-9e69-ead5706c205a",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_bca2cc8199fc0dd2",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:49:29.790Z"
+    },
+    {
+      "id": "evt_a834f3e0-a36c-4bc7-871d-63e904e9e9e1",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_22fae0e92dc74ce0",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:49:32.248Z"
+    },
+    {
+      "id": "evt_4e5c87b6-f5a1-43f0-8bd1-7bdef315b9c6",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_5c9f72ff397b07ee",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:49:57.343Z"
+    },
+    {
+      "id": "evt_9a41bdc6-15e9-4b60-baec-a9f9e9226fa0",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_29fbc1bd967141ba",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:50:00.993Z"
+    },
+    {
+      "id": "evt_1d71e65c-8d3d-4f9b-babf-7239e610d43f",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_f490953a2ad78b7e",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:50:13.126Z"
+    },
+    {
+      "id": "evt_0836be20-c13c-417d-80fd-b62548f4f786",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_f490953a2ad78b7e",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:50:13.213Z"
+    },
+    {
+      "id": "evt_aca20a39-df9a-429b-b938-947f81a6e3c4",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_f490953a2ad78b7e",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:50:13.306Z"
+    },
+    {
+      "id": "evt_7dedd9c4-890b-4362-a4da-14e4c0699b88",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7924a6b8514321f1",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:32.877Z"
+    },
+    {
+      "id": "evt_a3949a43-6684-4b01-8641-87991d2194ec",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:50.025Z"
+    },
+    {
+      "id": "evt_903f5812-2dcb-40d5-be81-0afd2bf4e829",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:50.559Z"
+    },
+    {
+      "id": "evt_52e8f2f2-030a-49ec-aa78-a85732319a1f",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:51.079Z"
+    },
+    {
+      "id": "evt_fa9ff060-50fd-4f0b-8141-8ef86f4ee806",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:51.605Z"
+    },
+    {
+      "id": "evt_ff529bf7-0989-4682-a29c-14d415903e9e",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:52.118Z"
+    },
+    {
+      "id": "evt_7d03447b-9ca0-44ed-8089-78c050bb44ef",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:52.637Z"
+    },
+    {
+      "id": "evt_684e5b5b-1f13-441a-ac6b-214c0fd7dabe",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:53.146Z"
+    },
+    {
+      "id": "evt_28dd29f4-cc00-4e83-b984-cd1a08380395",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:53.649Z"
+    },
+    {
+      "id": "evt_921d45ae-ee56-4408-935f-e6651c5b8287",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:54.159Z"
+    },
+    {
+      "id": "evt_3becbde1-dee4-4acd-bd89-dc1811103928",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4f007315613ffa10",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:54.660Z"
+    },
+    {
+      "id": "evt_4309c46d-9fc0-4d21-82e0-14ca11b0c062",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_f08af257b9d6a943",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:54.736Z"
+    },
+    {
+      "id": "evt_09023833-bc52-4c94-9f54-653dee3bec07",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_f08af257b9d6a943",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:54.790Z"
+    },
+    {
+      "id": "evt_f3df0110-4af4-4b9a-91b5-3a3979435fa5",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_f08af257b9d6a943",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:53:54.843Z"
+    },
+    {
+      "id": "evt_cb53913e-e215-4613-80e7-21d74b26d1b0",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_1afa822fdbc3a013",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:54:29.252Z"
+    },
+    {
+      "id": "evt_aa36b810-b9ef-4786-8af0-735401a47f82",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_5a67867c99ab2319",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:54:29.316Z"
+    },
+    {
+      "id": "evt_cd1e3891-8d9a-4ad3-a81a-fd21559f4362",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_01e0bc9639d7f1d6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:56:36.070Z"
+    },
+    {
+      "id": "evt_dd2c1c9a-e305-4d74-9390-b1210da47c54",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_01e0bc9639d7f1d6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:56:36.106Z"
+    },
+    {
+      "id": "evt_35978b1a-df1a-4bcd-aa7f-e054394b22c3",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_3b435cf3605b3d8b",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:56:39.446Z"
+    },
+    {
+      "id": "evt_5860c7ac-d426-48bc-b245-f06af14ea6a7",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_3b435cf3605b3d8b",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:56:39.480Z"
+    },
+    {
+      "id": "evt_f78f5f6b-90ce-4a79-8a9f-8ae84ab45a5e",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_ef84ece300792750",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:57:16.147Z"
+    },
+    {
+      "id": "evt_9ac0204c-7c94-4882-a0e6-747e5ebed2b1",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_016795427de2938c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:57:37.007Z"
+    },
+    {
+      "id": "evt_04eb9a23-2be1-44b8-afc7-11e0a3a0defa",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_93a2276f6b90599b",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:57:37.012Z"
+    },
+    {
+      "id": "evt_04b9a131-631a-49b0-87fe-842509790a97",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_be00dd3861bf6964",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:57:37.016Z"
+    },
+    {
+      "id": "evt_2dc20768-0e14-483b-90c2-66e129ea416f",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_be00dd3861bf6964",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:57:37.021Z"
+    },
+    {
+      "id": "evt_507b3d5e-b631-46ef-bd44-388e90abbb31",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_be00dd3861bf6964",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:57:37.026Z"
+    },
+    {
+      "id": "evt_4ccb06e7-a527-47ac-badf-a44a54d7a181",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_c4f8349ddf4a7127",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:57:37.049Z"
+    },
+    {
+      "id": "evt_c3b085c1-69b6-421e-80a3-f00c87a4276b",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_1b86c70c01999216",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:59:25.475Z"
+    },
+    {
+      "id": "evt_d2cc4e37-62e6-4611-a6cf-b830bda9e0e1",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7c3078c2d9cb56a6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:59:51.315Z"
+    },
+    {
+      "id": "evt_05afc3e9-bfb6-42e3-a13f-391bd0302829",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7c3078c2d9cb56a6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:59:51.351Z"
+    },
+    {
+      "id": "evt_71358c40-aca2-4892-8f21-bee645c23d76",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7c3078c2d9cb56a6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:59:51.392Z"
+    },
+    {
+      "id": "evt_fc556712-c918-4a4f-8c48-ac7dc809bd8d",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7c3078c2d9cb56a6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:59:51.428Z"
+    },
+    {
+      "id": "evt_feb85da5-d766-4be7-aaec-9cf20886d634",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7c3078c2d9cb56a6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:59:51.464Z"
+    },
+    {
+      "id": "evt_baf23540-40cb-482f-b27e-9170f1d74115",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7c3078c2d9cb56a6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T12:59:51.502Z"
+    },
+    {
+      "id": "evt_96a44613-e316-43af-9b1c-42b28fdc99b1",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_816aa3372bd7ea6c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:29:42.878Z"
+    },
+    {
+      "id": "evt_0f79594e-20dc-4497-995f-f159adead2c3",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_816aa3372bd7ea6c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:29:42.957Z"
+    },
+    {
+      "id": "evt_2a4bc693-c1a7-4600-a763-14bbb9bfe9ca",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_acdb3617136bfd77",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:30:04.324Z"
+    },
+    {
+      "id": "evt_59409a1b-8a4b-40e4-b132-27971f84cae0",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_acdb3617136bfd77",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:30:04.426Z"
+    },
+    {
+      "id": "evt_179b9e6f-5439-49f3-8ad4-2e73754df089",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_acdb3617136bfd77",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:30:04.537Z"
+    },
+    {
+      "id": "evt_e3bf252f-bbd7-4fa1-a1fe-be1652be2bab",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_71af21c1441d1980",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:30:04.607Z"
+    },
+    {
+      "id": "evt_16081f0b-f229-4f92-9d4e-7c692ae9b5af",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_19bf126968220757",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:39:16.057Z"
+    },
+    {
+      "id": "evt_d28617ee-a92d-4839-b556-41a496d2082d",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_fce5bc5a3d2e972e",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:40:23.872Z"
+    },
+    {
+      "id": "evt_16cadb18-bff6-4113-b30f-019d2019e4b0",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_22fae0e92dc74ce0",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:48:05.971Z"
+    },
+    {
+      "id": "evt_b64d3a14-aa9f-4236-a199-c6934735e212",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_e5563ffbfe2ee0b9",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:48:33.161Z"
+    },
+    {
+      "id": "evt_76303944-1239-4053-88b1-527b3fb0de96",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_e5563ffbfe2ee0b9",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T13:48:33.195Z"
+    },
+    {
+      "id": "evt_bb034d1a-ddd6-4797-8816-5be997f7cdee",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_37d336ce86058b12",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T14:18:25.571Z"
+    },
+    {
+      "id": "evt_3bb014d0-885b-4faa-98c5-4950114b58be",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_4dc92d70326b3e49",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T14:37:15.380Z"
+    },
+    {
+      "id": "evt_1a4904a6-3a74-404c-863d-cfc6aab2cc4a",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_7fffd8e53a21bae8",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T14:37:30.745Z"
+    },
+    {
+      "id": "evt_7e5b6a27-4239-4d36-83ee-9a0ab10e4574",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_77b91750756ce27e",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T14:50:49.557Z"
+    },
+    {
+      "id": "evt_e1982d01-8a27-4b64-96c8-2db2f5e77e8b",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_06e5b5008699d64d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T14:51:25.069Z"
+    },
+    {
+      "id": "evt_60c92e64-4806-4406-a065-6f2bc659e9ca",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_cfb71a690d7060a0",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T14:51:42.539Z"
+    },
+    {
+      "id": "evt_60c78324-eccb-427d-99c2-45e517c35d11",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_8cdad7398920d1ff",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T14:51:55.433Z"
+    },
+    {
+      "id": "evt_799aa8f2-8009-4fe1-a421-9c1da42fbfef",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_bf6ac73dbf29fdf4",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T14:52:54.381Z"
+    },
+    {
+      "id": "evt_51a015af-9a04-4a9a-9f41-02faf95de698",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_b3cd893f446d080c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T14:53:06.971Z"
+    },
+    {
+      "id": "evt_2320bbb0-3411-4015-9686-4399c2b882e8",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_00913c452633367c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T15:12:27.328Z"
+    },
+    {
+      "id": "evt_251f9ab3-0094-4c7b-953b-170f2b5b2c32",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_a2e3852c1f396c08",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T15:12:43.254Z"
+    },
+    {
+      "id": "evt_c1c8b557-02d7-4d09-8e78-f5ca25b63db5",
+      "userId": "user_6177920f-812e-4953-9ad2-bb0e7a41adf1",
+      "articleId": "rss_ee4161f6fee97939",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T15:13:10.729Z"
+    },
+    {
+      "id": "evt_1af5d1b0-c287-4d9e-8472-dbae16f6f7f4",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_b3cd893f446d080c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T15:53:01.668Z"
+    },
+    {
+      "id": "evt_9d2cb293-6b19-43ef-9892-6e2d2bf93993",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_00913c452633367c",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T17:09:13.673Z"
+    },
+    {
+      "id": "evt_450e1909-a4fa-4fbf-a021-e116a971feaf",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_c5907f8c2a62b023",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T17:09:43.968Z"
+    },
+    {
+      "id": "evt_9e4943b5-5334-4a3b-bd62-7bce59fd77f8",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_fd629ba729ee6361",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T17:09:56.864Z"
+    },
+    {
+      "id": "evt_6c8ab37b-a446-4c23-baa7-e7b131266c0e",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_ff196eaea02b35ac",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T17:11:52.645Z"
+    },
+    {
+      "id": "evt_43731833-6fcb-4e04-995f-00d620458050",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_a9d145b8da0a901e",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T17:13:37.442Z"
+    },
+    {
+      "id": "evt_5cb30c7d-866c-4226-8d80-37a0bdd0b27b",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_ffdb134b5230917b",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T17:13:41.976Z"
+    },
+    {
+      "id": "evt_cb925694-61f8-4675-857a-6d07e1d747ca",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "articleId": "rss_87abec515f33f031",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T17:13:55.247Z"
+    },
+    {
+      "id": "evt_0dd4b11d-2f9b-4e5e-8bbc-b9bfbea36012",
+      "userId": "user_demo",
+      "articleId": "art_1",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-17T21:55:22.992Z"
+    },
+    {
+      "id": "evt_54948b5b-af1e-4c27-95cb-54df1165918b",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_263c77c0c3764638",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:05:04.014Z"
+    },
+    {
+      "id": "evt_d3aaf539-6a3d-4e9a-8058-a12d61be16e1",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_df935d49c548aeac",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:24:04.416Z"
+    },
+    {
+      "id": "evt_bc2bf83b-a4c4-4cda-acae-cbfc7ea29643",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_60a5c18b8000c836",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:24:44.724Z"
+    },
+    {
+      "id": "evt_cc45335f-da19-4f04-af9c-a6ce44c22e10",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_9850aed33fe82e42",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:25:02.671Z"
+    },
+    {
+      "id": "evt_28a30da2-c989-4aa8-b753-ee9537685139",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_ae7ba42f29854301",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:25:15.804Z"
+    },
+    {
+      "id": "evt_d236d514-8cfb-43f8-ad8a-fd77652a3af5",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_263c77c0c3764638",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:35:14.253Z"
+    },
+    {
+      "id": "evt_f01b4919-ade0-4e94-989b-ccbf0137b3d8",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_4cfe3c800f1dbd54",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:41:07.845Z"
+    },
+    {
+      "id": "evt_47be5567-2ae4-47be-aa1c-3c6843615cde",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_60a5c18b8000c836",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:41:28.568Z"
+    },
+    {
+      "id": "evt_58010ea9-17d6-4775-876a-57ae083a37cf",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_eae28b53aa24264e",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:41:40.985Z"
+    },
+    {
+      "id": "evt_91ed488d-cc4a-4819-85d0-3c0a13f71eb1",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_24897fbe9d60b8e9",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:45:50.938Z"
+    },
+    {
+      "id": "evt_0409ca80-2b73-4e0a-9834-3c9f9e1096c9",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_711793c6fa5eb066",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:46:06.636Z"
+    },
+    {
+      "id": "evt_43d5e448-f07f-4a71-a4ae-f4cfffc6ea57",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_b6b4bbb45f1ddb94",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:46:23.239Z"
+    },
+    {
+      "id": "evt_795c40e1-7e0f-435a-a96e-a65afee12d5e",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_263c77c0c3764638",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:49:11.655Z"
+    },
+    {
+      "id": "evt_2e43eb79-a81a-4992-8e95-6f047c4e6cfc",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_df935d49c548aeac",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:49:31.884Z"
+    },
+    {
+      "id": "evt_59b2d946-a023-48c5-acd2-9b732c2bf3a8",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_75e1fb445236b7b5",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:53:49.060Z"
+    },
+    {
+      "id": "evt_b745b45b-6b75-482c-bf1e-f28214159e4f",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_df935d49c548aeac",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:55:57.739Z"
+    },
+    {
+      "id": "evt_6ae30cd5-637d-4d7a-8997-3db895de362e",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_60a5c18b8000c836",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T19:56:11.402Z"
+    },
+    {
+      "id": "evt_a76b6475-c5e6-4fae-b7cf-dd76beff4751",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_df935d49c548aeac",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:01:59.931Z"
+    },
+    {
+      "id": "evt_33dc1389-6345-4a58-b5d4-010335191f94",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_60a5c18b8000c836",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:02:23.569Z"
+    },
+    {
+      "id": "evt_ced65fdf-e302-43a5-8b0d-d4d7a1a3c764",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_75e1fb445236b7b5",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:02:37.859Z"
+    },
+    {
+      "id": "evt_f675b48f-d0c4-4052-a721-9dce890d8d33",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_9850aed33fe82e42",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:02:59.020Z"
+    },
+    {
+      "id": "evt_eef57645-3d4b-4d03-8b2e-3e2a64113ff2",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_a5094204d094c3f5",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:03:07.779Z"
+    },
+    {
+      "id": "evt_800c35b8-eff0-47ea-98d7-e05a5b90dced",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_ae7ba42f29854301",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:03:19.921Z"
+    },
+    {
+      "id": "evt_8e409b86-3661-4ca3-ab15-1299b2d8777f",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_b6b4bbb45f1ddb94",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:03:28.693Z"
+    },
+    {
+      "id": "evt_23b4868b-38f1-4bc9-959b-9aee61bace1b",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_b1b51390421851ed",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:03:58.208Z"
+    },
+    {
+      "id": "evt_747702b1-5f60-45f2-a12f-176b2f212ed2",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_b0ed560a367ef49d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:06:59.291Z"
+    },
+    {
+      "id": "evt_61acca2b-e1c1-42d1-be09-dab9a4869f9e",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "api_dd109b6c6063b0d5",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:08:19.404Z"
+    },
+    {
+      "id": "evt_b74aeaa2-1268-4208-8760-9b2fe9ff6534",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_737beaa431f3d3e5",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T20:11:26.346Z"
+    },
+    {
+      "id": "evt_f7ec1f16-11b5-4891-8fea-d7a0cbd22a90",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_60a5c18b8000c836",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T23:36:28.542Z"
+    },
+    {
+      "id": "evt_2224a934-be11-4ccc-8895-b25d85ccb015",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_498f2b4194492851",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-18T23:37:36.496Z"
+    },
+    {
+      "id": "evt_8c66fa7c-9de2-4923-9f2d-da09196df739",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_b74f47f3d39b1079",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T00:22:42.693Z"
+    },
+    {
+      "id": "evt_a237de0c-eb09-4937-8e56-db1b5b65daac",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_1ae08839bce6bf38",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T09:48:12.558Z"
+    },
+    {
+      "id": "evt_1afd279a-1ad1-4d67-92b5-412d4556b872",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_0fcacea6084536d7",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T10:10:39.287Z"
+    },
+    {
+      "id": "evt_33c3e102-98d7-44be-ad55-0cd1b4ec0610",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_7a345e97da4bf9d8",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T10:25:13.913Z"
+    },
+    {
+      "id": "evt_dd86994c-c68a-406d-8835-5822a0ed9b4e",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_53fd290f5bbf795d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T10:25:42.453Z"
+    },
+    {
+      "id": "evt_12b71bad-3369-4481-b59b-e68dbeaed924",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_24897fbe9d60b8e9",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T10:26:01.611Z"
+    },
+    {
+      "id": "evt_2c90314b-604e-479b-a07a-9aba9fb5c1fd",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_8fa39a2ecc219361",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T10:26:31.410Z"
+    },
+    {
+      "id": "evt_a6599f3a-27cd-4edd-8403-8c33b7f28f9c",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_859317417eef8e37",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T11:01:00.853Z"
+    },
+    {
+      "id": "evt_d17c1c91-dc95-49ec-a9b6-d211da3686ae",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_c37dd859c6285ef6",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T11:24:54.908Z"
+    },
+    {
+      "id": "evt_c51624eb-c0b5-4441-9c57-8c0a06800eff",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "articleId": "rss_c4831e9a280a964a",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-19T11:56:39.199Z"
+    },
+    {
+      "id": "evt_c2f514bf-d5c5-42bc-b512-ce2fe723e4b9",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_d2b1d57c41fa5f53",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-20T20:32:26.272Z"
+    },
+    {
+      "id": "evt_4f87ee98-f8d0-450a-ab3d-6f5a00a19c64",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "articleId": "rss_9b86f64c292946de",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-20T20:46:17.555Z"
+    },
+    {
+      "id": "evt_758ea499-b207-45da-adb8-7df83519116d",
+      "userId": "user_8db9a986-4e9f-4a9a-b960-33a059322b15",
+      "articleId": "rss_a8a8f41a88981587",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-23T20:18:32.006Z"
+    },
+    {
+      "id": "evt_281729bf-3cdf-46b8-a2da-e61cd967a865",
+      "userId": "user_a404573d-4e3b-46d3-8d67-9b72f2fa6ecd",
+      "articleId": "rss_75ef23e0c4c90b04",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-24T12:57:32.456Z"
+    },
+    {
+      "id": "evt_d37ee66b-ab35-41ae-bac0-49f876236930",
+      "userId": "user_a404573d-4e3b-46d3-8d67-9b72f2fa6ecd",
+      "articleId": "rss_7bef5b08d87eac8b",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-24T13:08:03.154Z"
+    },
+    {
+      "id": "evt_4e4bf1b0-6bad-4ebd-9953-0ae6b7a0a272",
+      "userId": "user_739542b3-3626-4aa4-bdc6-ab4693732965",
+      "articleId": "rss_a0cfa257cd59aa7d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T15:45:48.145Z"
+    },
+    {
+      "id": "evt_78e0e8b8-76d4-4869-aead-114f66e6474e",
+      "userId": "user_739542b3-3626-4aa4-bdc6-ab4693732965",
+      "articleId": "rss_aff58f18c55a6f1f",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T15:46:00.810Z"
+    },
+    {
+      "id": "evt_41743950-2cf0-4e93-aa7b-70316782dc9c",
+      "userId": "user_739542b3-3626-4aa4-bdc6-ab4693732965",
+      "articleId": "rss_ee1e16fcd892b496",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T15:46:14.183Z"
+    },
+    {
+      "id": "evt_3758849b-f6b2-45aa-b3b4-459e94f0c85a",
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_d769f4653ab674f1",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T17:28:15.519Z"
+    },
+    {
+      "id": "evt_16fc60de-9475-4975-bce4-055162b55f12",
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_4fa4ef04202db7d8",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T17:34:04.356Z"
+    },
+    {
+      "id": "evt_277e7ae7-c618-4475-98be-cb148502c71a",
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_fdca0e862166257a",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T17:34:16.845Z"
+    },
+    {
+      "id": "evt_a2b0be0f-0c86-4be7-aeed-8e2c6cd5587e",
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_181ef51e8bf6a8be",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T17:34:30.860Z"
+    },
+    {
+      "id": "evt_ece009c7-4984-4e9e-9c70-7fc052a0549f",
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_47035be852401e2a",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T17:34:43.422Z"
+    },
+    {
+      "id": "evt_280c1f69-1f02-4e5e-aa55-44cddd6d4968",
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_ee1e16fcd892b496",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T17:44:45.600Z"
+    },
+    {
+      "id": "evt_e1b3f739-4c5e-4bdc-8487-bbd142a0b551",
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_aff58f18c55a6f1f",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T17:45:15.210Z"
+    },
+    {
+      "id": "evt_e8c8df1e-8a2a-4012-81d9-90847a351ac8",
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_912d8568bf951c69",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T17:45:46.692Z"
+    },
+    {
+      "id": "evt_b28d04ee-a027-487f-9027-3efd6cc53d34",
+      "userId": "user_ced11082-2da2-435a-b753-5fe82b4e34fe",
+      "articleId": "rss_a0cfa257cd59aa7d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T17:46:06.781Z"
+    },
+    {
+      "id": "evt_b3ee5fed-193d-4aea-8bc7-17f5ccae1dab",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_cdb89ecc17924f67",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T19:22:23.598Z"
+    },
+    {
+      "id": "evt_a71b921a-9fdb-465c-ae00-3822cd6f1766",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "api_3745239b788b80af",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T19:22:49.863Z"
+    },
+    {
+      "id": "evt_df6e6c1c-1710-4d41-bf99-19076ba7efac",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_86cc97b9a3d046eb",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T19:22:58.907Z"
+    },
+    {
+      "id": "evt_9a2cca1e-54ec-4ab7-8093-ac5281e097fa",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_0c6dfa6f41096bad",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T19:25:10.741Z"
+    },
+    {
+      "id": "evt_183013d3-76ac-4495-806d-96e3ec49d6fa",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_71f60567c89b5f1f",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T19:25:14.639Z"
+    },
+    {
+      "id": "evt_7a839f77-c532-4edc-b38a-4c32ca26ab42",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_142c8df64f985e6d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T19:25:21.645Z"
+    },
+    {
+      "id": "evt_93ec7ab1-43e9-4f5a-8e5c-61228cf517e4",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_a0cfa257cd59aa7d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-28T20:52:04.348Z"
+    },
+    {
+      "id": "evt_0346fa51-4346-411e-a682-4e6ba07c4f88",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_a0cfa257cd59aa7d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-29T07:25:19.933Z"
+    },
+    {
+      "id": "evt_48ce6cf8-19e6-4f09-a8c3-87a6a04a835f",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_babdb9ab844a3bfc",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-29T07:25:45.931Z"
+    },
+    {
+      "id": "evt_68100a5b-15db-4015-9325-2c696af8aa81",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_a0cfa257cd59aa7d",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-29T07:31:18.784Z"
+    },
+    {
+      "id": "evt_573fec90-10d8-4df8-a715-c532dff4a1bd",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "api_a8450f4315e0f972",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-29T07:41:40.021Z"
+    },
+    {
+      "id": "evt_6b66d267-e821-4283-beea-eb865fef0edf",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_9681f861d1db7196",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-29T07:42:05.890Z"
+    },
+    {
+      "id": "evt_5f29ac4a-7d79-487d-ad25-9a74e35466ba",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "articleId": "rss_ed3c48ebf21bbe12",
+      "eventType": "mark_read",
+      "createdAt": "2026-05-29T09:07:45.799Z"
+    },
+    {
+      "id": "evt_bc96122b-0488-45d0-9b6c-66f2932065ba",
+      "userId": "user_demo",
+      "articleId": "api_80043c50c480f8c8",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-01T17:13:28.473Z"
+    },
+    {
+      "id": "evt_6e1c6ce7-6e68-4347-948c-9846ed839776",
+      "userId": "user_demo",
+      "articleId": "rss_b5437944c3675cea",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-02T10:22:54.294Z"
+    },
+    {
+      "id": "evt_c35a88c3-2dae-44d0-9545-f328da1c0e8a",
+      "userId": "user_demo",
+      "articleId": "rss_c73f3fdf700315e6",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-02T11:42:40.671Z"
+    },
+    {
+      "id": "evt_27a99083-6373-485b-a449-d36c9ec872f1",
+      "userId": "user_demo",
+      "articleId": "rss_35f17805acc28239",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-05T13:15:44.754Z"
+    },
+    {
+      "id": "evt_2656949a-c0ff-4e59-8711-3406f88607a1",
+      "userId": "user_demo",
+      "articleId": "rss_ddc03404a5f978ab",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-05T13:16:09.974Z"
+    },
+    {
+      "id": "evt_107c98cd-b76d-4b35-966a-796504c36fba",
+      "userId": "user_demo",
+      "articleId": "rss_cf6231a2e77a4fd9",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-05T13:16:30.861Z"
+    },
+    {
+      "id": "evt_00b12f9a-da19-4f8d-8ef0-2875c09c7048",
+      "userId": "user_demo",
+      "articleId": "rss_20d2f10874efd031",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-05T13:18:22.377Z"
+    },
+    {
+      "id": "evt_e1789ccd-0aee-4182-966d-f098393b0fe0",
+      "userId": "user_demo",
+      "articleId": "rss_32e97ebeee9df4ac",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-05T13:23:45.578Z"
+    },
+    {
+      "id": "evt_17544996-3a22-49a4-889a-bc9574a3da55",
+      "userId": "user_demo",
+      "articleId": "rss_516d0caa3e66d713",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-05T20:32:38.075Z"
+    },
+    {
+      "id": "evt_5b7c94e7-e5ca-4dc7-b188-d1e4c448b3fc",
+      "userId": "user_demo",
+      "articleId": "api_65f9010a8e856e0d",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-06T19:47:22.936Z"
+    },
+    {
+      "id": "evt_8a7862ef-9ec5-45eb-bec3-12f1d56fe3ec",
+      "userId": "user_demo",
+      "articleId": "rss_74d24700864b8129",
+      "eventType": "mark_read",
+      "createdAt": "2026-06-06T19:47:37.090Z"
+    }
+  ],
+  "ingestionRuns": [],
+  "institutionalEvents": [
+    {
+      "id": "evt_academic_calendar",
+      "title": "Akademik takvim güncellemesi",
+      "category": "Akademik",
+      "date": "2026-05-13T09:00:00.000Z",
+      "summary": "Ders ekle-bırak ve danışman onay tarihlerinde güncelleme yayınlandı.",
+      "description": "Öğrenciler ders ekle-bırak işlemleri ve danışman onayları için güncellenen akademik takvimi kontrol etmelidir.",
+      "critical": true
+    },
+    {
+      "id": "evt_midterm_deadline",
+      "title": "Proje teslim son günü",
+      "category": "Son Tarih",
+      "date": "2026-05-15T17:00:00.000Z",
+      "summary": "Yazılım tasarım raporu ve sunum dosyaları için son teslim tarihi yaklaşıyor.",
+      "description": "Ekipler proje raporlarını, tasarım diyagramlarını ve sunum çıktılarının son sürümünü sisteme yüklemelidir.",
+      "critical": true
+    },
+    {
+      "id": "evt_ai_seminar",
+      "title": "Yapay zeka semineri",
+      "category": "Sosyal",
+      "date": "2026-05-18T14:00:00.000Z",
+      "summary": "Kampüste üretken yapay zeka araçlarının akademik kullanımı konuşulacak.",
+      "description": "Seminerde üretken yapay zeka araçlarının araştırma, yazım ve etik kullanım sınırları ele alınacaktır.",
+      "critical": false
+    },
+    {
+      "id": "evt_final_exam",
+      "title": "Final sınav programı duyurusu",
+      "category": "Sınav",
+      "date": "2026-05-20T10:00:00.000Z",
+      "summary": "Final sınav tarihleri ve sınıf bilgileri öğrenci panelinde yayınlandı.",
+      "description": "Öğrenciler sınav programını kontrol etmeli, çakışma varsa bölüm sekreterliğiyle iletişime geçmelidir.",
+      "critical": true
+    }
+  ],
+  "eventReadStatus": [
+    {
+      "userId": "user_78ffa757-34b9-4fe5-9a3a-ca61fa55d040",
+      "eventId": "evt_midterm_deadline",
+      "updatedAt": "2026-05-13T17:51:38.910Z"
+    },
+    {
+      "userId": "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed",
+      "eventId": "biletix_502088553",
+      "updatedAt": "2026-05-13T19:05:05.992Z"
+    },
+    {
+      "userId": "user_demo",
+      "eventId": "live_event_melike_sahin",
+      "updatedAt": "2026-06-05T13:13:53.816Z"
+    },
+    {
+      "userId": "user_demo",
+      "eventId": "live_event_jazz",
+      "updatedAt": "2026-06-05T13:13:55.802Z"
+    }
+  ],
+  "eventReminders": [
+    {
+      "userId": "user_78ffa757-34b9-4fe5-9a3a-ca61fa55d040",
+      "eventId": "evt_midterm_deadline",
+      "createdAt": "2026-05-13T17:51:40.238Z"
+    },
+    {
+      "userId": "user_78ffa757-34b9-4fe5-9a3a-ca61fa55d040",
+      "eventId": "evt_academic_calendar",
+      "createdAt": "2026-05-13T17:51:46.778Z"
+    },
+    {
+      "userId": "user_78ffa757-34b9-4fe5-9a3a-ca61fa55d040",
+      "eventId": "biletix_530004687",
+      "createdAt": "2026-05-13T18:07:48.490Z"
+    },
+    {
+      "userId": "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed",
+      "eventId": "biletix_155916116",
+      "createdAt": "2026-05-13T19:19:00.897Z"
+    },
+    {
+      "userId": "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed",
+      "eventId": "biletix_5MOS0",
+      "createdAt": "2026-05-13T19:19:07.529Z"
+    },
+    {
+      "userId": "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed",
+      "eventId": "biletix_289142485",
+      "createdAt": "2026-05-13T19:19:08.987Z"
+    },
+    {
+      "userId": "user_demo",
+      "eventId": "live_event_standup",
+      "createdAt": "2026-06-05T13:13:50.812Z"
+    },
+    {
+      "userId": "user_demo",
+      "eventId": "biletix_314141458",
+      "createdAt": "2026-06-05T13:14:07.336Z"
+    }
+  ],
+  "hiddenEvents": [],
+  "savedSearches": [
+    {
+      "id": "search_e1eb339a-1963-4f92-ace9-6b393073f34e",
+      "userId": "user_3df62556-503b-4379-a48e-8a8cddba52a1",
+      "label": "Tümü / Global / Tümü",
+      "filters": {
+        "query": "",
+        "category": "Tümü",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "date"
+      },
+      "createdAt": "2026-05-16T14:18:55.124Z"
+    },
+    {
+      "id": "search_f7726831-c242-403d-8198-5f93101f6181",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "label": "amerika",
+      "filters": {
+        "query": "amerika",
+        "category": "Dünya",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-18T20:08:00.438Z"
+    },
+    {
+      "id": "search_368c208d-58bd-4ec8-91da-c66577de3c49",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Tümü / Türkiye, Avrupa / Tümü",
+      "filters": {
+        "query": "",
+        "category": "all",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T01:30:31.261Z"
+    },
+    {
+      "id": "search_e7829ba5-59c3-4f56-a2e1-82779ca625a9",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Tümü / Avrupa, Türkiye / Tümü",
+      "filters": {
+        "query": "",
+        "category": "all",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T10:03:08.006Z"
+    },
+    {
+      "id": "search_028f9690-cc8b-43e5-8a71-10a8a859d86e",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Politika / Avrupa / Tümü",
+      "filters": {
+        "query": "",
+        "category": "politics",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T10:03:43.443Z"
+    },
+    {
+      "id": "search_be242e04-aa1b-4c07-9505-42e4b800b6e9",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Teknoloji / Avrupa / Tümü",
+      "filters": {
+        "query": "",
+        "category": "technology",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T10:04:25.803Z"
+    },
+    {
+      "id": "search_61c467c7-02ff-4628-9cdd-f9d8cf979a7e",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Teknoloji / Avrupa, Güney Amerika, Kuzey Amerika / Tümü",
+      "filters": {
+        "query": "",
+        "category": "technology",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T10:04:42.589Z"
+    },
+    {
+      "id": "search_b0c2539b-0614-406c-9bf4-85167cb86b05",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Teknoloji / Avrupa, Güney Amerika, Kuzey Amerika, Türkiye / Tümü",
+      "filters": {
+        "query": "",
+        "category": "technology",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T10:04:54.250Z"
+    },
+    {
+      "id": "search_daed0918-b509-4742-abcd-0f9c2bb141b9",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Teknoloji / Avrupa, Güney Amerika, Kuzey Amerika, Türkiye / A Haber",
+      "filters": {
+        "query": "",
+        "category": "technology",
+        "source": "A Haber",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T10:06:00.008Z"
+    },
+    {
+      "id": "search_22554068-721c-4870-8d3a-66f0d4841e8c",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Tümü / Global / Tümü",
+      "filters": {
+        "query": "",
+        "category": "all",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T10:06:15.992Z"
+    },
+    {
+      "id": "search_5dacc391-7dfb-48b7-a496-4008d5efccfb",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Politika / Avrupa / Tümü",
+      "filters": {
+        "query": "",
+        "category": "politics",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T10:16:21.942Z"
+    },
+    {
+      "id": "search_87568afd-cc15-4d77-b27b-c871179cae80",
+      "userId": "user_13090a2a-36e2-477c-afaa-61911e6471b9",
+      "label": "Politika / Avrupa, Türkiye, Orta Doğu / Tümü",
+      "filters": {
+        "query": "",
+        "category": "politics",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-19T10:16:52.692Z"
+    },
+    {
+      "id": "search_1b5c3bc1-2912-4143-b521-cf96944a578a",
+      "userId": "user_c65470b5-db02-47b9-ade4-fc8d278951a1",
+      "label": "ankara",
+      "filters": {
+        "query": "ankara",
+        "category": "all",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-20T20:33:33.220Z"
+    },
+    {
+      "id": "search_b07d2c38-75aa-44bd-8dc1-67a50c7f2c25",
+      "userId": "user_f3359742-d409-488c-8239-bee38f2889e9",
+      "label": "Tümü / Global / Tümü",
+      "filters": {
+        "query": "",
+        "category": "all",
+        "source": "Tümü",
+        "status": "Tümü",
+        "date": "Tümü",
+        "sort": "relevance"
+      },
+      "createdAt": "2026-05-28T19:37:50.671Z"
+    }
+  ],
+  "financePreferences": {
+    "user_demo": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        },
+        {
+          "symbol": "KAP",
+          "type": "rss",
+          "label": "KAP Bildirimleri",
+          "enabled": true,
+          "priority": 7
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_f57f60cb-aae6-416a-b8cd-e3358240b776": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_5765c242-72fe-4441-963c-602dd6b77d01": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_d261134e-d264-4059-9e1a-f2766068837e": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_d5c15001-6184-49ef-81d1-6867f8f14812": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_78ffa757-34b9-4fe5-9a3a-ca61fa55d040": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_4c9cbe9e-57b8-4edf-b6e3-d71dfd3ef7ed": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_3df62556-503b-4379-a48e-8a8cddba52a1": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_8c6d0510-a9b4-4c11-8fa9-2d863ed304a3": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_13090a2a-36e2-477c-afaa-61911e6471b9": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_8db9a986-4e9f-4a9a-b960-33a059322b15": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_a404573d-4e3b-46d3-8d67-9b72f2fa6ecd": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_739542b3-3626-4aa4-bdc6-ab4693732965": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_ced11082-2da2-435a-b753-5fe82b4e34fe": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_f3359742-d409-488c-8239-bee38f2889e9": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_115b6746-069b-4770-adae-a88514624c31": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    },
+    "user_efb63952-0c7e-4d2c-a6ca-d40b2e6080b1": {
+      "financeWatchlist": [
+        {
+          "symbol": "USDTRY",
+          "type": "fx",
+          "label": "Dolar/TL",
+          "enabled": true,
+          "priority": 1
+        },
+        {
+          "symbol": "EURTRY",
+          "type": "fx",
+          "label": "Euro/TL",
+          "enabled": true,
+          "priority": 2
+        },
+        {
+          "symbol": "GRAMALTIN",
+          "type": "gold",
+          "label": "Gram Altın",
+          "enabled": true,
+          "priority": 3
+        },
+        {
+          "symbol": "BTCUSDT",
+          "type": "crypto",
+          "label": "Bitcoin",
+          "enabled": true,
+          "priority": 4
+        },
+        {
+          "symbol": "XU100",
+          "type": "index",
+          "label": "BIST 100",
+          "enabled": true,
+          "priority": 5
+        },
+        {
+          "symbol": "TCMBRATE",
+          "type": "macro",
+          "label": "TCMB Faiz",
+          "enabled": true,
+          "priority": 6
+        }
+      ],
+      "showFinanceOnHome": true,
+      "financeRefreshInterval": "5m",
+      "riskMode": "safe"
+    }
+  },
+  "userSources": [
+    {
+      "id": "src_7dab4d7e-46c6-4485-a8ac-5243e12b171c",
+      "userId": "user_demo",
+      "type": "youtube",
+      "title": "YouTube @omerdemirbag_23",
+      "url": "https://www.youtube.com/@omerdemirbag_23",
+      "feedUrl": "https://www.youtube.com/@omerdemirbag_23",
+      "channelId": "",
+      "handle": "@omerdemirbag_23",
+      "description": "Kaynak şu anda canlı doğrulanamadı; kaydedildiğinde cache ile tekrar denenir.",
+      "logoUrl": "",
+      "category": "Genel",
+      "tags": [],
+      "enabled": true,
+      "favorite": false,
+      "priority": 1,
+      "trustLevel": "medium",
+      "addedAt": "2026-06-05T13:27:52.937Z",
+      "lastFetchedAt": "2026-06-06T19:44:45.365Z",
+      "lastSuccessAt": "",
+      "errorCount": 0,
+      "lastItemCount": 1,
+      "status": "active"
+    },
+    {
+      "id": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+      "userId": "user_demo",
+      "type": "news",
+      "title": "kap.org.tr",
+      "url": "https://kap.org.tr/tr",
+      "feedUrl": "https://kap.org.tr/tr",
+      "channelId": "",
+      "handle": "",
+      "description": "Kaynak şu anda canlı doğrulanamadı; kaydedildiğinde cache ile tekrar denenir.",
+      "logoUrl": "",
+      "category": "Genel",
+      "tags": [],
+      "enabled": true,
+      "favorite": false,
+      "priority": 2,
+      "trustLevel": "medium",
+      "addedAt": "2026-06-05T13:28:38.929Z",
+      "lastFetchedAt": "2026-06-06T19:44:47.947Z",
+      "lastSuccessAt": "2026-06-06T19:44:47.947Z",
+      "errorCount": 0,
+      "lastItemCount": 36,
+      "status": "active"
+    },
+    {
+      "id": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+      "userId": "user_demo",
+      "type": "news",
+      "title": "bloomberght.com",
+      "url": "https://www.bloomberght.com/borsa/hisseler/kap-haberleri",
+      "feedUrl": "https://www.bloomberght.com/borsa/hisseler/kap-haberleri",
+      "channelId": "",
+      "handle": "",
+      "description": "Kaynak şu anda canlı doğrulanamadı; kaydedildiğinde cache ile tekrar denenir.",
+      "logoUrl": "",
+      "category": "Ekonomi",
+      "tags": [],
+      "enabled": true,
+      "favorite": false,
+      "priority": 3,
+      "trustLevel": "medium",
+      "addedAt": "2026-06-05T13:29:31.096Z",
+      "lastFetchedAt": "2026-06-06T19:44:46.777Z",
+      "lastSuccessAt": "2026-06-06T19:44:46.777Z",
+      "errorCount": 0,
+      "lastItemCount": 36,
+      "status": "active"
+    }
+  ],
+  "sourceContentCache": {
+    "src_7dab4d7e-46c6-4485-a8ac-5243e12b171c": {
+      "items": [
+        {
+          "id": "ext_22b4944f93aad5b81e448a24a265db9c312ca608",
+          "sourceId": "src_7dab4d7e-46c6-4485-a8ac-5243e12b171c",
+          "sourceName": "YouTube @omerdemirbag_23",
+          "sourceType": "youtube",
+          "title": "YouTube @omerdemirbag_23 kaynağı eklendiğinde son içerikler burada görünecek",
+          "summary": "URL güvenli görünüyor. Canlı feed erişimi başarısız olursa son başarılı cache gösterilir.",
+          "url": "https://www.youtube.com/@omerdemirbag_23",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-06T19:44:45.363Z",
+          "author": "YouTube @omerdemirbag_23",
+          "category": "Genel",
+          "tags": [],
+          "language": "tr",
+          "contentType": "video",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:45.363Z",
+          "dedupeKey": "22b4944f93aad5b81e448a24a265db9c312ca608"
+        }
+      ],
+      "updatedAt": "2026-06-06T19:44:47.948Z",
+      "status": "cached",
+      "warning": "Canlı kaynak doğrulaması yapılamadı; güvenli fallback gösteriliyor."
+    },
+    "src_e6b7e9d4-26b4-4702-be69-615e71d0f594": {
+      "items": [
+        {
+          "id": "ext_431e7295b38fd771f985126147d2da7f8b3198d4",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Özel Durum Açıklaması (Genel)",
+          "summary": "REEDR/REEDER TEKNOLOJI SANAYI VE TICARET A.S. - REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Özel Durum Açıklaması (Genel)",
+          "url": "https://www.bloomberght.com/borsa/hisse/reeder-teknoloji/kap-haberi/347465",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:35:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "431e7295b38fd771f985126147d2da7f8b3198d4"
+        },
+        {
+          "id": "ext_07a9a69b22a6221185f7caf64f8315f340b54f1e",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Kar Payı Dağıtım İşlemlerine İlişkin Bildirim",
+          "summary": "REEDR/REEDER TEKNOLOJI SANAYI VE TICARET A.S. - REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Kar Payı Dağıtım İşlemlerine İlişkin Bildirim",
+          "url": "https://www.bloomberght.com/borsa/hisse/reeder-teknoloji/kap-haberi/347466",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:33:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "07a9a69b22a6221185f7caf64f8315f340b54f1e"
+        },
+        {
+          "id": "ext_7caa280ee8ba392b7898185c1b5b4fc6eff123a0",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Bağımsız Denetim Kuruluşunun Belirlenmesi",
+          "summary": "REEDR/REEDER TEKNOLOJI SANAYI VE TICARET A.S. - REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Bağımsız Denetim Kuruluşunun Belirlenmesi",
+          "url": "https://www.bloomberght.com/borsa/hisse/reeder-teknoloji/kap-haberi/347467",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:33:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "7caa280ee8ba392b7898185c1b5b4fc6eff123a0"
+        },
+        {
+          "id": "ext_d8d361839a48ff745babe1d405341f7f15f857cd",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Faaliyet Raporu (Konsolide)",
+          "summary": "MEGAP/MEGA POLIETILEN KOPUK SANAYI A.S. - MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Faaliyet Raporu (Konsolide)",
+          "url": "https://www.bloomberght.com/borsa/hisse/mega-polietilen/kap-haberi/347468",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:24:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "d8d361839a48ff745babe1d405341f7f15f857cd"
+        },
+        {
+          "id": "ext_9eb630b5356f0d59d535bce0a0637fc83eb9e238",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Finansal Rapor",
+          "summary": "MEGAP/MEGA POLIETILEN KOPUK SANAYI A.S. - MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Finansal Rapor",
+          "url": "https://www.bloomberght.com/borsa/hisse/mega-polietilen/kap-haberi/347469",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:24:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "9eb630b5356f0d59d535bce0a0637fc83eb9e238"
+        },
+        {
+          "id": "ext_d8b8ac31bbe169013d5ddc2c6e649648730127c7",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Sorumluluk Beyanı (Konsolide)",
+          "summary": "MEGAP/MEGA POLIETILEN KOPUK SANAYI A.S. - MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Sorumluluk Beyanı (Konsolide)",
+          "url": "https://www.bloomberght.com/borsa/hisse/mega-polietilen/kap-haberi/347470",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:24:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "d8b8ac31bbe169013d5ddc2c6e649648730127c7"
+        },
+        {
+          "id": "ext_afeb85652463b391e298a5bd771e795a25d5c886",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "OBA MAKARNACILIK SANAYİ VE TİCARET A.Ş. - Özel Durum Açıklaması (Genel)",
+          "summary": "OBAMS/OBA MAKARNACILIK SANAYI VE T - OBA MAKARNACILIK SANAYİ VE TİCARET A.Ş. - Özel Durum Açıklaması (Genel)",
+          "url": "https://www.bloomberght.com/borsa/hisse/oba-makarnacilik/kap-haberi/347471",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T19:57:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "afeb85652463b391e298a5bd771e795a25d5c886"
+        },
+        {
+          "id": "ext_5fe44160bd0ab48763462e11b84f35bad0e6c61f",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "ALKİM ALKALİ KİMYA A.Ş. - Özel Durum Açıklaması (Genel)",
+          "summary": "ALKIM/ALKIM ALKALI KIMYA A.S. - ALKİM ALKALİ KİMYA A.Ş. - Özel Durum Açıklaması (Genel)",
+          "url": "https://www.bloomberght.com/borsa/hisse/alkim-alkali/kap-haberi/347472",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T19:42:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "5fe44160bd0ab48763462e11b84f35bad0e6c61f"
+        },
+        {
+          "id": "ext_761f32984cecc940cb2b85446f7750a5fece6c50",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "BİEN YAPI ÜRÜNLERİ SANAYİ TURİZM VE TİCARET A.Ş. - Pay Dışında Sermaye Piyasası Aracı İşlemlerine İlişkin Bildirim (Faiz İçeren)",
+          "summary": "BIENY/BIEN YAPI URUNLERI SAN. TUR. VE TIC. A.S. - BİEN YAPI ÜRÜNLERİ SANAYİ TURİZM VE TİCARET A.Ş. - Pay Dışında Sermaye Piyasası Aracı İşlemlerine İlişkin Bildirim (Faiz İçeren)",
+          "url": "https://www.bloomberght.com/borsa/hisse/bien-yapi-urunle/kap-haberi/347473",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T19:30:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "761f32984cecc940cb2b85446f7750a5fece6c50"
+        },
+        {
+          "id": "ext_4cb0a52649fb9e4ead848dfbb84d750f378bf0c2",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "GÜBRE FABRİKALARI T.A.Ş. - Özel Durum Açıklaması (Genel)",
+          "summary": "GUBRF/GUBRE FABRIKALARI T.A.S. - GÜBRE FABRİKALARI T.A.Ş. - Özel Durum Açıklaması (Genel)",
+          "url": "https://www.bloomberght.com/borsa/hisse/gubre-fabrikalar/kap-haberi/347474",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T19:15:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "4cb0a52649fb9e4ead848dfbb84d750f378bf0c2"
+        },
+        {
+          "id": "ext_8be0abbb992bc90be50bf9675b4a1a8c193a80d8",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "ÖZYAŞAR TEL VE GALVANİZLEME SANAYİ A.Ş. - Bağımsız Denetim Kuruluşunun Belirlenmesi",
+          "summary": "OZYSR/OZYASAR TEL VE GALVANIZLEME - ÖZYAŞAR TEL VE GALVANİZLEME SANAYİ A.Ş. - Bağımsız Denetim Kuruluşunun Belirlenmesi",
+          "url": "https://www.bloomberght.com/borsa/hisse/ozyasar-tel-ve-g/kap-haberi/347475",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T18:39:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.947Z",
+          "dedupeKey": "8be0abbb992bc90be50bf9675b4a1a8c193a80d8"
+        },
+        {
+          "id": "ext_5c1c08f0d06da8343bfa450c8d230347c238fa38",
+          "sourceId": "src_e6b7e9d4-26b4-4702-be69-615e71d0f594",
+          "sourceName": "kap.org.tr",
+          "sourceType": "news",
+          "title": "ÖZYAŞAR TEL VE GALVANİZLEME SANAYİ A.Ş. - Kar Payı Dağıtım İşlemlerine İlişkin Bildirim",
+          "summary": "OZYSR/OZYASAR TEL VE GALVANIZLEME - ÖZYAŞAR TEL VE GALVANİZLEME SANAYİ A.Ş. - Kar Payı Dağıtım İşlemlerine İlişkin Bildirim",
+          "url": "https://www.bloomberght.com/borsa/hisse/ozyasar-tel-ve-g/kap-haberi/347476",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T18:38:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Genel",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:47.948Z",
+          "dedupeKey": "5c1c08f0d06da8343bfa450c8d230347c238fa38"
+        }
+      ],
+      "updatedAt": "2026-06-06T19:44:47.948Z",
+      "status": "live",
+      "warning": ""
+    },
+    "src_bb8d76f8-a611-48bc-912c-76537f0f5134": {
+      "items": [
+        {
+          "id": "ext_431e7295b38fd771f985126147d2da7f8b3198d4",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Özel Durum Açıklaması (Genel)",
+          "summary": "REEDR/REEDER TEKNOLOJI SANAYI VE TICARET A.S. - REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Özel Durum Açıklaması (Genel)",
+          "url": "https://www.bloomberght.com/borsa/hisse/reeder-teknoloji/kap-haberi/347465",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:35:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "431e7295b38fd771f985126147d2da7f8b3198d4"
+        },
+        {
+          "id": "ext_07a9a69b22a6221185f7caf64f8315f340b54f1e",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Kar Payı Dağıtım İşlemlerine İlişkin Bildirim",
+          "summary": "REEDR/REEDER TEKNOLOJI SANAYI VE TICARET A.S. - REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Kar Payı Dağıtım İşlemlerine İlişkin Bildirim",
+          "url": "https://www.bloomberght.com/borsa/hisse/reeder-teknoloji/kap-haberi/347466",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:33:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "07a9a69b22a6221185f7caf64f8315f340b54f1e"
+        },
+        {
+          "id": "ext_7caa280ee8ba392b7898185c1b5b4fc6eff123a0",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Bağımsız Denetim Kuruluşunun Belirlenmesi",
+          "summary": "REEDR/REEDER TEKNOLOJI SANAYI VE TICARET A.S. - REEDER TEKNOLOJİ SANAYİ VE TİCARET A.Ş. - Bağımsız Denetim Kuruluşunun Belirlenmesi",
+          "url": "https://www.bloomberght.com/borsa/hisse/reeder-teknoloji/kap-haberi/347467",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:33:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "7caa280ee8ba392b7898185c1b5b4fc6eff123a0"
+        },
+        {
+          "id": "ext_d8d361839a48ff745babe1d405341f7f15f857cd",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Faaliyet Raporu (Konsolide)",
+          "summary": "MEGAP/MEGA POLIETILEN KOPUK SANAYI A.S. - MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Faaliyet Raporu (Konsolide)",
+          "url": "https://www.bloomberght.com/borsa/hisse/mega-polietilen/kap-haberi/347468",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:24:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "d8d361839a48ff745babe1d405341f7f15f857cd"
+        },
+        {
+          "id": "ext_9eb630b5356f0d59d535bce0a0637fc83eb9e238",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Finansal Rapor",
+          "summary": "MEGAP/MEGA POLIETILEN KOPUK SANAYI A.S. - MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Finansal Rapor",
+          "url": "https://www.bloomberght.com/borsa/hisse/mega-polietilen/kap-haberi/347469",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:24:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "9eb630b5356f0d59d535bce0a0637fc83eb9e238"
+        },
+        {
+          "id": "ext_d8b8ac31bbe169013d5ddc2c6e649648730127c7",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Sorumluluk Beyanı (Konsolide)",
+          "summary": "MEGAP/MEGA POLIETILEN KOPUK SANAYI A.S. - MEGA POLİETİLEN KÖPÜK SANAYİ VE TİCARET A.Ş. - Sorumluluk Beyanı (Konsolide)",
+          "url": "https://www.bloomberght.com/borsa/hisse/mega-polietilen/kap-haberi/347470",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T20:24:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "d8b8ac31bbe169013d5ddc2c6e649648730127c7"
+        },
+        {
+          "id": "ext_afeb85652463b391e298a5bd771e795a25d5c886",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "OBA MAKARNACILIK SANAYİ VE TİCARET A.Ş. - Özel Durum Açıklaması (Genel)",
+          "summary": "OBAMS/OBA MAKARNACILIK SANAYI VE T - OBA MAKARNACILIK SANAYİ VE TİCARET A.Ş. - Özel Durum Açıklaması (Genel)",
+          "url": "https://www.bloomberght.com/borsa/hisse/oba-makarnacilik/kap-haberi/347471",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T19:57:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "afeb85652463b391e298a5bd771e795a25d5c886"
+        },
+        {
+          "id": "ext_5fe44160bd0ab48763462e11b84f35bad0e6c61f",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "ALKİM ALKALİ KİMYA A.Ş. - Özel Durum Açıklaması (Genel)",
+          "summary": "ALKIM/ALKIM ALKALI KIMYA A.S. - ALKİM ALKALİ KİMYA A.Ş. - Özel Durum Açıklaması (Genel)",
+          "url": "https://www.bloomberght.com/borsa/hisse/alkim-alkali/kap-haberi/347472",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T19:42:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "5fe44160bd0ab48763462e11b84f35bad0e6c61f"
+        },
+        {
+          "id": "ext_761f32984cecc940cb2b85446f7750a5fece6c50",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "BİEN YAPI ÜRÜNLERİ SANAYİ TURİZM VE TİCARET A.Ş. - Pay Dışında Sermaye Piyasası Aracı İşlemlerine İlişkin Bildirim (Faiz İçeren)",
+          "summary": "BIENY/BIEN YAPI URUNLERI SAN. TUR. VE TIC. A.S. - BİEN YAPI ÜRÜNLERİ SANAYİ TURİZM VE TİCARET A.Ş. - Pay Dışında Sermaye Piyasası Aracı İşlemlerine İlişkin Bildirim (Faiz İçeren)",
+          "url": "https://www.bloomberght.com/borsa/hisse/bien-yapi-urunle/kap-haberi/347473",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T19:30:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "761f32984cecc940cb2b85446f7750a5fece6c50"
+        },
+        {
+          "id": "ext_4cb0a52649fb9e4ead848dfbb84d750f378bf0c2",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "GÜBRE FABRİKALARI T.A.Ş. - Özel Durum Açıklaması (Genel)",
+          "summary": "GUBRF/GUBRE FABRIKALARI T.A.S. - GÜBRE FABRİKALARI T.A.Ş. - Özel Durum Açıklaması (Genel)",
+          "url": "https://www.bloomberght.com/borsa/hisse/gubre-fabrikalar/kap-haberi/347474",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T19:15:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "4cb0a52649fb9e4ead848dfbb84d750f378bf0c2"
+        },
+        {
+          "id": "ext_8be0abbb992bc90be50bf9675b4a1a8c193a80d8",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "ÖZYAŞAR TEL VE GALVANİZLEME SANAYİ A.Ş. - Bağımsız Denetim Kuruluşunun Belirlenmesi",
+          "summary": "OZYSR/OZYASAR TEL VE GALVANIZLEME - ÖZYAŞAR TEL VE GALVANİZLEME SANAYİ A.Ş. - Bağımsız Denetim Kuruluşunun Belirlenmesi",
+          "url": "https://www.bloomberght.com/borsa/hisse/ozyasar-tel-ve-g/kap-haberi/347475",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T18:39:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "8be0abbb992bc90be50bf9675b4a1a8c193a80d8"
+        },
+        {
+          "id": "ext_5c1c08f0d06da8343bfa450c8d230347c238fa38",
+          "sourceId": "src_bb8d76f8-a611-48bc-912c-76537f0f5134",
+          "sourceName": "bloomberght.com",
+          "sourceType": "news",
+          "title": "ÖZYAŞAR TEL VE GALVANİZLEME SANAYİ A.Ş. - Kar Payı Dağıtım İşlemlerine İlişkin Bildirim",
+          "summary": "OZYSR/OZYASAR TEL VE GALVANIZLEME - ÖZYAŞAR TEL VE GALVANİZLEME SANAYİ A.Ş. - Kar Payı Dağıtım İşlemlerine İlişkin Bildirim",
+          "url": "https://www.bloomberght.com/borsa/hisse/ozyasar-tel-ve-g/kap-haberi/347476",
+          "imageUrl": "",
+          "thumbnailUrl": "",
+          "publishedAt": "2026-06-05T18:38:00.000Z",
+          "author": "Bloomberg HT KAP",
+          "category": "Ekonomi",
+          "tags": [
+            "kap",
+            "bist",
+            "borsa"
+          ],
+          "language": "tr",
+          "contentType": "article",
+          "readTime": 2,
+          "duration": "",
+          "fetchedAt": "2026-06-06T19:44:46.777Z",
+          "dedupeKey": "5c1c08f0d06da8343bfa450c8d230347c238fa38"
+        }
+      ],
+      "updatedAt": "2026-06-06T19:44:47.948Z",
+      "status": "live",
+      "warning": ""
+    }
+  }
+}
