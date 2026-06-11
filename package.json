@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "node build.js",
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "playwright": "^1.60.0"
+  },
+  "dependencies": {
+    "page-flip": "^2.0.7"
+  }
+}

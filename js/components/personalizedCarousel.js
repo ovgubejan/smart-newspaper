@@ -16,8 +16,21 @@ const BG_GRADIENTS = [
   "linear-gradient(135deg,#3b0764,#86198f,#be123c)"
 ];
 
+function decodeEntities(value = "") {
+  const textarea = document.createElement("textarea");
+  let decoded = String(value || "");
+  for (let i = 0; i < 3; i += 1) {
+    textarea.innerHTML = decoded;
+    const next = textarea.value;
+    if (next === decoded) break;
+    decoded = next;
+  }
+  return decoded;
+}
+
 function safeSummary(article) {
-  const raw = String(article.aiSummary || article.summary || article.description || article.fullText || "")
+  const raw = decodeEntities(article.aiSummary || article.summary || article.description || article.fullText || "")
+    .replace(/<\s*(br|\/p|\/div|\/li|\/h[1-6])\s*\/?>/gi, " ")
     .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
     .trim();

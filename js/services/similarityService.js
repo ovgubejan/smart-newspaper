@@ -1,4 +1,4 @@
-const GROUPING_THRESHOLD = 0.55;
+const GROUPING_THRESHOLD = 0.68;
 const BM25_K1 = 1.5;
 const BM25_B = 0.75;
 
@@ -226,9 +226,10 @@ function storyScore(a, b, precomputed) {
   const entScore = entityOverlapScore(entA, entB);
   const nearDup = hammingDistance(shA, shB) <= 4 ? 0.15 : 0;
   if (etA === "SOCIAL_CEREMONY" && etB === "SOCIAL_CEREMONY" && entScore === 0 && !nearDup) return 0;
-  if (entScore === 0 && !nearDup && textScore < 0.50) return 0;
+  if (entScore === 0 && !nearDup && textScore < 0.60) return 0;
+  if (entScore < 0.15 && textScore < 0.55 && !nearDup) return 0;
   const catScore = categorySimilarityScore(a, b);
-  if (catScore === 0 && entScore < 0.2 && textScore < 0.6) return 0;
+  if (catScore === 0 && entScore < 0.25 && textScore < 0.65) return 0;
   const eventBonus = etA !== "UNKNOWN" && etA === etB ? 0.08 : 0;
   let score = textScore * 0.45 + entScore * 0.30 + tScore * 0.10 + catScore * 0.08 + nearDup + eventBonus;
   const srcA = String(a?.sourceName || a?.source || "").toLowerCase().trim();

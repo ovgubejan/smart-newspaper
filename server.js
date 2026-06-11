@@ -2,6 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const zlib = require("zlib");
 const { URL } = require("url");
 
 loadEnvFile();
@@ -26,10 +27,18 @@ const ARTICLE_CACHE = {
   has: (k) => _rawArticleCache.has(k),
   delete: (k) => _rawArticleCache.delete(k)
 };
-const RELATED_ARTICLE_POOL = new Map();
+const _rawRelatedPool = new Map();
+const RELATED_ARTICLE_POOL = {
+  get: (k) => _rawRelatedPool.get(k),
+  set: (k, v) => { if (_rawRelatedPool.size >= 500) { _rawRelatedPool.delete(_rawRelatedPool.keys().next().value); } _rawRelatedPool.set(k, v); },
+  has: (k) => _rawRelatedPool.has(k),
+  values: () => _rawRelatedPool.values(),
+  get size() { return _rawRelatedPool.size; }
+};
 const CANONICAL_REGIONS = ["global", "europe", "asia", "africa", "north-america", "south-america", "oceania", "middle-east", "turkey"];
 const TRENDS_CACHE = new Map();
 const TRENDS_CACHE_TTL_MS = 5 * 60 * 1000;
+const TRENDS_CACHE_MAX = 50;
 // Demo data for regional trend propagation presentation.
 const DEMO_REGIONAL_PANDEMIC_ARTICLES = JSON.parse(fs.readFileSync(DEMO_REGIONAL_PANDEMIC_PATH, "utf8")).map((article) => {
   const title = article.title || article.translatedTitle || "Yeni solunum yolu hastalığı farklı bölgelerde izleniyor";
@@ -304,6 +313,30 @@ const mimeTypes = {
   ".svg": "image/svg+xml"
 };
 
+const COMPRESSIBLE_TYPES = new Set([".html", ".css", ".js", ".json", ".svg"]);
+const STATIC_FILE_CACHE = new Map();
+
+function compressResponse(req, res, content, contentType, cacheControl) {
+  const headers = {
+    "Content-Type": contentType,
+    "Access-Control-Allow-Origin": APP_ORIGIN,
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
+  };
+  if (cacheControl) headers["Cache-Control"] = cacheControl;
+  const accept = req.headers["accept-encoding"] || "";
+  if (accept.includes("gzip") && Buffer.byteLength(content) > 256) {
+    headers["Content-Encoding"] = "gzip";
+    const gzipped = zlib.gzipSync(content);
+    headers["Content-Length"] = gzipped.length;
+    res.writeHead(200, headers);
+    res.end(gzipped);
+  } else {
+    res.writeHead(200, headers);
+    res.end(content);
+  }
+}
+
 function loadEnvFile() {
   const envPath = path.join(__dirname, ".env");
   if (!fs.existsSync(envPath)) return;
@@ -330,15 +363,36 @@ function ensureDataFile() {
   }
 }
 
+let _dbCache = null;
+let _dbDirty = false;
+
 function readDb() {
+  if (_dbCache) return _dbCache;
   ensureDataFile();
   const content = fs.readFileSync(DATA_PATH, "utf8").replace(/^\uFEFF/, "");
-  return normalizeDb(JSON.parse(content));
+  _dbCache = normalizeDb(JSON.parse(content));
+  return _dbCache;
 }
 
 function writeDb(db) {
-  fs.writeFileSync(DATA_PATH, `${JSON.stringify(db, null, 2)}\n`, "utf8");
+  _dbCache = db;
+  _dbDirty = true;
+  rebuildDbIndexes(db);
 }
+
+async function flushDb() {
+  if (!_dbDirty || !_dbCache) return;
+  _dbDirty = false;
+  try {
+    await fs.promises.writeFile(DATA_PATH, JSON.stringify(_dbCache) + "\n", "utf8");
+  } catch (e) {
+    _dbDirty = true;
+  }
+}
+
+setInterval(flushDb, 3000);
+process.on("SIGINT", () => { if (_dbDirty && _dbCache) { fs.writeFileSync(DATA_PATH, JSON.stringify(_dbCache) + "\n", "utf8"); } process.exit(); });
+process.on("SIGTERM", () => { if (_dbDirty && _dbCache) { fs.writeFileSync(DATA_PATH, JSON.stringify(_dbCache) + "\n", "utf8"); } process.exit(); });
 
 function normalizeDb(db) {
   db.users = Array.isArray(db.users) ? db.users : [];
@@ -376,7 +430,17 @@ function normalizeDb(db) {
     db.financePreferences[user.id] = normalizeFinancePreferences(db.financePreferences[user.id]);
   }
   db.financePreferences.user_demo = normalizeFinancePreferences(db.financePreferences.user_demo);
+  rebuildDbIndexes(db);
   return db;
+}
+
+function rebuildDbIndexes(db) {
+  db._articleById = new Map();
+  for (const a of db.articles) db._articleById.set(String(a.id), a);
+  db._readStatusByKey = new Map();
+  for (const r of db.readStatus) db._readStatusByKey.set(`${r.userId}:${r.articleId}`, r);
+  db._bookmarksByKey = new Set();
+  for (const b of db.bookmarks) db._bookmarksByKey.add(`${b.userId}:${b.articleId}`);
 }
 
 function normalizePreferences(preferences = {}) {
@@ -443,13 +507,25 @@ function defaultInstitutionalEvents() {
 }
 
 function json(res, status, payload) {
-  res.writeHead(status, {
+  const body = JSON.stringify(payload);
+  const headers = {
     "Content-Type": "application/json; charset=utf-8",
     "Access-Control-Allow-Origin": APP_ORIGIN,
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
-  });
-  res.end(JSON.stringify(payload));
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Cache-Control": "no-store"
+  };
+  const accept = (res._req && res._req.headers) ? (res._req.headers["accept-encoding"] || "") : "";
+  if (accept.includes("gzip") && body.length > 256) {
+    headers["Content-Encoding"] = "gzip";
+    const gzipped = zlib.gzipSync(body);
+    headers["Content-Length"] = gzipped.length;
+    res.writeHead(status, headers);
+    res.end(gzipped);
+  } else {
+    res.writeHead(status, headers);
+    res.end(body);
+  }
 }
 
 function pdf(res, filename, content) {
@@ -993,15 +1069,36 @@ function buildTrendPropagationPathInline(articles) {
 function computeRegionalTrendsInline(articles) {
   const groups = [];
   const unique = [...new Map(articles.filter(Boolean).map((article) => [String(article.id || article.sourceUrl || article.title), article])).values()];
+  const tokenIndex = new Map();
   for (const article of unique) {
     const text = `${article.displayTitle || article.title || ""} ${article.displaySummary || article.summary || ""}`;
-    let group = groups.find((item) => similarity(item.text, text) >= 0.22);
-    if (!group) {
-      group = { text, articles: [], sources: new Set() };
-      groups.push(group);
+    const artTokens = new Set(normalizeText(text).split(/\s+/).filter(Boolean));
+    let bestGroup = null;
+    let bestScore = 0;
+    const candidateGroups = new Set();
+    for (const tok of artTokens) {
+      const gIds = tokenIndex.get(tok);
+      if (gIds) for (const gId of gIds) candidateGroups.add(gId);
     }
-    group.articles.push(article);
-    group.sources.add(article.sourceName || article.source || "Bilinmeyen kaynak");
+    for (const gIdx of candidateGroups) {
+      const g = groups[gIdx];
+      const intersection = [...artTokens].filter((w) => g._tokenSet.has(w)).length;
+      const union = new Set([...artTokens, ...g._tokenSet]).size || 1;
+      const score = intersection / union;
+      if (score >= 0.22 && score > bestScore) { bestScore = score; bestGroup = g; }
+    }
+    if (!bestGroup) {
+      bestGroup = { text, articles: [], sources: new Set(), _tokenSet: artTokens };
+      const gIdx = groups.length;
+      groups.push(bestGroup);
+      for (const tok of artTokens) {
+        let arr = tokenIndex.get(tok);
+        if (!arr) { arr = []; tokenIndex.set(tok, arr); }
+        arr.push(gIdx);
+      }
+    }
+    bestGroup.articles.push(article);
+    bestGroup.sources.add(article.sourceName || article.source || "Bilinmeyen kaynak");
   }
   return groups
     .filter((group) => group.articles.length >= 2 || group.sources.size >= 2)
@@ -1082,6 +1179,11 @@ function getRegionalTrendsInline(db, url) {
       return time >= from && time <= to;
     })
     .slice(0, limit);
+  if (TRENDS_CACHE.size >= TRENDS_CACHE_MAX) {
+    let oldestKey = null, oldestTs = Infinity;
+    for (const [k, v] of TRENDS_CACHE) { if (v.ts < oldestTs) { oldestTs = v.ts; oldestKey = k; } }
+    if (oldestKey) TRENDS_CACHE.delete(oldestKey);
+  }
   TRENDS_CACHE.set(cacheKey, { ts: Date.now(), trends });
   return trends;
 }
@@ -2129,10 +2231,35 @@ function weightedStorySimilarity(article, candidate) {
 }
 
 function dedupeFeedArticles(articles, limit = 120) {
+  const allItems = articles.map((item) => ({ ...item, id: String(item.id || item.sourceUrl || item.url || item.title) }));
+  const tokens = new Map();
+  const entities = new Map();
+  const eventTypes = new Map();
+  const simHashes = new Map();
+  for (const item of allItems) {
+    const id = String(item.id);
+    const itemTokens = buildDocumentFingerprint(item);
+    tokens.set(id, itemTokens);
+    entities.set(id, extractNamedEntities(`${item.title || ""} ${item.summary || ""}`));
+    eventTypes.set(id, extractEventType(item.title || ""));
+    simHashes.set(id, simHashFingerprint(itemTokens));
+  }
+  const tokenArrays = [...tokens.values()];
+  const idfTable = buildIdfTable(tokenArrays);
+  const avgdl = tokenArrays.reduce((sum, t) => sum + t.length, 0) / Math.max(tokenArrays.length, 1);
+  const precomputed = { tokens, entities, eventTypes, simHashes, idfTable, avgdl };
+
   const unique = [];
   const removed = [];
-  for (const article of articles) {
-    const sameStory = unique.some((existing) => weightedStorySimilarity(existing, article) >= 0.48);
+  for (let i = 0; i < allItems.length; i++) {
+    const article = allItems[i];
+    const artHash = simHashes.get(String(article.id)) || 0;
+    let sameStory = false;
+    for (const existing of unique) {
+      const exHash = simHashes.get(String(existing.id)) || 0;
+      if (hammingDistance(artHash, exHash) > 20) continue;
+      if (storyScore(existing, article, precomputed) >= 0.48) { sameStory = true; break; }
+    }
     if (!sameStory) {
       unique.push(article);
     } else {
@@ -2160,8 +2287,8 @@ function logSourceCounts(label, articles) {
 }
 
 function decorateArticle(db, userId, article) {
-  const read = db.readStatus.find((item) => item.userId === userId && item.articleId === article.id);
-  const bookmarked = db.bookmarks.some((item) => item.userId === userId && item.articleId === article.id);
+  const read = db._readStatusByKey ? db._readStatusByKey.get(`${userId}:${article.id}`) : db.readStatus.find((item) => item.userId === userId && item.articleId === article.id);
+  const bookmarked = db._bookmarksByKey ? db._bookmarksByKey.has(`${userId}:${article.id}`) : db.bookmarks.some((item) => item.userId === userId && item.articleId === article.id);
   return {
     ...article,
     bookmarked,
@@ -2190,8 +2317,8 @@ function buildReadingProfile(db, userId, articles = []) {
   const categoryReads = new Map();
   const subcategoryReads = new Map();
   for (const article of readArticles) {
-    const category = inferArticleCategory(article);
-    const subcategory = inferArticleSubcategory(article);
+    const category = article.category || inferArticleCategory(article);
+    const subcategory = article.subcategory || inferArticleSubcategory(article);
     categoryReads.set(category, (categoryReads.get(category) || 0) + 1);
     subcategoryReads.set(subcategory, (subcategoryReads.get(subcategory) || 0) + 1);
   }
@@ -5319,7 +5446,7 @@ async function handleApi(req, res, url) {
     const body = await readBody(req);
     const articleId = body.articleId ? String(body.articleId) : "";
     const storedArticle = articleId
-      ? db.articles.find((item) => String(item.id) === articleId) || ARTICLE_CACHE.get(articleId)
+      ? (db._articleById && db._articleById.get(articleId)) || ARTICLE_CACHE.get(articleId)
       : null;
     const article = {
       ...(storedArticle || {}),
@@ -5537,7 +5664,7 @@ async function handleApi(req, res, url) {
   const articleDetailMatch = url.pathname.match(/^\/api\/articles\/([^/]+)$/);
   if (req.method === "GET" && articleDetailMatch) {
     const articleId = articleDetailMatch[1];
-    let article = db.articles.find((item) => item.id === articleId) || ARTICLE_CACHE.get(articleId);
+    let article = (db._articleById && db._articleById.get(String(articleId))) || ARTICLE_CACHE.get(articleId);
     if (!article) return json(res, 404, { error: "Haber bulunamadı." });
 
     const needsFullText = articleNeedsFullTextRefresh(article);
@@ -5558,7 +5685,7 @@ async function handleApi(req, res, url) {
       enrichedArticle.multiSourceAnalysis = multiSourceAnalysis;
       
       ARTICLE_CACHE.set(String(enrichedArticle.id), enrichedArticle);
-      const dbArticle = db.articles.find((item) => item.id === enrichedArticle.id);
+      const dbArticle = (db._articleById && db._articleById.get(String(enrichedArticle.id)));
       if (dbArticle) {
         dbArticle.fullText = enrichedArticle.fullText;
         dbArticle.contentStatus = enrichedArticle.contentStatus;
@@ -5811,7 +5938,7 @@ async function handleApi(req, res, url) {
     if (!targetUserId || !articleId) return json(res, 400, { error: "targetUserId ve articleId gerekli." });
     const targetUser = db.users.find((u) => u.id === targetUserId);
     if (!targetUser) return json(res, 404, { error: "Kullanıcı bulunamadı." });
-    const article = db.articles.find((a) => String(a.id) === articleId);
+    const article = (db._articleById && db._articleById.get(articleId));
     if (!article) return json(res, 404, { error: "Haber bulunamadı." });
     const sender = db.users.find((u) => u.id === userId);
     const shareItem = {
@@ -5844,6 +5971,79 @@ async function handleApi(req, res, url) {
     const share = (db.sharedNews || []).find((s) => s.id === shareId && s.toUserId === userId);
     if (share) { share.read = true; writeDb(db); }
     return json(res, 200, { success: true });
+  }
+
+  // ===================== WEATHER API =====================
+  if (req.method === "GET" && url.pathname === "/api/weather") {
+    const lat = url.searchParams.get("lat") || "41.0082";
+    const lon = url.searchParams.get("lon") || "28.9784";
+    try {
+      const owKey = process.env.OPENWEATHER_API_KEY || "";
+      let weatherData;
+      if (owKey) {
+        const weatherResp = await fetchJson(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=tr&appid=${encodeURIComponent(owKey)}`);
+        const forecastResp = await fetchJson(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=tr&cnt=24&appid=${encodeURIComponent(owKey)}`).catch(() => null);
+        const dayNames = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+        const forecastDays = [];
+        if (forecastResp && forecastResp.list) {
+          const seen = new Set();
+          for (const item of forecastResp.list) {
+            const d = new Date(item.dt * 1000);
+            const dayKey = d.toISOString().slice(0, 10);
+            if (seen.has(dayKey) || seen.size >= 3) continue;
+            const today = new Date().toISOString().slice(0, 10);
+            if (dayKey === today) continue;
+            seen.add(dayKey);
+            forecastDays.push({ day: dayNames[d.getDay()], tempMax: Math.round(item.main.temp_max), tempMin: Math.round(item.main.temp_min), main: item.weather?.[0]?.main || "Clear" });
+          }
+        }
+        weatherData = {
+          city: weatherResp.name || "Bilinmiyor",
+          temp: Math.round(weatherResp.main?.temp ?? 0),
+          feelsLike: Math.round(weatherResp.main?.feels_like ?? 0),
+          tempMin: Math.round(weatherResp.main?.temp_min ?? 0),
+          tempMax: Math.round(weatherResp.main?.temp_max ?? 0),
+          humidity: weatherResp.main?.humidity ?? 0,
+          wind: Math.round(weatherResp.wind?.speed ?? 0),
+          weatherMain: weatherResp.weather?.[0]?.main || "Clear",
+          weatherDesc: weatherResp.weather?.[0]?.description || "",
+          forecast: forecastDays
+        };
+      } else {
+        const hour = new Date().getHours();
+        weatherData = {
+          city: "İstanbul", temp: hour < 10 ? 18 : hour < 16 ? 26 : 22,
+          feelsLike: hour < 10 ? 17 : hour < 16 ? 28 : 21,
+          tempMin: 16, tempMax: 28, humidity: 58, wind: 12,
+          weatherMain: hour < 7 || hour > 20 ? "Clear" : "Clouds",
+          weatherDesc: hour < 7 || hour > 20 ? "açık gökyüzü" : "parçalı bulutlu",
+          forecast: [
+            { day: "Yarın", tempMax: 27, tempMin: 17, main: "Clear" },
+            { day: "Perşembe", tempMax: 25, tempMin: 16, main: "Clouds" },
+            { day: "Cuma", tempMax: 23, tempMin: 15, main: "Rain" }
+          ]
+        };
+      }
+      return json(res, 200, weatherData);
+    } catch (e) {
+      return json(res, 500, { error: "Hava durumu alınamadı: " + e.message });
+    }
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/weather/geocode") {
+    const q = url.searchParams.get("q") || "Istanbul";
+    try {
+      const owKey = process.env.OPENWEATHER_API_KEY || "";
+      if (owKey) {
+        const geo = await fetchJson(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(q)}&limit=1&appid=${encodeURIComponent(owKey)}`);
+        if (Array.isArray(geo) && geo.length) {
+          return json(res, 200, { lat: geo[0].lat, lon: geo[0].lon, name: geo[0].local_names?.tr || geo[0].name || q });
+        }
+      }
+      return json(res, 200, { lat: 41.0082, lon: 28.9784, name: q });
+    } catch {
+      return json(res, 200, { lat: 41.0082, lon: 28.9784, name: q });
+    }
   }
 
   // ===================== ADMIN PANEL =====================
@@ -5968,18 +6168,66 @@ function serveStatic(req, res, url) {
     res.end("Forbidden");
     return;
   }
+  const ext = path.extname(filePath);
+  const contentType = mimeTypes[ext] || "application/octet-stream";
+  const isCompressible = COMPRESSIBLE_TYPES.has(ext);
+  const cached = STATIC_FILE_CACHE.get(filePath);
+  if (cached) {
+    const ifNoneMatch = req.headers["if-none-match"];
+    if (ifNoneMatch === cached.etag) {
+      res.writeHead(304);
+      res.end();
+      return;
+    }
+    const headers = { "Content-Type": contentType, "ETag": cached.etag, "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=86400" };
+    const accept = req.headers["accept-encoding"] || "";
+    if (isCompressible && accept.includes("gzip") && cached.gzipped) {
+      headers["Content-Encoding"] = "gzip";
+      headers["Content-Length"] = cached.gzipped.length;
+      res.writeHead(200, headers);
+      res.end(cached.gzipped);
+    } else {
+      headers["Content-Length"] = cached.raw.length;
+      res.writeHead(200, headers);
+      res.end(cached.raw);
+    }
+    return;
+  }
   fs.readFile(filePath, (error, content) => {
     if (error) {
       res.writeHead(404);
       res.end("Not found");
       return;
     }
-    res.writeHead(200, { "Content-Type": mimeTypes[path.extname(filePath)] || "application/octet-stream" });
-    res.end(content);
+    const etag = '"' + crypto.createHash("md5").update(content).digest("hex") + '"';
+    const entry = { raw: content, etag, gzipped: null };
+    if (isCompressible && content.length > 256) {
+      entry.gzipped = zlib.gzipSync(content);
+    }
+    STATIC_FILE_CACHE.set(filePath, entry);
+    const ifNoneMatch = req.headers["if-none-match"];
+    if (ifNoneMatch === etag) {
+      res.writeHead(304);
+      res.end();
+      return;
+    }
+    const headers = { "Content-Type": contentType, "ETag": etag, "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=86400" };
+    const accept = req.headers["accept-encoding"] || "";
+    if (isCompressible && accept.includes("gzip") && entry.gzipped) {
+      headers["Content-Encoding"] = "gzip";
+      headers["Content-Length"] = entry.gzipped.length;
+      res.writeHead(200, headers);
+      res.end(entry.gzipped);
+    } else {
+      headers["Content-Length"] = content.length;
+      res.writeHead(200, headers);
+      res.end(content);
+    }
   });
 }
 
 const server = http.createServer(async (req, res) => {
+  res._req = req;
   const url = new URL(req.url, `http://${req.headers.host}`);
   if (req.method === "OPTIONS") return json(res, 204, {});
   try {

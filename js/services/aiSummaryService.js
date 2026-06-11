@@ -4,8 +4,14 @@
 
 function decodeEntities(value) {
   const el = document.createElement("textarea");
-  el.innerHTML = String(value || "");
-  return el.value;
+  let decoded = String(value || "");
+  for (let i = 0; i < 3; i += 1) {
+    el.innerHTML = decoded;
+    const next = el.value;
+    if (next === decoded) break;
+    decoded = next;
+  }
+  return decoded;
 }
 
 /**
@@ -16,6 +22,7 @@ function decodeEntities(value) {
  */
 export function fallbackSummary(article, mode) {
   const raw = decodeEntities(article.fullText || article.summary || article.description || "")
+    .replace(/<\s*(br|\/p|\/div|\/li|\/h[1-6])\s*\/?>/gi, " ")
     .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
     .trim();

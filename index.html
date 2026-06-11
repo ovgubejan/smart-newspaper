@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css?v=source-economy-sidebar-20260605" />
-  <link rel="stylesheet" href="css/egazete.css" />
-  <link rel="stylesheet" href="css/chatbot.css" />
+  <link rel="stylesheet" href="dist/style.min.css?v=perf-20260611" />
+  <script defer src="dist/mock-data.min.js"></script>
+  <script type="module" src="dist/app.min.js?v=perf-20260611"></script>
 </head>
 <body>
 
@@ -185,13 +185,14 @@
     <div class="sticky-header">
       <header class="topbar topbar-clean" aria-label="Üst uygulama başlığı">
         <div class="brand-lockup" aria-label="Smart Newspaper">
+          <div class="brand-logo-icon" aria-hidden="true">N</div>
+          <div class="brand-copy">
+            <h1 id="brand-title">Smart Newspaper</h1>
+            <p class="brand-subtitle" id="brand-subtitle"><span id="brand-user-name"></span> kişiselleştirilmiş gazetesi</p>
+          </div>
           <button class="brand-mark profile-avatar-trigger" id="open-profile" type="button" aria-label="Kullanıcı profilini aç">
             <span class="avatar">OK</span>
           </button>
-          <div class="brand-copy">
-            <h1 id="brand-title">Smart Newspaper</h1>
-            <p class="brand-subtitle" id="brand-subtitle">Kişiselleştirilmiş günlük haber akışın</p>
-          </div>
         </div>
 
         <div class="search-control-area header-search-area" id="search-tools">
@@ -309,7 +310,7 @@
           <button class="etab" data-page="foryou"><i class="fa-solid fa-sparkles"></i><span>Sana Özel</span></button>
           <button class="etab finance-nav-tab" data-page="economy"><i class="fa-solid fa-chart-line"></i><span>Ekonomi Radarı</span></button>
           <button class="etab source-nav-tab" data-page="sources"><i class="fa-solid fa-rss"></i><span>Kaynaklarım</span></button>
-          <button class="etab egazete-open-trigger nav-primary-cta" id="open-egazete-mode" type="button"><i class="fa-solid fa-book-open"></i><span>E-Gazetemi Oku</span></button>
+          <button class="etab nav-primary-cta" id="open-egazete-mode" data-page="egazete" type="button"><i class="fa-solid fa-book-open"></i><span>E-Gazetemi Oku</span></button>
           <button class="etab" data-page="bookmarks"><i class="fa-solid fa-bookmark"></i><span>Kaydedilenler</span></button>
           <button class="etab" data-page="events"><i class="fa-regular fa-calendar-check"></i><span>Etkinlikler</span></button>
           <button id="refresh-news-btn" class="refresh-news-btn nav-secondary-action" type="button" title="Cache'i geç ve taze haber getir">
@@ -360,10 +361,17 @@
       <!-- MAIN FEED -->
       <main class="newspaper-feed" id="feed">
 
-        <!-- Removed daily edition masthead, reading time banner, and personalized banner per refactoring -->
-
-
-        <!-- Bugünün Manşeti artık ana akışta yer kaplamaz; E-Gazete modunun kapak sayfasında gösterilir. -->
+        <!-- Personal Newspaper Brief Header -->
+        <section class="np-brief-header page-view" id="np-brief-header" data-pages="feed" aria-label="Kişisel gazete özeti">
+          <div class="np-brief-left">
+            <h2 class="np-brief-greeting" id="np-brief-greeting">Günaydın</h2>
+            <p class="np-brief-summary" id="np-brief-summary">Bugün senin için haberler taranıyor...</p>
+            <div class="np-brief-chips" id="np-brief-chips"></div>
+          </div>
+          <div class="np-brief-right">
+            <div class="np-brief-weather" id="np-brief-weather"></div>
+          </div>
+        </section>
 
         <!-- Hero Slider (replaces featured-section + live-news-panel) -->
         <section class="hero-slider-wrap page-view" id="hero-slider-section" data-pages="feed" aria-label="Öne Çıkan Haberler">
@@ -697,7 +705,10 @@
           <div id="bookmark-list" class="bookmark-list"></div>
         </section>
 
-        <!-- Calendar Page Removed per Refactoring -->
+        <!-- E-Gazete Dashboard Page -->
+        <section class="feed-section egazete-dashboard-page page-view" id="egazete-dashboard-section" data-pages="egazete" aria-label="E-Gazete Dashboard">
+          <div id="egazete-dashboard-content"></div>
+        </section>
 
         <!-- Topic Page -->
         <section class="feed-section topic-workspace page-view" id="topic-page" data-pages="topic">
@@ -712,20 +723,43 @@
       </main>
 
       <!-- RIGHT SIDEBAR -->
-      <aside class="right-sidebar premium-right-sidebar page-view" data-pages="feed" aria-label="Kaynak haberleri ve ekonomi verileri">
-        <section class="side-card sidebar-card reading-stats-card source-economy-sidebar-card">
+      <aside class="right-sidebar premium-right-sidebar page-view" data-pages="feed" aria-label="Kaynak haberleri ve ek bilgiler">
+        <section class="side-card sidebar-card source-economy-sidebar-card">
           <div class="sidebar-card-heading">
             <span class="sidebar-eyebrow">Benim Kaynaklarım</span>
             <h3>Kaynak Haberleri</h3>
+            <a href="#" class="sidebar-edit-link" data-page="sources">Düzenle</a>
           </div>
           <div id="sidebar-source-news" class="sidebar-source-news"></div>
-          <div class="sidebar-economy-block">
-            <div class="sidebar-card-heading sidebar-card-heading-compact">
-              <span class="sidebar-eyebrow">Piyasa Özeti</span>
-              <h3>Güncel Ekonomi Verileri</h3>
-            </div>
-            <div id="sidebar-economy-data" class="sidebar-economy-data"></div>
+        </section>
+
+        <section class="side-card sidebar-card sidebar-world-trends-card">
+          <div class="sidebar-card-heading">
+            <span class="sidebar-eyebrow"><i class="fa-solid fa-earth-americas"></i> Dünya Trendleri</span>
+            <h3>Ülkelere Göre</h3>
           </div>
+          <div id="sidebar-world-trends" class="sidebar-world-trends"></div>
+          <a href="#" class="sidebar-see-all" id="sidebar-trends-all">Tüm ülkeleri gör <i class="fa-solid fa-chevron-right"></i></a>
+        </section>
+
+        <section class="side-card sidebar-card sidebar-quick-access-card">
+          <div class="sidebar-card-heading">
+            <span class="sidebar-eyebrow">Hızlı Erişim</span>
+          </div>
+          <div class="sidebar-quick-grid">
+            <button type="button" class="sidebar-quick-btn" data-page="foryou"><i class="fa-solid fa-sparkles"></i><span>Sana Özel</span></button>
+            <button type="button" class="sidebar-quick-btn" data-page="bookmarks"><i class="fa-solid fa-bookmark"></i><span>Kaydedilenler</span></button>
+            <button type="button" class="sidebar-quick-btn" data-page="egazete"><i class="fa-solid fa-book-open"></i><span>E-Gazetem</span></button>
+            <button type="button" class="sidebar-quick-btn" data-page="events"><i class="fa-solid fa-calendar-check"></i><span>Etkinlikler</span></button>
+          </div>
+        </section>
+
+        <section class="side-card sidebar-card">
+          <div class="sidebar-card-heading sidebar-card-heading-compact">
+            <span class="sidebar-eyebrow">Piyasa Özeti</span>
+            <h3>Güncel Ekonomi Verileri</h3>
+          </div>
+          <div id="sidebar-economy-data" class="sidebar-economy-data"></div>
         </section>
       </aside>
 
@@ -945,7 +979,5 @@
   <!-- TOAST NOTIFICATIONS -->
   <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="js/mock-data.js"></script>
-  <script type="module" src="js/app.js?v=harem-bloomberg-kap-20260605"></script>
 </body>
 </html>

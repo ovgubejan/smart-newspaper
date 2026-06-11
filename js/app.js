@@ -23,6 +23,8 @@ import { HeroSlider } from "./components/heroSlider.js";
 import { PersonalizedCarousel } from "./components/personalizedCarousel.js";
 import { EGazeteMode } from "./components/eGazeteMode.js";
 import { Chatbot } from "./components/chatbot.js";
+import { findRelatedArticles } from "./services/relatedNewsService.js";
+import { WeatherWidget } from "./components/weatherWidget.js";
 import {
   FINANCE_ASSET_CATALOG,
   DEFAULT_FINANCE_PREFERENCES,
@@ -48,6 +50,39 @@ import {
   trustLabel,
   calculateSourcePreferenceBoost
 } from "./services/sourceService.js";
+
+function renderArticlesChunked(articles, container, renderFn, chunkSize = 8) {
+  if (articles.length <= chunkSize) {
+    container.innerHTML = articles.map(renderFn).join("");
+    return;
+  }
+  container.innerHTML = articles.slice(0, chunkSize).map(renderFn).join("");
+  let i = chunkSize;
+  function nextChunk() {
+    if (i >= articles.length) return;
+    const end = Math.min(i + chunkSize, articles.length);
+    const fragment = document.createRange().createContextualFragment(
+      articles.slice(i, end).map(renderFn).join("")
+    );
+    container.appendChild(fragment);
+    i = end;
+    if (i < articles.length) requestAnimationFrame(nextChunk);
+  }
+  requestAnimationFrame(nextChunk);
+}
+
+function debounce(fn, ms) {
+  let timer;
+  return function (...args) { clearTimeout(timer); timer = setTimeout(() => fn.apply(this, args), ms); };
+}
+
+function throttle(fn, ms) {
+  let last = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - last >= ms) { last = now; fn.apply(this, args); }
+  };
+}
 
 /* ============================
    TOPIC CATEGORY & REGION SYSTEM
@@ -116,7 +151,6 @@ const CATEGORY_KEYWORDS = {
 
 const CATEGORY_ALIASES_BY_VALUE = {
   "Tümü": "all",
-  "Gündem": "politics",
   "Politika": "politics",
   "Yapay Zeka": "technology",
   "Teknoloji": "technology",
@@ -1674,6 +1708,9 @@ function showPage(pageName) {
   if (pageName === "sources") {
     renderSourceCenter();
   }
+  if (pageName === "egazete") {
+    renderEGazeteDashboard();
+  }
 }
 
 function showFilteredPersonalFeed({ scroll = false } = {}) {
@@ -1801,6 +1838,8 @@ function personalizedNewspaperSubtitle(name = profileNameInput?.value || state.a
 function updateNewspaperTitle(name = profileNameInput?.value || state.authUser?.name) {
   if (brandTitle) brandTitle.textContent = "Smart Newspaper";
   if (brandSubtitle) brandSubtitle.textContent = personalizedNewspaperSubtitle(name);
+  const brandUserName = document.getElementById("brand-user-name");
+  if (brandUserName) brandUserName.textContent = name ? `${name}'in ` : "";
 }
 
 function renderAvatar(target, name) {
@@ -2625,6 +2664,13 @@ function renderArticleCardHtml(article) {
           <span><i class="fa-regular fa-clock"></i> ${escapeHtml(article.readTime || "3 dk")}</span>
           <span class="${article.status === "Okundu" ? "read-badge" : "unread-badge"}">${escapeHtml(article.status || "Okunmadı")}</span>
         </div>
+        ${score >= 50 ? `<div class="card-reason-strip"><i class="fa-solid fa-wand-magic-sparkles"></i> ${escapeHtml(buildInterestReason(article))}</div>` : ""}
+        ${similarCount > 0 ? `<div class="card-multisource-strip"><i class="fa-solid fa-newspaper"></i> ${similarCount} kaynakta geçti${similarArticles.slice(0, 3).map(sa => {
+          const saUrl = sa.sourceUrl || sa.url || "";
+          const saFav = sourceLogoUrl(saUrl);
+          const saInit = getSourceInitials(sa.source || sa.sourceName || "");
+          return ` <span class="ms-source-chip" title="${escapeHtml(sa.source || sa.sourceName || "")}">${saFav ? `<img src="${escapeHtml(saFav)}" alt="" style="width:14px;height:14px;border-radius:3px;vertical-align:middle;margin-right:2px" onerror="this.style.display='none'">` : ""}${escapeHtml(sa.source || sa.sourceName || "")}</span>`;
+        }).join("")}</div>` : ""}
         <div class="card-actions personal-card-actions">
           <button type="button" data-action="bookmark" data-id="${escapeHtml(String(article.id))}">
             <i class="${article.bookmarked ? "fa-solid" : "fa-regular"} fa-bookmark"></i>
@@ -2887,6 +2933,7 @@ function _getEGazeteMode() {
   eGazeteMode = new EGazeteMode({
     getArticles: getPersonalNewspaperArticles,
     getProfile: getEGazeteProfile,
+    getSimilarArticles: (article) => getSimilarArticles(article),
     onArticleAction: (action, id) => {
       const article = findArticleForAction(id);
       if (article) handleArticleAction(action, article);
@@ -2900,6 +2947,153 @@ function openEGazeteMode() {
   _getEGazeteMode()?.open();
 }
 
+function renderEGazeteDashboard() {
+  const container = document.getElementById("egazete-dashboard-content");
+  if (!container) return;
+  const mode = _getEGazeteMode();
+  if (mode && typeof mode.renderDashboard === "function") {
+    mode.renderDashboard(container);
+  } else {
+    const articles = getPersonalNewspaperArticles();
+    const profile = getEGazeteProfile();
+    const name = profile.name || "Okuyucu";
+    const totalArticles = articles.length;
+    const totalPages = Math.max(1, Math.ceil(totalArticles / 2) + 2);
+    const readTime = Math.max(5, totalArticles * 2);
+    const weatherData = _getWeatherData();
+    const weatherHtml = weatherData ? `
+      <div class="egd-weather-mini">
+        <i class="fa-solid ${weatherData.icon}"></i>
+        <span>${escapeHtml(weatherData.city)} · ${weatherData.temp}°C · ${escapeHtml(weatherData.label)}</span>
+      </div>` : "";
+    const categories = [...new Set(articles.map(a => inferArticleCategory(a)).filter(Boolean))].slice(0, 6);
+    const mainArticle = articles[0];
+    const aiPicks = articles.filter(a => articleInterestScore(a) >= 75).slice(0, 4);
+    const multiSourceArticles = articles.filter(a => getSimilarArticles(a).length >= 2).slice(0, 3);
+
+    container.innerHTML = `
+      <div class="egd-dashboard">
+        <div class="egd-hero">
+          <div class="egd-hero-left">
+            <div class="egd-cover-label">AI Destekli Kişisel Baskı</div>
+            <h1 class="egd-cover-title">${escapeHtml(profile.paperName || "Kişisel E-Gazete")}</h1>
+            <div class="egd-cover-meta">
+              <span>${escapeHtml(new Intl.DateTimeFormat("tr-TR", { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(new Date()))}</span>
+              <span>Sayın ${escapeHtml(name)} için hazırlandı</span>
+            </div>
+            ${weatherHtml}
+          </div>
+          <div class="egd-hero-right">
+            <div class="egd-stat"><strong>${totalArticles}</strong><span>Haber</span></div>
+            <div class="egd-stat"><strong>${totalPages}</strong><span>Sayfa</span></div>
+            <div class="egd-stat"><strong>~${readTime} dk</strong><span>Okuma</span></div>
+          </div>
+        </div>
+        <div class="egd-actions-row">
+          <button type="button" class="egd-primary-btn" id="egd-open-reader"><i class="fa-solid fa-book-open"></i> Gazeteyi Oku</button>
+          <button type="button" class="egd-secondary-btn" id="egd-download-pdf"><i class="fa-solid fa-download"></i> PDF İndir</button>
+        </div>
+        <div class="egd-categories">
+          ${categories.map(c => `<span class="egd-cat-chip" style="--cat-color:${categoryColor(c)}">${escapeHtml(c)}</span>`).join("")}
+        </div>
+        ${mainArticle ? `
+        <div class="egd-headline-card">
+          <div class="egd-headline-kicker">Bugünün Manşeti</div>
+          <h2 class="egd-headline-title">${escapeHtml(mainArticle.title)}</h2>
+          <p class="egd-headline-summary">${escapeHtml(trimSummary(mainArticle.summary || mainArticle.description || "", 200))}</p>
+          <div class="egd-headline-meta">
+            <span>${escapeHtml(mainArticle.source || "")}</span>
+            <span>${escapeHtml(mainArticle.category || "Gündem")}</span>
+          </div>
+        </div>` : ""}
+        ${aiPicks.length ? `
+        <div class="egd-section">
+          <h3 class="egd-section-title"><i class="fa-solid fa-sparkles"></i> AI Seçkisi</h3>
+          <div class="egd-picks-grid">
+            ${aiPicks.map(a => `
+              <div class="egd-pick-card" data-action="detail" data-id="${escapeHtml(String(a.id))}">
+                <span class="egd-pick-cat" style="--cat-color:${categoryColor(inferArticleCategory(a))}">${escapeHtml(inferArticleCategory(a))}</span>
+                <h4>${escapeHtml(a.title)}</h4>
+                <span class="egd-pick-source">${escapeHtml(a.source || "")}</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>` : ""}
+        ${multiSourceArticles.length ? `
+        <div class="egd-section">
+          <h3 class="egd-section-title"><i class="fa-solid fa-layer-group"></i> Çok Kaynakta Doğrulanan</h3>
+          <div class="egd-verified-list">
+            ${multiSourceArticles.map(a => {
+              const sims = getSimilarArticles(a);
+              return `<div class="egd-verified-item" data-action="detail" data-id="${escapeHtml(String(a.id))}">
+                <strong>${escapeHtml(a.title)}</strong>
+                <span>${sims.length + 1} kaynakta geçti</span>
+              </div>`;
+            }).join("")}
+          </div>
+        </div>` : ""}
+      </div>
+    `;
+    container.querySelector("#egd-open-reader")?.addEventListener("click", () => openEGazeteMode());
+    container.querySelector("#egd-download-pdf")?.addEventListener("click", () => {
+      openEGazeteMode();
+      setTimeout(() => _getEGazeteMode()?.printPdf(), 500);
+    });
+    container.querySelectorAll("[data-action='detail']").forEach(el => {
+      el.style.cursor = "pointer";
+      el.addEventListener("click", () => showDetail(el.dataset.id));
+    });
+  }
+}
+
+function _getWeatherData() {
+  try {
+    const raw = localStorage.getItem("smart_newspaper_weather");
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    const ICONS = { Clear: "fa-sun", Clouds: "fa-cloud", Rain: "fa-cloud-rain", Snow: "fa-snowflake", Thunderstorm: "fa-cloud-bolt", Mist: "fa-smog", Fog: "fa-smog", Haze: "fa-smog" };
+    const LABELS = { Clear: "Güneşli", Clouds: "Bulutlu", Rain: "Yağmurlu", Snow: "Karlı", Thunderstorm: "Fırtınalı", Mist: "Sisli", Fog: "Sisli", Haze: "Puslu" };
+    return { city: d.city || "İstanbul", temp: d.temp || 0, icon: ICONS[d.main] || "fa-cloud-sun", label: LABELS[d.main] || d.main || "Bilinmiyor" };
+  } catch { return null; }
+}
+
+let _weatherWidget = null;
+function initWeatherWidget() {
+  if (_weatherWidget) return;
+  _weatherWidget = new WeatherWidget("np-brief-weather");
+  _weatherWidget.init();
+}
+
+function renderPersonalBriefHeader() {
+  const greeting = document.getElementById("np-brief-greeting");
+  const summary = document.getElementById("np-brief-summary");
+  const chips = document.getElementById("np-brief-chips");
+  if (!greeting) return;
+
+  const profile = getEGazeteProfile();
+  const name = profile.name || "Okuyucu";
+  const hour = new Date().getHours();
+  const greetText = hour < 12 ? "Günaydın" : hour < 18 ? "İyi Günler" : "İyi Akşamlar";
+  greeting.textContent = `${greetText}, ${name}`;
+
+  const articles = Array.isArray(state.data?.articles) ? state.data.articles : [];
+  const highInterest = articles.filter(a => articleInterestScore(a) >= 75).length;
+  const multiSourceCount = articles.filter(a => getSimilarArticles(a).length >= 2).length;
+
+  let summaryText = `Bugün senin için ${articles.length} haber tarandı`;
+  if (highInterest > 0) summaryText += `, ${highInterest} haber öne çıkarıldı`;
+  if (multiSourceCount > 0) summaryText += `. ${multiSourceCount} haber birden fazla kaynakta doğrulandı`;
+  summaryText += ".";
+  if (summary) summary.textContent = summaryText;
+
+  if (chips) {
+    const preferences = normalizePreferences(state.data?.preferences);
+    chips.innerHTML = (preferences.interests || []).slice(0, 5)
+      .map(i => `<span class="np-brief-chip">${escapeHtml(i)}</span>`).join("");
+  }
+
+  initWeatherWidget();
+}
 
 function buildInterestReason(article) {
   const preferences = normalizePreferences(state.data.preferences);
@@ -5044,7 +5238,7 @@ function renderArticles() {
   const pageArticles = gridArticles.slice(pageStart, pageStart + state.pageSize);
 
   recordImpressions(pageArticles);
-  recommendedGrid.innerHTML = pageArticles.map((article) => renderArticleCardHtml(article)).join("");
+  renderArticlesChunked(pageArticles, recommendedGrid, renderArticleCardHtml);
   emptyState.style.display = allFiltered.length ? "none" : "block";
   renderPagination(gridArticles.length, totalPages);
   renderBookmarks();
@@ -5654,9 +5848,33 @@ function updateMapTrendBadges() {
   }
 }
 
+function renderSidebarWorldTrends() {
+  const container = document.getElementById("sidebar-world-trends");
+  if (!container) return;
+  const articles = Array.isArray(state.data?.articles) ? state.data.articles : [];
+  const countryMap = new Map();
+  const FLAGS = { "Turkiye": "\u{1F1F9}\u{1F1F7}", "United States": "\u{1F1FA}\u{1F1F8}", "United Kingdom": "\u{1F1EC}\u{1F1E7}", "Germany": "\u{1F1E9}\u{1F1EA}", "France": "\u{1F1EB}\u{1F1F7}", "Russia": "\u{1F1F7}\u{1F1FA}", "China": "\u{1F1E8}\u{1F1F3}", "Japan": "\u{1F1EF}\u{1F1F5}", "Israel": "\u{1F1EE}\u{1F1F1}", "Brazil": "\u{1F1E7}\u{1F1F7}", "India": "\u{1F1EE}\u{1F1F3}", "Italy": "\u{1F1EE}\u{1F1F9}", "Spain": "\u{1F1EA}\u{1F1F8}", "Australia": "\u{1F1E6}\u{1F1FA}", "Canada": "\u{1F1E8}\u{1F1E6}", "South Korea": "\u{1F1F0}\u{1F1F7}" };
+  const TR = { "Turkiye": "Türkiye", "United States": "ABD", "United Kingdom": "İngiltere", "Germany": "Almanya", "France": "Fransa", "Russia": "Rusya", "China": "Çin", "Japan": "Japonya", "Israel": "İsrail", "Brazil": "Brezilya", "India": "Hindistan", "Italy": "İtalya", "Spain": "İspanya", "Australia": "Avustralya", "Canada": "Kanada", "South Korea": "Güney Kore" };
+  for (const a of articles) {
+    const c = a.country || a.sourceCountry || "";
+    if (c) countryMap.set(c, (countryMap.get(c) || 0) + 1);
+  }
+  const sorted = [...countryMap.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5);
+  if (!sorted.length) { container.innerHTML = '<p style="color:var(--text-muted);font-size:.78rem">Henüz veri yok.</p>'; return; }
+  container.innerHTML = sorted.map(([country, count], i) => `
+    <div class="sidebar-trend-row">
+      <span class="sidebar-trend-num">${i + 1}</span>
+      <span class="sidebar-trend-flag">${FLAGS[country] || "\u{1F30D}"}</span>
+      <span class="sidebar-trend-name">${escapeHtml(TR[country] || country)}</span>
+      <span class="sidebar-trend-count">${count} haber</span>
+    </div>
+  `).join("");
+}
+
 function renderStaticLists() {
   renderTrendPanel();
   renderCountryTrends();
+  renderSidebarWorldTrends();
   updateMapTrendBadges();
 }
 
@@ -6405,6 +6623,8 @@ async function showDetail(articleId) {
   recordUserInteraction(article, "click");
 
   const similarArticles = getSimilarArticles(article).slice(0, 8);
+  const relatedResults = findRelatedArticles(article, state.data.articles || [], { maxResults: 5 });
+  const relatedArticles = relatedResults.map(r => ({ ...r.article, similarityScore: r.score }));
   const comparisonSimilarArticles = duplicates.length ? [] : similarArticles.filter((item) => item.contentStatus === "full_from_source_page");
   const allVersions = normalizeComparisonArticles(article, duplicates, comparisonSimilarArticles);
   let activeVersionIndex = 0;
@@ -6452,13 +6672,21 @@ async function showDetail(articleId) {
       `;
     }).join("");
 
+    const sourceViewingHtml = allVersions.length > 1 ? `
+          <div class="source-viewing-indicator">
+            <i class="fa-solid fa-eye"></i>
+            <span>Bu haber şu anda <strong>${escapeHtml(srcName)}</strong> üzerinden gösteriliyor</span>
+            <span style="margin-left:auto;font-size:.72rem;color:#94a3b8;">${allVersions.length} kaynak mevcut</span>
+          </div>` : "";
+
     const newHtml = `
       <div class="interactive-reader-layout">
         <main class="reader-main-column">
           <!-- Logo Buttons -->
-          <div class="reader-logos-container" style="display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;">
+          <div class="reader-logos-container">
             ${logoButtonsHtml}
           </div>
+          ${sourceViewingHtml}
 
           <!-- Meta Line -->
           <div class="reader-dynamic-meta" style="display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:16px; font-size:13px;">
@@ -6520,6 +6748,45 @@ async function showDetail(articleId) {
           <div class="reader-full-text" style="font-size:18px; line-height:1.8; margin-bottom:24px;">
             ${contentWarningHtml}
             ${renderAnnotatedBody(activeArticle)}
+          </div>
+
+          <!-- Related News Section -->
+          <div class="reader-related-section">
+            <div class="reader-related-heading">
+              <span>Bu Haber Başka Kaynaklarda</span>
+              ${relatedArticles.length ? `<em>${relatedArticles.length} farklı kaynak bulundu</em>` : ""}
+            </div>
+            ${relatedArticles.length ? `
+            <div class="reader-related-sources-strip">
+              ${relatedArticles.map(ra => {
+                const raUrl = ra.sourceUrl || ra.url || "";
+                const raFavicon = getSourceFaviconUrl(raUrl);
+                const raInitials = getSourceInitials(ra.sourceName || ra.source || "");
+                const raColor = getSourceColor(ra.sourceName || ra.source || "");
+                const scorePercent = Math.round((ra.similarityScore || 0) * 100);
+                return `
+                  <button class="reader-related-source-btn" data-related-id="${escapeHtml(String(ra.id))}" title="${escapeHtml(ra.title || "")}">
+                    <div class="reader-related-logo">
+                      ${raFavicon ? `<img src="${escapeHtml(raFavicon)}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="rr-logo-fallback" style="display:none;background:${raColor}">${escapeHtml(raInitials)}</span>` : `<span class="rr-logo-fallback" style="background:${raColor}">${escapeHtml(raInitials)}</span>`}
+                    </div>
+                    <span class="reader-related-name">${escapeHtml(ra.sourceName || ra.source || "Kaynak")}</span>
+                    <span class="reader-related-score">${scorePercent}% benzer</span>
+                  </button>`;
+              }).join("")}
+            </div>
+            <div class="reader-related-cards">
+              ${relatedArticles.slice(0, 3).map(ra => `
+                <div class="reader-related-card" data-related-id="${escapeHtml(String(ra.id))}">
+                  <div class="rr-card-top">
+                    <span class="rr-card-source">${escapeHtml(ra.sourceName || ra.source || "")}</span>
+                    <span class="rr-card-date">${escapeHtml(ra.date || "")}</span>
+                  </div>
+                  <h4 class="rr-card-title">${escapeHtml(ra.title || "")}</h4>
+                  <p class="rr-card-summary">${escapeHtml(trimSummary(ra.summary || ra.description || "", 120))}</p>
+                </div>
+              `).join("")}
+            </div>
+            ` : `<div class="reader-related-empty"><i class="fa-solid fa-magnifying-glass"></i><p>Bu haber için benzer veya ilgili içerik bulunamadı.</p></div>`}
           </div>
         </main>
 
@@ -6585,6 +6852,11 @@ async function showDetail(articleId) {
           showDetail(nextId);
         });
       }
+
+      // Related news click handlers
+      detailContent.querySelectorAll('[data-related-id]').forEach(btn => {
+        btn.addEventListener('click', () => showDetail(btn.getAttribute('data-related-id')));
+      });
 
       // Render the AI Summary Box in bullets mode
       renderAiSummaryBox(activeArticle, "bullets");
@@ -7129,11 +7401,14 @@ document.querySelectorAll(".section-list a[data-page]").forEach((link) => {
   });
 });
 
-// Debounce helper
-function debounce(fn, delay) {
-  let timer;
-  return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); };
-}
+// Quick access sidebar buttons
+document.querySelectorAll(".sidebar-quick-btn[data-page]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    showPage(btn.dataset.page);
+    const matchingTab = document.querySelector(`.etab[data-page="${btn.dataset.page}"]`);
+    if (matchingTab) activateEditionTab(matchingTab, btn.dataset.page);
+  });
+});
 
 const debouncedRenderArticles = debounce(() => {
   state.selectedSearchQuery = searchInput?.value?.trim() || "";
@@ -7210,9 +7485,9 @@ categoryDrawerBackdrop?.addEventListener("click", () => setCategoryDrawerOpen(fa
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") setCategoryDrawerOpen(false);
 });
-window.addEventListener("resize", () => {
+window.addEventListener("resize", throttle(() => {
   if (!window.matchMedia("(max-width: 860px)").matches) setCategoryDrawerOpen(false);
-});
+}, 250));
 
 // Category nav (sidebar)
 document.getElementById("category-nav-list")?.addEventListener("click", async (event) => {
@@ -7444,7 +7719,7 @@ document.getElementById("hi-page-list")?.addEventListener("click", async (event)
   await handleArticleAction(btn.dataset.action, findArticleForAction(btn.dataset.id));
 });
 
-document.querySelectorAll("#open-egazete-mode, #open-egazete-mode-feed, #open-egazete-mode-hi").forEach((button) => {
+document.querySelectorAll("#open-egazete-mode-feed, #open-egazete-mode-hi").forEach((button) => {
   button.addEventListener("click", openEGazeteMode);
 });
 
@@ -7580,8 +7855,8 @@ calendarSaveNoteButton?.addEventListener("click", () => {
   showToast("Hatırlatıcı başarıyla eklendi.", "success");
 });
 document.addEventListener("click", () => toggleNotifications(false));
-window.addEventListener("resize", positionNotificationPopover);
-window.addEventListener("scroll", positionNotificationPopover, true);
+window.addEventListener("resize", throttle(positionNotificationPopover, 250));
+window.addEventListener("scroll", throttle(positionNotificationPopover, 100), true);
 
 // Dark mode live preview
 darkModeToggle?.addEventListener("change", () => {
@@ -7920,6 +8195,7 @@ async function initAppData() {
   renderStaticLists();
   renderEvents();
   renderArticles();
+  renderPersonalBriefHeader();
   renderExportArticleOptions();
   startLiveNews();
   refreshIntegrations();
