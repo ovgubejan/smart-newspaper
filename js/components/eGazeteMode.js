@@ -24,11 +24,13 @@ function chunk(items, size) {
 }
 
 function formatTurkishDate(date = new Date()) {
-  return new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long", year: "numeric" }).format(date);
+  const locale = egazeteLang() === "en" ? "en-US" : "tr-TR";
+  return new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric" }).format(date);
 }
 
 function formatTurkishDateFull(date = new Date()) {
-  return new Intl.DateTimeFormat("tr-TR", { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(date);
+  const locale = egazeteLang() === "en" ? "en-US" : "tr-TR";
+  return new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(date);
 }
 
 function getReadingTime(articles) {
@@ -40,8 +42,71 @@ function getReadingTime(articles) {
   return Math.max(5, Math.round(totalWords / 200));
 }
 
+function decodeEntities(value) {
+  if (!value || typeof document === "undefined") return String(value || "");
+  const ta = document.createElement("textarea");
+  ta.innerHTML = String(value || "");
+  return fixTurkishMojibake(ta.value);
+}
+
+function fixTurkishMojibake(value) {
+  let text = String(value || "");
+  if (!/[ÃÄÅÂ]/.test(text)) return text;
+  const replacements = {
+    "Ä°": "İ", "Ä±": "ı", "ÅŸ": "ş", "Åž": "Ş", "ÄŸ": "ğ", "Äž": "Ğ",
+    "Ã¼": "ü", "Ãœ": "Ü", "Ã¶": "ö", "Ã–": "Ö", "Ã§": "ç", "Ã‡": "Ç",
+    "â€™": "'", "â€œ": "\"", "â€": "\"", "â€“": "-", "â€”": "-", "â€¦": "..."
+  };
+  for (const [broken, fixed] of Object.entries(replacements)) text = text.split(broken).join(fixed);
+  return text;
+}
+
+const EGAZETE_CAT_TR_TO_EN = {
+  "Gündem": "Current Affairs", "Ekonomi": "Economy", "Teknoloji": "Technology",
+  "Spor": "Sports", "Sağlık": "Health", "Bilim": "Science",
+  "Kültür-Sanat": "Culture & Arts", "Eğitim": "Education", "Finans": "Finance", "Dünya": "World"
+};
+
+Object.assign(EGAZETE_CAT_TR_TO_EN, {
+  "Gündem": "Current Affairs", "Sağlık": "Health", "Kültür-Sanat": "Culture & Arts",
+  "Eğitim": "Education", "Dünya": "World"
+});
+
+function egazeteLang() {
+  return (localStorage.getItem("smartNewspaper.locale") || "tr").toLowerCase();
+}
+
+function egazeteCat(trName) {
+  trName = decodeEntities(trName);
+  if (egazeteLang() === "en") return EGAZETE_CAT_TR_TO_EN[trName] || trName;
+  return trName;
+}
+
+function egazeteTitle(article) {
+  const lang = egazeteLang();
+  const t = article.translations?.[lang];
+  if (t?.title) return decodeEntities(t.title);
+  if (lang === "en" && article.translatedTitle) return decodeEntities(article.translatedTitle);
+  return decodeEntities(article.displayTitle || article.originalTitle || article.title || "");
+}
+
+function egazeteSummary(article) {
+  const lang = egazeteLang();
+  const t = article.translations?.[lang];
+  if (t?.summary) return decodeEntities(t.summary);
+  if (lang === "en" && article.translatedSummary) return decodeEntities(article.translatedSummary);
+  return decodeEntities(article.displaySummary || article.originalSummary || article.summary || article.description || "");
+}
+
 function getGreeting() {
   const h = new Date().getHours();
+  const lang = egazeteLang();
+  if (lang === "en") {
+    if (h < 6) return "Good Night";
+    if (h < 12) return "Good Morning";
+    if (h < 18) return "Good Afternoon";
+    return "Good Evening";
+  }
   if (h < 6) return "İyi Geceler";
   if (h < 12) return "Günaydın";
   if (h < 18) return "İyi Günler";
@@ -182,6 +247,27 @@ export class EGazeteMode {
       if (event.target.closest("#egazete-toc-close")) this.toggleToc(false);
       const tocItem = event.target.closest("[data-toc-page]");
       if (tocItem) { this.goToPage(parseInt(tocItem.dataset.tocPage, 10)); this.toggleToc(false); }
+      const shareBtn = event.target.closest("[data-egazete-share]");
+      if (shareBtn) {
+        const articleId = shareBtn.dataset.egazeteShare;
+        const pageArticles = this.pages?.flatMap(page => Array.isArray(page.articles) ? page.articles : []) || [];
+        const art = this.articles?.find(a => String(a.id) === articleId)
+          || pageArticles.find(a => String(a.id) === articleId)
+          || {
+            id: articleId,
+            title: shareBtn.closest(".egazete-article")?.querySelector("h2,h3,h4")?.textContent?.trim() || "Haber",
+            source: shareBtn.closest(".egazete-article")?.querySelector(".egazete-article-source,.egazete-source")?.textContent?.trim() || "",
+            url: shareBtn.closest(".egazete-article")?.querySelector("[data-egazete-wa-url]")?.dataset.egazeteWaUrl || ""
+          };
+        if (typeof window.openShareModal === "function") window.openShareModal(art);
+      }
+      const waBtn = event.target.closest("[data-egazete-wa-title]");
+      if (waBtn && !shareBtn) { const t = `${waBtn.dataset.egazeteWaTitle} ${waBtn.dataset.egazeteWaUrl}`; if (navigator.share) navigator.share({title: waBtn.dataset.egazeteWaTitle, url: waBtn.dataset.egazeteWaUrl}).catch(()=>{}); else window.open(`https://wa.me/?text=${encodeURIComponent(t)}`, "_blank", "noopener"); }
+      const copyBtn = event.target.closest("[data-egazete-copy-text]");
+      if (copyBtn && !shareBtn && !waBtn) {
+        const copy = typeof window.copyTextToClipboard === "function" ? window.copyTextToClipboard(copyBtn.dataset.egazeteCopyText) : navigator.clipboard.writeText(copyBtn.dataset.egazeteCopyText);
+        copy.then(()=>{ if(typeof window.showToast==="function") window.showToast("Link kopyalandı.","success"); }).catch(()=>{ if(typeof window.showToast==="function") window.showToast("Link kopyalanamadı.","error"); });
+      }
     });
     this.prevBtn.addEventListener("click", () => this.prev());
     this.nextBtn.addEventListener("click", () => this.next());
@@ -269,14 +355,22 @@ export class EGazeteMode {
     this.tocList.innerHTML = this.pages.map((page, i) => {
       let label = TYPE_LABELS[page.type] || "Sayfa";
       const icon = TYPE_ICONS[page.type] || "fa-file";
+      let subtitles = "";
       if (page.type === "articles" && page.articles?.length) {
         const cats = [...new Set(page.articles.map(a => a.category || "Gündem"))];
         label = cats.join(" / ");
+        subtitles = page.articles.map(a =>
+          `<span class="egazete-toc-subtitle">${escapeHtml(clampText(a.displayTitle || a.title || "", 50))}</span>`
+        ).join("");
+      } else if (page.type === "summary" && page.articles?.length) {
+        subtitles = page.articles.slice(0, 3).map(a =>
+          `<span class="egazete-toc-subtitle">${escapeHtml(clampText(a.displayTitle || a.title || "", 50))}</span>`
+        ).join("");
       }
       return `<li><button type="button" class="egazete-toc-item${i === this.currentIndex ? " active" : ""}" data-toc-page="${i}">
         <span class="egazete-toc-num">${i + 1}</span>
         <i class="fa-solid ${icon} egazete-toc-icon"></i>
-        <span class="egazete-toc-label">${escapeHtml(label)}</span>
+        <span class="egazete-toc-label">${escapeHtml(label)}${subtitles}</span>
       </button></li>`;
     }).join("");
   }
@@ -292,7 +386,29 @@ export class EGazeteMode {
 
   open() {
     this.ensureDom();
+    const lang = egazeteLang();
+    const kicker = this.root.querySelector(".egazete-kicker");
+    const titleEl = this.root.querySelector("#egazete-title");
+    if (kicker) kicker.textContent = lang === "en" ? "AI-Powered Personal Edition" : "AI Destekli Kişisel Baskı";
+    if (titleEl) titleEl.textContent = lang === "en" ? "Personal E-Paper" : "Kişisel E-Gazete";
+    const tocHead = this.root.querySelector(".egazete-toc-head h3");
+    if (tocHead) tocHead.innerHTML = `<i class="fa-solid fa-list-ol"></i> ${lang === "en" ? "Contents" : "İçindekiler"}`;
     this.pages = this.buildPages();
+    if (!this.pages.length) {
+      this.root.hidden = false;
+      document.body.classList.add("modal-open", "egazete-open");
+      this.isOpen = true;
+      document.addEventListener("keydown", this.boundKeydown);
+      const reader = this.reader || this.root.querySelector("#egazete-book");
+      if (reader) reader.innerHTML = `
+        <div class="egd-empty-state" style="min-height:60vh">
+          <i class="fa-solid fa-newspaper"></i>
+          <h3>${lang === "en" ? "No news yet" : "Henüz haber yok"}</h3>
+          <p>${lang === "en" ? "Not enough articles found for your paper. Please wait for news to load and try again." : "Gazeteniz için yeterli haber verisi bulunamadı. Lütfen haberler yüklenene kadar bekleyip tekrar deneyin."}</p>
+          <button type="button" onclick="document.querySelector('[data-egazete-close]')?.click()">${lang === "en" ? "Go Back" : "Geri Dön"}</button>
+        </div>`;
+      return;
+    }
     this.currentIndex = 0;
     this.zoomLevel = 1;
     this.applyZoom();
@@ -488,7 +604,7 @@ export class EGazeteMode {
         <div class="egazete-page-head">
           <span class="egazete-page-head-date">${escapeHtml(formatTurkishDate())}</span>
           <strong class="egazete-page-head-title">Smart Newspaper</strong>
-          <span class="egazete-page-head-num">Sayfa ${index + 1}</span>
+          <span class="egazete-page-head-num">${egazeteLang() === "en" ? "Page" : "Sayfa"} ${index + 1}</span>
         </div>
         <div class="egazete-page-content">${inner}</div>
         <footer class="egazete-page-foot">
@@ -526,8 +642,8 @@ export class EGazeteMode {
       <div class="egazete-cover-side-item">
         <span class="egazete-cover-side-num">${String(i + 2).padStart(2, "0")}</span>
         <div>
-          <div class="egazete-cover-side-cat">${escapeHtml(a.category || "Gündem")}</div>
-          <div class="egazete-cover-side-headline">${escapeHtml(a.title || "")}</div>
+          <div class="egazete-cover-side-cat">${escapeHtml(egazeteCat(a.category || "Gündem"))}</div>
+          <div class="egazete-cover-side-headline">${escapeHtml(egazeteTitle(a))}</div>
         </div>
       </div>
     `).join("");
@@ -541,9 +657,9 @@ export class EGazeteMode {
           <div class="egazete-cover-nameplate-meta">
             <span>${date}</span>
             <span class="egazete-cover-diamond">&#9670;</span>
-            <span>Sayın ${escapeHtml(name)} için hazırlandı</span>
+            <span>${egazeteLang() === "en" ? `Prepared for ${escapeHtml(name)}` : `Sayın ${escapeHtml(name)} için hazırlandı`}</span>
             <span class="egazete-cover-diamond">&#9670;</span>
-            <span>AI Destekli Kişisel Baskı</span>
+            <span>${egazeteLang() === "en" ? "AI-Powered Personal Edition" : "AI Destekli Kişisel Baskı"}</span>
           </div>
           ${weatherHtml}
           <div class="egazete-cover-nameplate-rule egazete-cover-nameplate-rule--thick"></div>
@@ -551,14 +667,14 @@ export class EGazeteMode {
 
         <div class="egazete-cover-body">
           <div class="egazete-cover-main">
-            <div class="egazete-cover-main-cat">${escapeHtml(category)} &mdash; ${escapeHtml(source)}</div>
-            <h2 class="egazete-cover-main-headline">${escapeHtml(article.title || "Bugünün kişisel gündemi")}</h2>
+            <div class="egazete-cover-main-cat">${escapeHtml(egazeteCat(category))} &mdash; ${escapeHtml(article.source || (egazeteLang() === "en" ? "Personal selection" : "Kişisel seçki"))}</div>
+            <h2 class="egazete-cover-main-headline">${escapeHtml(egazeteTitle(article) || (egazeteLang() === "en" ? "Today's personal agenda" : "Bugünün kişisel gündemi"))}</h2>
             <div class="egazete-cover-hero">${img}</div>
-            <p class="egazete-cover-main-body">${escapeHtml(this.articleSummary(article))}</p>
+            <p class="egazete-cover-main-body">${escapeHtml(clampText(egazeteSummary(article)))}</p>
           </div>
           ${sideItems.length ? `
           <aside class="egazete-cover-sidebar">
-            <div class="egazete-cover-sidebar-title"><i class="fa-solid fa-list"></i> Bu Sayıda</div>
+            <div class="egazete-cover-sidebar-title"><i class="fa-solid fa-list"></i> ${egazeteLang() === "en" ? "In This Issue" : "Bu Sayıda"}</div>
             ${sideItems}
           </aside>` : ""}
         </div>
@@ -571,23 +687,25 @@ export class EGazeteMode {
     return this.pageShell(`
       <div class="egazete-inner-page">
         <div class="egazete-section-header">
-          <span class="egazete-section-label"><i class="fa-solid fa-star"></i> Editörün Seçimi</span>
-          <h2 class="egazete-section-title">Bugün Öne Çıkan Başlıklar</h2>
+          <span class="egazete-section-label"><i class="fa-solid fa-star"></i> ${egazeteLang() === "en" ? "Editor's Pick" : "Editörün Seçimi"}</span>
+          <h2 class="egazete-section-title">${egazeteLang() === "en" ? "Today's Top Headlines" : "Bugün Öne Çıkan Başlıklar"}</h2>
           <div class="egazete-section-rule"></div>
         </div>
         <div class="egazete-summary-grid">
           ${articles.map((article, idx) => {
             const similars = this.getSimilarArticles(article);
-            const multiSourceHtml = similars.length >= 2 ? `
+            const clusterCount = article.sourceCount || 0;
+            const displayCount = clusterCount > 1 ? clusterCount : (similars.length >= 2 ? similars.length + 1 : 0);
+            const multiSourceHtml = displayCount > 1 ? `
               <div class="egazete-multi-source-badge">
-                <i class="fa-solid fa-layer-group"></i> ${similars.length + 1} kaynakta doğrulandı
+                <i class="fa-solid fa-layer-group"></i> ${egazeteLang() === "en" ? `Verified in ${displayCount} sources` : `${displayCount} kaynakta doğrulandı`}
               </div>` : "";
             return `
             <div class="egazete-summary-card">
               <div class="egazete-summary-card-num">${String(idx + 1).padStart(2, "0")}</div>
               <div class="egazete-summary-card-content">
-                <div class="egazete-summary-card-cat">${escapeHtml(article.category || "Gündem")} &bull; ${escapeHtml(article.source || "")}</div>
-                <h3 class="egazete-summary-card-headline">${escapeHtml(article.title || "Başlıksız haber")}</h3>
+                <div class="egazete-summary-card-cat">${escapeHtml(egazeteCat(article.category || "Gündem"))} &bull; ${escapeHtml(article.source || "")}</div>
+                <h3 class="egazete-summary-card-headline">${escapeHtml(egazeteTitle(article) || (egazeteLang() === "en" ? "Untitled" : "Başlıksız haber"))}</h3>
                 <p class="egazete-summary-card-reason">${escapeHtml(article._personalizedReason || "Kişisel ilgi sinyallerine göre seçildi.")}</p>
                 ${multiSourceHtml}
               </div>
@@ -608,34 +726,42 @@ export class EGazeteMode {
           <div class="egazete-section-rule"></div>
         </div>
         ${articles.map((article, idx) => {
+          const isFirst = idx === 0;
           const imgUrl = article.imageUrl || article.image || article.urlToImage || "";
           const imgHtml = imgUrl
             ? `<img class="egazete-article-img" src="${escapeHtml(imgUrl)}" alt="" loading="lazy">`
-            : "";
-          const summary = escapeHtml(this.articleSummary(article));
-          const isFirst = idx === 0;
+            : (isFirst ? `<div class="egazete-article-placeholder"><i class="fa-solid fa-newspaper"></i></div>` : "");
+          const summary = escapeHtml(clampText(egazeteSummary(article)));
           const similars = this.getSimilarArticles(article);
-          const sourceStripHtml = similars.length >= 1 ? `
+          const clusterSources = Array.isArray(article.sources) ? article.sources : [];
+          const clusterCount = article.sourceCount || 0;
+          const hasCluster = clusterCount > 1 && clusterSources.length > 0;
+          const stripCount = hasCluster ? clusterCount : (similars.length >= 1 ? similars.length + 1 : 0);
+          const sourceStripHtml = stripCount > 1 ? `
             <div class="egazete-source-strip">
-              <span class="egazete-source-strip-label"><i class="fa-solid fa-layer-group"></i> ${similars.length + 1} kaynakta geçti</span>
+              <span class="egazete-source-strip-label"><i class="fa-solid fa-layer-group"></i> ${egazeteLang() === "en" ? `Found in ${stripCount} sources` : `${stripCount} kaynakta geçti`}</span>
               <div class="egazete-source-strip-logos">
-                ${similars.slice(0, 4).map(s => {
-                  const sa = s.article || s;
-                  return `<button type="button" class="egazete-source-chip" data-egazete-source-id="${escapeHtml(String(sa.id || ""))}" data-egazete-source="${escapeHtml(sa.sourceUrl || sa.url || "")}" title="${escapeHtml(sa.source || sa.sourceName || "")}">
-                    <i class="fa-solid fa-newspaper"></i> ${escapeHtml((sa.source || sa.sourceName || "Kaynak").slice(0, 15))}
-                  </button>`;
+                ${(hasCluster ? clusterSources.slice(0, 5) : similars.slice(0, 4).map(s => s.article || s)).map(src => {
+                  const name = src.name || src.source || src.sourceName || "Kaynak";
+                  const url = src.url || src.sourceUrl || "";
+                  const domain = src.domain || "";
+                  const faviconUrl = domain ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=32` : "";
+                  return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" class="egazete-source-chip" title="${escapeHtml(name)}">
+                    ${faviconUrl ? `<img src="${escapeHtml(faviconUrl)}" alt="" style="width:14px;height:14px;border-radius:50%;vertical-align:middle;margin-right:2px" onerror="this.style.display='none'">` : `<i class="fa-solid fa-newspaper"></i>`} ${escapeHtml(name.slice(0, 15))}
+                  </a>`;
                 }).join("")}
+                ${hasCluster && clusterSources.length > 5 ? `<span class="egazete-source-chip" style="cursor:default">+${clusterSources.length - 5}</span>` : ""}
               </div>
             </div>` : "";
 
           return `
           <div class="egazete-article-block ${isFirst ? "is-lead" : "is-secondary"}">
             <div class="egazete-article-meta">
-              <span class="egazete-article-cat" style="color:${catColor(article.category || "Gündem")}">${escapeHtml(article.category || "Gündem")}</span>
+              <span class="egazete-article-cat" style="color:${catColor(article.category || "Gündem")}">${escapeHtml(egazeteCat(article.category || "Gündem"))}</span>
               <span class="egazete-article-source">${escapeHtml(article.source || "")}</span>
               <span class="egazete-article-date">${escapeHtml(this.articleDate(article))}</span>
             </div>
-            <h2 class="egazete-article-headline">${escapeHtml(article.title || "Başlıksız haber")}</h2>
+            <h2 class="egazete-article-headline">${escapeHtml(egazeteTitle(article) || (egazeteLang() === "en" ? "Untitled" : "Başlıksız haber"))}</h2>
             <div class="egazete-article-divider"></div>
             ${imgHtml ? `<div class="egazete-article-img-wrap">${imgHtml}</div>` : ""}
             <div class="egazete-article-body">
@@ -643,6 +769,11 @@ export class EGazeteMode {
             </div>
             ${article._personalizedReason ? `<div class="egazete-personalized-note"><i class="fa-solid fa-sparkles"></i> ${escapeHtml(article._personalizedReason)}</div>` : ""}
             ${sourceStripHtml}
+            <div class="egazete-share-actions">
+              <button type="button" class="egazete-share-btn" data-egazete-share="${escapeHtml(String(article.id || ""))}"><i class="fa-solid fa-share-nodes"></i> ${egazeteLang() === "en" ? "Share" : "Paylaş"}</button>
+              <button type="button" class="egazete-share-btn egazete-share-wa" data-egazete-wa-title="${escapeHtml(egazeteTitle(article))}" data-egazete-wa-url="${escapeHtml(article.sourceUrl || article.url || "")}"><i class="fa-brands fa-whatsapp"></i></button>
+              <button type="button" class="egazete-share-btn egazete-share-copy" data-egazete-copy-text="${escapeHtml(`${egazeteTitle(article)} ${article.sourceUrl || article.url || ""}`)}"><i class="fa-solid fa-link"></i></button>
+            </div>
           </div>
           ${idx < articles.length - 1 ? `<div class="egazete-article-separator"></div>` : ""}
           `;
@@ -690,9 +821,28 @@ export class EGazeteMode {
     `, index, side);
   }
 
+  renderDashboardSkeleton(container) {
+    container.innerHTML = `
+      <div class="egd-dashboard egd-dashboard--skeleton">
+        <div class="egd-cover-card egd-skeleton-pulse" style="min-height:260px"></div>
+        <div class="egd-stats-bar">
+          <div class="egd-stat egd-skeleton-pulse" style="height:60px;border-radius:12px"></div>
+          <div class="egd-stat egd-skeleton-pulse" style="height:60px;border-radius:12px"></div>
+          <div class="egd-stat egd-skeleton-pulse" style="height:60px;border-radius:12px"></div>
+          <div class="egd-stat egd-skeleton-pulse" style="height:60px;border-radius:12px"></div>
+        </div>
+        <div class="egd-skeleton-pulse" style="height:180px;border-radius:16px"></div>
+        <div class="egd-skeleton-pulse" style="height:120px;border-radius:16px"></div>
+      </div>`;
+  }
+
   // =================== DASHBOARD ===================
   renderDashboard(container) {
     const articles = this.getArticles().slice(0, 18);
+    if (!articles.length) {
+      this.renderDashboardSkeleton(container);
+      return;
+    }
     const profile = this.getProfile() || {};
     const name = profile.name || "Okuyucu";
     const totalArticles = articles.length;

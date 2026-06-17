@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/health\" -UseBasicParsing -TimeoutSec 5; \"Status: $\\($r.StatusCode\\)\"; $r.Content | ConvertFrom-Json | ConvertTo-Json -Depth 5 } catch { \"Server not responding: $_\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/feed\" -UseBasicParsing -TimeoutSec 10; $json = $r.Content | ConvertFrom-Json; \"Status: $\\($r.StatusCode\\), Articles: $\\($json.articles.Count\\)\" } catch { \"Feed error: $_\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/feed\" -UseBasicParsing -TimeoutSec 30; $json = $r.Content | ConvertFrom-Json; \"Status: $\\($r.StatusCode\\), Articles: $\\($json.articles.Count\\)\" } catch { \"Feed error: $_\" })",
+      "PowerShell(node \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test.js\")",
+      "PowerShell(node \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test2.js\")",
+      "PowerShell(node \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test3.js\")",
+      "PowerShell(node \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test4.js\")",
+      "PowerShell(node \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test5.js\")",
+      "PowerShell(npm run build)",
+      "PowerShell(Stop-Process -Id 17632 -Force -Confirm:$false; Stop-Process -Id 19680 -Force -Confirm:$false; Start-Sleep -Seconds 2; Start-Process -FilePath \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\" -WindowStyle Hidden; Start-Sleep -Seconds 3; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/health\" -UseBasicParsing -TimeoutSec 5; \"Server OK: $\\($r.StatusCode\\)\" } catch { \"Server check failed: $_\" })",
+      "PowerShell(node --check \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\js\\\\components\\\\eGazeteMode.js\")",
+      "PowerShell(if \\($?\\) { \"eGazeteMode.js: OK\" } else { \"eGazeteMode.js: FAIL\" })",
+      "PowerShell(node --check \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\js\\\\app.js\")",
+      "PowerShell(if \\($?\\) { \"app.js: OK\" } else { \"app.js: FAIL\" })",
+      "PowerShell(npm test)",
+      "PowerShell(Get-Process -Name node -ErrorAction SilentlyContinue | Stop-Process -Force -Confirm:$false; Start-Sleep -Seconds 2; Start-Process -FilePath \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\" -WindowStyle Hidden; Start-Sleep -Seconds 3; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/health\" -UseBasicParsing -TimeoutSec 5; \"Server OK: $\\($r.StatusCode\\)\" } catch { \"Server check failed: $_\" })",
+      "PowerShell(Remove-Item \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test.js\" -Force -Confirm:$false)",
+      "PowerShell(Remove-Item \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test2.js\" -Force -Confirm:$false)",
+      "PowerShell(Remove-Item \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test3.js\" -Force -Confirm:$false)",
+      "PowerShell(Remove-Item \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test4.js\" -Force -Confirm:$false)",
+      "PowerShell(Remove-Item \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-black mamba\\\\_smoke_test5.js\" -Force -Confirm:$false)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/health\" -UseBasicParsing -TimeoutSec 5; \"Server OK: $\\($r.StatusCode\\)\" } catch { \"Server not responding\" })",
+      "Read(//c/Users/ibrah/Desktop/smart-newspaper-black mamba/**)",
+      "Bash(python3 -c \"import datetime; print\\(datetime.datetime.fromtimestamp\\(1781188488\\)\\)\")",
+      "Bash(cat \"c:/Users/ibrah/Desktop/smart-newspaper-black mamba/.ai-team/locks/backend.lock\"; echo \"---\"; stat -c %Y \"c:/Users/ibrah/Desktop/smart-newspaper-black mamba/server.js\")",
+      "Bash(stat -c \"%Y %n\" \"c:/Users/ibrah/Desktop/smart-newspaper-black mamba/.ai-team/locks/backend.lock\" \"c:/Users/ibrah/Desktop/smart-newspaper-black mamba/server.js\" \"c:/Users/ibrah/Desktop/smart-newspaper-black mamba/.ai-team/TASK_BOARD.md\" \"c:/Users/ibrah/Desktop/smart-newspaper-black mamba/.ai-team/HANDOFF.md\" \"c:/Users/ibrah/Desktop/smart-newspaper-black mamba/dist/app.min.js\")",
+      "PowerShell(npm test 2>&1)"
+    ]
+  }
+}

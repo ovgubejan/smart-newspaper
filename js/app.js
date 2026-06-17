@@ -1,4 +1,4 @@
-﻿import { createBoundedMemoryCache, collectStorageKeysByPrefix, pruneStorageCache } from "./services/cacheService.js";
+import { createBoundedMemoryCache, collectStorageKeysByPrefix, pruneStorageCache } from "./services/cacheService.js";
 import { escapeHtml, normalizeText } from "./utils/textUtils.js";
 import { REGION_OPTIONS } from "./utils/regionKeywords.js";
 import {
@@ -3073,23 +3073,36 @@ function renderPersonalBriefHeader() {
   const profile = getEGazeteProfile();
   const name = profile.name || "Okuyucu";
   const hour = new Date().getHours();
+  const greetEmoji = hour < 12 ? "\u2600\ufe0f" : hour < 18 ? "\ud83c\udf24\ufe0f" : "\ud83c\udf19";
   const greetText = hour < 12 ? "Günaydın" : hour < 18 ? "İyi Günler" : "İyi Akşamlar";
-  greeting.textContent = `${greetText}, ${name}`;
+  greeting.innerHTML = `${greetEmoji} ${escapeHtml(greetText)}, <strong>${escapeHtml(name)}</strong>! \ud83d\udc4b`;
 
   const articles = Array.isArray(state.data?.articles) ? state.data.articles : [];
   const highInterest = articles.filter(a => articleInterestScore(a) >= 75).length;
   const multiSourceCount = articles.filter(a => getSimilarArticles(a).length >= 2).length;
+  const personalCount = articles.filter(a => articleInterestScore(a) >= 60).length;
 
-  let summaryText = `Bugün senin için ${articles.length} haber tarandı`;
-  if (highInterest > 0) summaryText += `, ${highInterest} haber öne çıkarıldı`;
-  if (multiSourceCount > 0) summaryText += `. ${multiSourceCount} haber birden fazla kaynakta doğrulandı`;
+  let summaryText = `Bugün senin için ${articles.length} önemli haber seçildi.`;
+  if (personalCount > 0) summaryText += ` İlgi alanlarına göre analiz edildi`;
+  if (multiSourceCount > 0) summaryText += ` ve ${multiSourceCount} kaynakta ayrı haber doğrulandı`;
   summaryText += ".";
   if (summary) summary.textContent = summaryText;
 
   if (chips) {
-    const preferences = normalizePreferences(state.data?.preferences);
-    chips.innerHTML = (preferences.interests || []).slice(0, 5)
-      .map(i => `<span class="np-brief-chip">${escapeHtml(i)}</span>`).join("");
+    const avgReadTime = articles.length > 0
+      ? Math.max(3, Math.round(articles.slice(0, 10).reduce((sum, a) => {
+          const rt = parseInt(String(a.readTime || "").match(/\d+/)?.[0] || "3", 10);
+          return sum + rt;
+        }, 0) / Math.min(10, articles.length)))
+      : 5;
+
+    chips.innerHTML = [
+      personalCount > 0 ? `<span class="np-brief-chip chip-articles"><i class="fa-solid fa-newspaper"></i> ${personalCount} Sana özel haber</span>` : "",
+      multiSourceCount > 0 ? `<span class="np-brief-chip chip-sources"><i class="fa-solid fa-check-double"></i> ${multiSourceCount} Kaynakta doğrulandı</span>` : "",
+      `<span class="np-brief-chip chip-readtime"><i class="fa-regular fa-clock"></i> ${avgReadTime} dk Okuma süresi</span>`,
+      highInterest > 0 ? `<span class="np-brief-chip chip-interest"><i class="fa-solid fa-star"></i> ${highInterest} Yüksek ilgi</span>` : "",
+      `<button class="np-brief-why-link" type="button" data-interest-info aria-haspopup="dialog" aria-controls="interest-info-modal"><i class="fa-solid fa-circle-info"></i> Neden bu haberler? Kişiselleştirme ayarları</button>`
+    ].filter(Boolean).join("");
   }
 
   initWeatherWidget();
@@ -4229,21 +4242,41 @@ function selectedFinanceNews() {
     .slice(0, 10);
 }
 
-function sidebarSourceNewsRow(item) {
+function sidebarSourceNewsRow(item, index = 0) {
   const content = normalizeExternalContent(item);
   const isVideo = content.contentType === "video" || content.sourceType === "youtube";
   const icon = isVideo ? "fa-circle-play" : "fa-newspaper";
   const href = content.url ? `href="${escapeHtml(content.url)}" target="_blank" rel="noopener noreferrer"` : "";
+
+  // Try to get favicon from URL
+  let faviconHtml = `<i class="fa-solid ${icon}"></i>`;
+  if (content.logoUrl) {
+    faviconHtml = `<img src="${escapeHtml(content.logoUrl)}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                   <i class="fa-solid ${icon}" style="display:none"></i>`;
+  } else if (content.thumbnailUrl || content.imageUrl) {
+    faviconHtml = `<img src="${escapeHtml(content.thumbnailUrl || content.imageUrl)}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                   <i class="fa-solid ${icon}" style="display:none"></i>`;
+  } else if (content.url) {
+    try {
+      const domain = new URL(content.url).hostname;
+      faviconHtml = `<img src="https://www.google.com/s2/favicons?domain=${domain}&sz=32" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                     <i class="fa-solid ${icon}" style="display:none"></i>`;
+    } catch { /* use default icon */ }
+  }
+
+  // Recent badge (within last 2 hours)
+  const pubTime = content.publishedAt || content.fetchedAt;
+  const isNew = pubTime && (Date.now() - new Date(pubTime).getTime()) < 7200000;
+  const newBadge = isNew ? `<span class="sidebar-source-new-badge">yeni</span>` : "";
+
   return `
     <article class="sidebar-source-news-row">
       <div class="sidebar-source-icon" aria-hidden="true">
-        ${content.thumbnailUrl || content.imageUrl
-    ? `<img src="${escapeHtml(content.thumbnailUrl || content.imageUrl)}" alt="" loading="lazy">`
-    : `<i class="fa-solid ${icon}"></i>`}
+        ${faviconHtml}
       </div>
       <div class="sidebar-source-copy">
         <div class="sidebar-source-meta">
-          <span>${escapeHtml(content.sourceName || "Kaynak")}</span>
+          <span>${escapeHtml(content.sourceName || "Kaynak")}${newBadge}</span>
           <span>${escapeHtml(sourceTimeLabel(content.publishedAt || content.fetchedAt))}</span>
         </div>
         ${content.url
@@ -4433,6 +4466,68 @@ function renderFinanceRadar() {
   renderSidebarEconomyData();
   renderFinanceWatchlistMini();
   renderFinanceDashboard();
+  renderMarketSummaryLeftRail();
+}
+
+function renderMarketSummaryLeftRail() {
+  const container = document.getElementById("market-summary-list");
+  if (!container) return;
+
+  const assets = state.finance.assets.slice(0, 5);
+  
+  if (state.finance.loading && !assets.length) {
+    container.innerHTML = `<div class="finance-muted" style="padding: 1rem; text-align: center;">Veriler yükleniyor...</div>`;
+    return;
+  }
+
+  if (!assets.length) {
+    container.innerHTML = `<div class="finance-muted" style="padding: 1rem; text-align: center;">Gösterilecek finans verisi bulunamadı.</div>`;
+    return;
+  }
+
+  const dateObj = new Date(assets[0].lastUpdated || Date.now());
+  const dateStr = dateObj.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' }) + ' ' + dateObj.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+
+  const html = assets.map(asset => {
+    const hasValue = asset.value !== null && asset.value !== undefined;
+    const isError = !hasValue || asset.status === "error";
+    
+    // Fallback status source strings
+    let sourceLabel = "LIVE";
+    if (asset.sourceNote?.includes("PUBLIC") || asset.sourceNote?.includes("public")) sourceLabel = "PUBLIC";
+    if (asset.isFallback || asset.status === "no_key") sourceLabel = "DEMO";
+    if (asset.type === "index" && !asset.isFallback) sourceLabel = "DELAYED";
+    if (asset.type === "fx") sourceLabel = "PUBLIC";
+
+    const change = formatFinanceChange(asset);
+    const tone = financeAssetTone(asset);
+    const valClass = tone === "positive" ? "color-positive" : (tone === "negative" ? "color-negative" : "color-neutral");
+
+    return `
+      <div class="market-row">
+        <div class="market-col-left">
+          <span class="market-type">${escapeHtml(asset.type || "VERİ").toUpperCase()}</span>
+          <span class="market-name">${escapeHtml(asset.label || asset.symbol)}</span>
+        </div>
+        <div class="market-col-right">
+          <span class="market-val">${hasValue ? escapeHtml(formatFinanceValue(asset)) : "Veri Yok"}</span>
+          <div class="market-source-row">
+            ${change ? `<span class="market-change ${valClass}">${change}</span>` : `<span class="market-source">${sourceLabel}</span>`}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  container.innerHTML = `
+    <div class="market-rows-wrapper">
+      ${html}
+    </div>
+    <div class="market-summary-footer">
+      <span>${dateStr}</span>
+      <span class="market-footer-logo">DA<span>TA</span></span>
+    </div>
+  `;
 }
 
 async function loadFinanceRadar({ force = false } = {}) {
@@ -4985,20 +5080,122 @@ function closeRecommendationReasonModal() {
 /* ============================
    LIVE NEWS (now routed to HeroSlider)
    ============================ */
+function _prepareHeroSrc(src) {
+  return src.map(a => {
+    const sims = getSimilarArticles(a);
+    if (!sims.length) return a;
+    return {
+      ...a,
+      _similarSources: sims.map(s => s.sourceName || s.source).filter(Boolean)
+    };
+  });
+}
+
 function renderLiveNews() {
   const slider = _getHeroSlider();
   if (!slider) return;
   const src = state.data.articles.length ? state.data.articles : state.data.last24;
-  slider.refresh(src);
+  slider.refresh(_prepareHeroSrc(src));
 }
 
 function startLiveNews() {
   const slider = _getHeroSlider();
   if (!slider) return;
   const src = state.data.articles.length ? state.data.articles : state.data.last24;
-  slider.init(src);
+  slider.init(_prepareHeroSrc(src));
 }
 
+/* ========================================================
+   SOURCE LOGOS BAR — "Bu Haber Başka Kaynaklarda"
+   ======================================================== */
+function renderSourceLogosBar() {
+  const bar = document.getElementById("source-logos-list");
+  if (!bar) return;
+  const articles = Array.isArray(state.data?.articles) ? state.data.articles : [];
+
+  // Collect unique sources with favicon
+  const seen = new Set();
+  const sources = [];
+  for (const a of articles) {
+    const name = a.sourceName || a.source;
+    const url = a.sourceUrl || a.url || "";
+    if (!name || seen.has(name)) continue;
+    seen.add(name);
+    let favicon = "";
+    try {
+      const domain = new URL(url).hostname;
+      favicon = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+    } catch { /* no url */ }
+    sources.push({ name, url, favicon });
+    if (sources.length >= 10) break;
+  }
+
+  if (!sources.length) {
+    const section = document.getElementById("source-logos-bar");
+    if (section) section.hidden = true;
+    return;
+  }
+
+  const section = document.getElementById("source-logos-bar");
+  if (section) section.hidden = false;
+
+  bar.innerHTML = sources.map(s => `
+    <a class="source-logo-chip" href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(s.name)}">
+      ${s.favicon
+        ? `<img src="${escapeHtml(s.favicon)}" alt="${escapeHtml(s.name)}" loading="lazy" onerror="this.style.display='none'">`
+        : `<span class="source-logo-initials">${escapeHtml(s.name.substring(0,2).toUpperCase())}</span>`
+      }
+      <span>${escapeHtml(s.name)}</span>
+    </a>
+  `).join("");
+}
+
+/* ========================================================
+   SANA ÖZEL HABERLER GRID
+   ======================================================== */
+function renderSanaOzelGrid() {
+  const grid = document.getElementById("sana-ozel-grid");
+  if (!grid) return;
+  const articles = Array.isArray(state.data?.articles) ? state.data.articles : [];
+  if (!articles.length) { grid.innerHTML = ""; return; }
+
+  personalizeArticleScores(articles);
+  const personal = [...articles]
+    .sort((a, b) => articleInterestScore(b) - articleInterestScore(a))
+    .slice(0, 4);
+
+  grid.innerHTML = personal.map(a => {
+    const score = articleInterestScore(a);
+    const ageMs = Date.now() - new Date(a.publishedAt || a.date || 0);
+    const ageH = ageMs / 3.6e6;
+    const timeLabel = ageH <= 1 ? "Az önce" : ageH <= 24 ? `${Math.round(ageH)} saat önce` : (a.date || "");
+    const readTime = a.readTime || "3 dk";
+    return `
+      <div class="sana-ozel-card" data-action="detail" data-id="${escapeHtml(String(a.id))}" role="button" tabindex="0">
+        <div class="sana-ozel-img-wrap">
+          ${a.imageUrl
+            ? `<img src="${escapeHtml(a.imageUrl)}" alt="" loading="lazy">`
+            : `<div class="sana-ozel-img-placeholder"><i class="fa-solid fa-newspaper"></i></div>`
+          }
+          ${score >= 75 ? `<span class="sana-ozel-badge">Sana Özel</span>` : ""}
+        </div>
+        <div class="sana-ozel-card-body">
+          <div class="sana-ozel-meta">
+            <span class="sana-ozel-cat">${escapeHtml(a.category || "Gündem")}</span>
+            <span class="sana-ozel-time">${escapeHtml(readTime)}</span>
+          </div>
+          <div class="sana-ozel-title">${escapeHtml(a.title || "")}</div>
+          <div class="sana-ozel-source">${escapeHtml(a.sourceName || a.source || "")} · ${escapeHtml(timeLabel)}</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  grid.querySelectorAll("[data-action]").forEach(el => {
+    el.addEventListener("click", () => handleArticleAction("detail", findArticleForAction(el.dataset.id)));
+    el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") handleArticleAction("detail", findArticleForAction(el.dataset.id)); });
+  });
+}
 
 function headlineCandidateScore(article) {
   const interest = articleInterestScore(article);
@@ -5514,7 +5711,7 @@ function computeTrendGroups() {
 }
 
 // trendReason imported from ./services/trendService.js
-const TREND_PANEL_PAGE_SIZE = 2;
+const TREND_PANEL_PAGE_SIZE = 5;
 
 function trendScoreForArticle(article = {}) {
   const recency = getRecencyScore(article);
@@ -5688,60 +5885,46 @@ function renderTrendPanel() {
     `;
     return;
   }
+
+  const STATUS_ICONS = {
+    rising: '<i class="fa-solid fa-arrow-trend-up" style="color:#16a34a"></i>',
+    stable: '<i class="fa-solid fa-minus" style="color:#d97706"></i>',
+    falling: '<i class="fa-solid fa-arrow-trend-down" style="color:#dc2626"></i>',
+    breaking: '<i class="fa-solid fa-bolt" style="color:#dc2626"></i>'
+  };
+  const STATUS_LABELS = { rising: 'Yükseliyor', stable: 'Sabit', falling: 'Düşüyor', breaking: 'Son Dakika' };
+
   const listHtml = visibleTrends.map((item, visibleIndex) => {
     const g = item.group || item;
     const i = state.trendPage * pageSize + visibleIndex;
     const title = g.title || g.representative.displayTitle || g.representative.title || "Başlıksız trend";
     const articleId = String(g.representative.id || "");
-    const trendId = articleId || String(g.representative.title || i);
     const meta = g.trendMeta || {};
-    const trendLineHtml = renderTrendSparkline(meta.growthSeries || []);
-    const regions = meta.canonicalRegions || meta.regions || [];
-    const countries = Array.isArray(meta.countries) ? meta.countries : [];
     const status = meta.trendStatus || "stable";
-        const isDemoTrend = g.articles?.some((article) =>
-          article.isDemo
-          || article.demoScenario === "regional-pandemic-propagation"
-          || String(article.id || "").startsWith("demo-pandemic-")
-        );
-        if (!state.demoTrendDetailsInitialized && isDemoTrend) {
-      state.expandedTrendIds.push(trendId);
-      state.demoTrendDetailsInitialized = true;
-    }
-    const detailsOpen = state.expandedTrendIds.includes(trendId);
+    const statusIcon = STATUS_ICONS[status] || STATUS_ICONS.stable;
+    const statusLabel = STATUS_LABELS[status] || "Sabit";
+    const sourceCount = meta.sourceCount || g.sources?.size || 1;
+    const category = meta.primaryCategory || "Gündem";
+    const trendLineHtml = renderTrendSparkline(meta.growthSeries || []);
 
     return `
-      <article class="trend-item enhanced-trend-item">
-        <div class="trend-rank-badge">#${i + 1}</div>
-        <div class="trend-card-copy">
-          <button class="trend-title title-link" type="button" data-action="detail" data-id="${escapeHtml(articleId)}">${escapeHtml(title)}</button>
-          <div class="trend-graph-section" title="Haberin ilk yayınlandığı andan bugüne trendleşme eğilimi">
-            <div class="sparkline-label">İlk yayından şimdiye</div>
+      <div class="trend-compact-item" data-action="detail" data-id="${escapeHtml(articleId)}" role="button" tabindex="0">
+        <div class="trend-compact-rank">${i + 1}</div>
+        <div class="trend-compact-body">
+          <div class="trend-compact-title">${escapeHtml(title)}</div>
+          <div class="trend-compact-meta">
+            <span class="trend-compact-cat">${escapeHtml(category)}</span>
+            <span class="trend-compact-sources">— ${sourceCount} kaynak</span>
+          </div>
+          <div class="trend-compact-footer">
             ${trendLineHtml}
+            <span class="trend-compact-status">${statusIcon} ${escapeHtml(statusLabel)}</span>
           </div>
-          <div class="trend-card-meta">
-            <span class="trend-category-tag">${escapeHtml(meta.primaryCategory || "Gündem")}</span>
-            <span class="trend-stat"><i class="fa-solid fa-link" aria-hidden="true"></i> ${meta.sourceCount || g.sources.size} kaynak</span>
-            <span class="trend-status-badge trend-status-${escapeHtml(status)}">${escapeHtml(trendStatusLabel(status))}</span>
-          </div>
-          ${renderTrendRegionChips(regions)}
         </div>
-        <div class="trend-footer">
-           <div class="trend-reason enhanced-reason">
-             <button class="trend-details-toggle" type="button" data-trend-toggle="${escapeHtml(trendId)}" aria-expanded="${detailsOpen}">Trend Detayları</button>
-             ${detailsOpen ? `<div class="trend-details-content">
-               <p>${escapeHtml(meta.reason || trendReason(g))}</p>
-               <p class="trend-origin"><em>İlk görüldüğü yer: ${escapeHtml(regionLabel(meta.firstSeenRegion || "global"))}${meta.firstSeenCountry ? ` / ${escapeHtml(meta.firstSeenCountry)}` : ""}</em></p>
-               <div class="trend-propagation-card"><strong>Yayılım</strong>${renderPropagationPath(meta.propagationPath || [])}</div>
-               ${countries.length ? `<p class="trend-countries"><strong>Ülkeler:</strong> ${escapeHtml(countries.join(", "))}</p>` : ""}
-               <div class="trend-details">${renderTrendArticles(g.articles || [])}</div>
-             </div>` : ""}
-           </div>
-           <button class="trend-open-btn" type="button" data-action="detail" data-id="${escapeHtml(articleId)}">Haberi Ac</button>
-        </div>
-      </article>
+      </div>
     `;
   }).join("");
+
   const controlsHtml = trends.length > pageSize ? `
     <div class="trend-panel-controls" aria-label="Trend haber sayfalama">
       <button type="button" data-trend-page="prev" ${state.trendPage === 0 ? "disabled" : ""} aria-label="Önceki trend haberleri göster">
@@ -5755,6 +5938,7 @@ function renderTrendPanel() {
   ` : "";
   headlineList.innerHTML = `${listHtml}${controlsHtml}`;
 }
+
 
 function renderCountryTrends() {
   const grid = document.getElementById("country-trends-grid");
@@ -7077,6 +7261,8 @@ async function handleArticleAction(action, article) {
     renderArticles();
   }
   renderLiveNews();
+  renderSourceLogosBar();
+  renderSanaOzelGrid();
 }
 
 /* ============================
@@ -7732,6 +7918,8 @@ document.getElementById("refresh-news-btn")?.addEventListener("click", async () 
   renderStaticLists();
   renderArticles();
   startLiveNews();
+  renderSourceLogosBar();
+  renderSanaOzelGrid();
   showToast("Haberler güncellendi.", "success");
 });
 
@@ -8049,7 +8237,7 @@ readerBackdrop?.addEventListener("click", () => {
 
 // Headlines sidebar
 headlineList?.addEventListener("click", async (event) => {
-  const btn = event.target.closest("button[data-action]");
+  const btn = event.target.closest("[data-action]");
   if (!btn) return;
   await handleArticleAction(btn.dataset.action, findArticleForAction(btn.dataset.id));
 });

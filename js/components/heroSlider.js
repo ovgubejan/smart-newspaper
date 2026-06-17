@@ -78,6 +78,7 @@ function buildCard(article, idx) {
   const ageMs = Date.now() - new Date(article.publishedAt || article.date || 0);
   const ageH = ageMs / 3.6e6;
   const freshLabel = ageH <= 0.5 ? "Az önce" : ageH <= 2 ? `${Math.round(ageH * 60)} dk önce` : ageH <= 24 ? `${Math.round(ageH)} saat önce` : "";
+  const readTime = article.readTime || "3 dk okuma";
 
   return `
 <article class="hs-card" data-id="${escapeHtml(String(article.id))}" data-hs-idx="${idx}"
@@ -94,22 +95,34 @@ function buildCard(article, idx) {
       <div class="hs-card-meta">
         ${article.source ? `<span>${escapeHtml(article.source)}</span><span class="hs-dot">·</span>` : ""}
         <span>${escapeHtml(article.date || "")}</span>
+        ${readTime ? `<span class="hs-dot">·</span><span>${escapeHtml(String(readTime))}</span>` : ""}
       </div>
       <h2 class="hs-card-title">
         <button class="hs-title-btn title-link" data-action="detail" data-id="${escapeHtml(String(article.id))}">${escapeHtml(article.title)}</button>
       </h2>
       ${summary ? `<p class="hs-card-summary">${escapeHtml(summary)}</p>` : ""}
     </div>
+    ${article._similarSources && article._similarSources.length ? `
+    <div class="hs-card-verified-sources">
+      <i class="fa-solid fa-check-double"></i>
+      <span><strong>${article._similarSources.length} kaynakta</strong> daha doğrulandı: ${escapeHtml(article._similarSources.slice(0, 3).join(", "))}${article._similarSources.length > 3 ? "..." : ""}</span>
+    </div>
+    ` : ""}
     <div class="hs-card-actions">
-      <button class="hs-btn-icon" data-action="bookmark" data-id="${escapeHtml(String(article.id))}" aria-label="Kaydet">
-        <i class="${article.bookmarked ? "fa-solid" : "fa-regular"} fa-bookmark" aria-hidden="true"></i>
+      <button class="hs-read-cta-btn" data-action="detail" data-id="${escapeHtml(String(article.id))}">
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Haberi Oku
       </button>
-      <button class="hs-btn-icon" data-action="similar" data-id="${escapeHtml(String(article.id))}" aria-label="Benzer haberler">
-        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-      </button>
-      <button class="hs-btn-icon" data-action="newspaper" data-id="${escapeHtml(String(article.id))}" aria-label="Gazeteye ekle">
-        <i class="fa-solid fa-file-circle-plus" aria-hidden="true"></i>
-      </button>
+      <div class="hs-card-icon-actions">
+        <button class="hs-btn-icon" data-action="bookmark" data-id="${escapeHtml(String(article.id))}" aria-label="Kaydet">
+          <i class="${article.bookmarked ? "fa-solid" : "fa-regular"} fa-bookmark" aria-hidden="true"></i>
+        </button>
+        <button class="hs-btn-icon" data-action="similar" data-id="${escapeHtml(String(article.id))}" aria-label="Benzer haberler">
+          <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+        </button>
+        <button class="hs-btn-icon" data-action="newspaper" data-id="${escapeHtml(String(article.id))}" aria-label="Gazeteye ekle">
+          <i class="fa-solid fa-file-circle-plus" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
   </div>
 </article>`;

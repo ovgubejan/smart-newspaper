@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="dist/style.min.css?v=perf-20260611" />
+  <link rel="stylesheet" href="dist/style.min.css?v=ui6-000111" />
   <script defer src="dist/mock-data.min.js"></script>
-  <script type="module" src="dist/app.min.js?v=perf-20260611"></script>
+  <script type="module" src="dist/app.min.js?v=ui6-000111"></script>
 </head>
 <body>
 
@@ -355,6 +355,19 @@
           </div>
           <div id="headline-list" class="trend-list-main"></div>
         </section>
+
+        <!-- Piyasa Özeti (Market Summary) Left Rail -->
+        <section class="feed-section market-summary-rail page-view" id="left-market-summary" data-pages="feed">
+          <div class="section-heading">
+            <div>
+              <p class="kicker" style="color: var(--primary);">PİYASA ÖZETİ</p>
+              <h3>Güncel Ekonomi Verileri</h3>
+            </div>
+          </div>
+          <div id="market-summary-list" class="market-summary-list">
+             <!-- Rendered by JS -->
+          </div>
+        </section>
       </aside>
       <button type="button" class="category-drawer-backdrop" id="category-drawer-backdrop" aria-label="Kategori menüsünü kapat" hidden></button>
 
@@ -392,7 +405,30 @@
           <div class="hs-dots" id="hs-dots" role="tablist" aria-label="Haber göstergeleri"></div>
         </section>
 
-        <!-- Country Trends -->
+        <!-- Source Logos Bar: "Bu haber başka kaynaklarda" -->
+        <section class="source-logos-bar page-view" id="source-logos-bar" data-pages="feed" aria-label="Bu haber başka kaynaklarda">
+          <div class="source-logos-bar-inner">
+            <span class="source-logos-label">BU HABER BAŞKA KAYNAKLARDA</span>
+            <div class="source-logos-list" id="source-logos-list"></div>
+            <button class="source-logos-more" id="source-logos-more" type="button" aria-label="Daha fazla kaynak">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </section>
+
+        <!-- Sana Özel Haberler grid -->
+        <section class="sana-ozel-section page-view" id="sana-ozel-section" data-pages="feed" aria-label="Sana Özel Haberler">
+          <div class="section-heading sana-ozel-heading">
+            <div>
+              <p class="kicker"><i class="fa-solid fa-sparkles" aria-hidden="true"></i> Kişiselleştirilmiş</p>
+              <h3>Sana Özel Haberler</h3>
+            </div>
+            <a href="#" class="see-all-link" data-page="high-interest">Tümünü Gör →</a>
+          </div>
+          <div class="sana-ozel-grid" id="sana-ozel-grid"></div>
+        </section>
+
+
         <section class="country-trends-section page-view" id="country-trends-section" data-pages="feed" aria-label="Ülkelere Göre Trendler">
           <div class="section-heading">
             <div>
@@ -754,13 +790,7 @@
           </div>
         </section>
 
-        <section class="side-card sidebar-card">
-          <div class="sidebar-card-heading sidebar-card-heading-compact">
-            <span class="sidebar-eyebrow">Piyasa Özeti</span>
-            <h3>Güncel Ekonomi Verileri</h3>
-          </div>
-          <div id="sidebar-economy-data" class="sidebar-economy-data"></div>
-        </section>
+
       </aside>
 
     </div>
@@ -884,6 +914,13 @@
               </div>
             </div>
             <label class="toggle-row"><input id="dark-mode-toggle" type="checkbox" /> Koyu mod</label>
+            <div class="lang-toggle-row">
+              <span class="lang-toggle-label">Dil / Language</span>
+              <div class="lang-toggle-btns" id="lang-toggle-btns">
+                <button type="button" class="lang-btn active" data-lang="tr">Türkçe</button>
+                <button type="button" class="lang-btn" data-lang="en">English</button>
+              </div>
+            </div>
             <div class="notif-settings-section">
               <label class="toggle-row notif-main-toggle">
                 <input id="notification-toggle" type="checkbox" />

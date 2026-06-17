@@ -5,3 +5,4 @@ server-run.log
 server-test-error.log
 feed_test_tmp.json
 *.tmp
+.ai-team/locks/*.lock
