@@ -7,11 +7,11 @@
   <title>SmartNewspaper</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="dist/style.min.css?v=ui6-000111" />
+  <link rel="stylesheet" href="dist/style.min.css?v=egazete-restore-20260621" />
   <script defer src="dist/mock-data.min.js"></script>
-  <script type="module" src="dist/app.min.js?v=ui6-000111"></script>
+  <script type="module" src="dist/app.min.js?v=egazete-restore-20260621"></script>
 </head>
 <body>
 
@@ -313,6 +313,7 @@
           <button class="etab nav-primary-cta" id="open-egazete-mode" data-page="egazete" type="button"><i class="fa-solid fa-book-open"></i><span>E-Gazetemi Oku</span></button>
           <button class="etab" data-page="bookmarks"><i class="fa-solid fa-bookmark"></i><span>Kaydedilenler</span></button>
           <button class="etab" data-page="events"><i class="fa-regular fa-calendar-check"></i><span>Etkinlikler</span></button>
+          <button class="etab" data-page="my-calendar"><i class="fa-regular fa-calendar-days"></i><span>Takvim</span></button>
           <button id="refresh-news-btn" class="refresh-news-btn nav-secondary-action" type="button" title="Cache'i geç ve taze haber getir">
             <i class="fa-solid fa-rotate"></i><span>Taze Haberleri Getir</span>
           </button>
@@ -733,6 +734,11 @@
             </div>
             <div id="brief-list" class="announcement-list"></div>
           </div>
+        </section>
+
+        <!-- My Calendar Page -->
+        <section class="feed-section page-view" id="my-calendar-section" data-pages="my-calendar">
+          <div id="my-calendar-content"></div>
         </section>
 
         <!-- Bookmarks Page -->

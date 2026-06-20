@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Newspaper — 20 Haziran 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #3a3a3a; }
+body { font-family: Georgia, "Times New Roman", serif; background: #3a3a3a; padding-top: 60px; }
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: #12192a;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 24px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.5);
+}
+.topbar-title { font-family: Inter, sans-serif; font-size: 14pt; font-weight: 800; color: #fff; }
+.topbar-actions { display: flex; gap: 10px; }
+.btn-primary {
+  background: #8B1A1A; color: #fff; border: none;
+  padding: 9px 20px; border-radius: 7px;
+  font-family: Inter, sans-serif; font-size: 11pt; font-weight: 800; cursor: pointer;
+}
+.btn-primary:hover { background: #a82020; }
+.btn-secondary {
+  background: transparent; color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  padding: 9px 16px; border-radius: 7px;
+  font-family: Inter, sans-serif; font-size: 11pt; font-weight: 700; cursor: pointer;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.08); }
+.page {
+  width: 210mm; height: 297mm; background: #fff;
+  margin: 10mm auto; padding: 12mm 15mm 10mm;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.4);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; color: #111;
+}
+.page-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 2.5mm; margin-bottom: 4mm;
+  border-bottom: 0.55mm solid #111;
+  font-family: Inter, sans-serif; font-size: 7.5pt; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em; color: #555; flex-shrink: 0;
+}
+.page-header strong { font-size: 9pt; font-weight: 900; color: #111; letter-spacing: 0.1em; }
+.page-footer {
+  position: absolute; left: 15mm; right: 15mm; bottom: 7mm;
+  display: flex; justify-content: space-between;
+  padding-top: 2mm; border-top: 0.3mm solid #bbb;
+  font-family: Inter, sans-serif; font-size: 6.5pt; color: #888;
+}
+.page-body { flex: 1; overflow: hidden; }
+.custom-cover { padding: 8mm 12mm 10mm !important; display: flex; flex-direction: column; }
+.custom-header { margin-bottom: 5mm; flex-shrink: 0; }
+.header-kicker-wrap { display: flex; align-items: center; justify-content: center; margin-bottom: 2mm; }
+.kicker-line { flex: 1; height: 1.5mm; border-top: 0.4mm solid #111; border-bottom: 0.2mm solid #111; margin: 0 4mm; }
+.kicker-box { background: #cc1011; color: #fff; font-family: Inter, sans-serif; font-size: 10pt; font-weight: 800; padding: 1.5mm 4mm; text-transform: uppercase; }
+.header-title { font-family: "Playfair Display", Georgia, serif; font-size: 38pt; font-weight: 900; color: #0b1e40; text-align: center; line-height: 1; margin-bottom: 2.5mm; text-transform: uppercase; }
+.header-meta { display: flex; justify-content: space-between; border-top: 1mm double #111; border-bottom: 1mm double #111; padding: 1.5mm 0; margin-bottom: 4mm; font-family: Inter, sans-serif; font-size: 7.5pt; font-weight: 600; color: #333; }
+.meta-item { flex: 1; } .meta-item.center { text-align: center; } .meta-item.right { text-align: right; }
+.custom-body { display: flex; flex-direction: column; gap: 4mm; flex: 1; overflow: hidden; }
+.top-section { display: flex; gap: 4mm; border-bottom: 0.4mm solid #111; padding-bottom: 4mm; flex-shrink: 0; }
+.top-left { flex: 5.5; } .top-right { flex: 4.5; }
+.main-headline { font-family: "Playfair Display", Georgia, serif; font-size: 21pt; font-weight: 900; color: #0b1e40; line-height: 1.15; margin-bottom: 2.5mm; }
+.byline { font-family: Georgia, serif; font-size: 7.5pt; font-style: italic; margin-bottom: 2.5mm; color: #555; }
+.text-2-col { column-count: 2; column-gap: 4mm; font-family: Georgia, serif; font-size: 8pt; line-height: 1.45; text-align: justify; color: #111; }
+.top-right-wrap { position: relative; height: 100%; min-height: 60mm; }
+.top-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.red-box-overlap { position: absolute; bottom: 0; left: 0; width: 68%; background: #cc1011; color: #fff; padding: 2.5mm; font-family: Georgia, serif; font-style: italic; font-size: 7.5pt; line-height: 1.35; }
+.bottom-section { display: flex; gap: 4mm; flex: 1; overflow: hidden; }
+.bottom-left { flex: 6.5; } .bottom-right { flex: 3.5; display: flex; flex-direction: column; gap: 2.5mm; }
+.sub-headline { font-family: "Playfair Display", Georgia, serif; font-size: 17pt; font-weight: 900; color: #0b1e40; line-height: 1.2; margin-bottom: 2.5mm; }
+.blue-box { background: #0b1e40; color: #fff; padding: 3mm; }
+.blue-box h3 { font-family: "Playfair Display", Georgia, serif; font-size: 11pt; margin-bottom: 1.5mm; line-height: 1.1; }
+.blue-box p { font-family: Georgia, serif; font-size: 7pt; line-height: 1.4; text-align: justify; color: #e2e8f0; }
+.bottom-img { width: 100%; height: 35mm; object-fit: cover; display: block; flex-shrink: 0; }
+.red-box-bottom { background: #cc1011; color: #fff; padding: 2.5mm; font-family: Georgia, serif; font-style: italic; font-size: 7.5pt; line-height: 1.35; flex-shrink: 0; }
+.section-head { margin-bottom: 5mm; flex-shrink: 0; }
+.section-eyebrow { display: block; font-family: Inter, sans-serif; font-size: 7.5pt; font-weight: 900; text-transform: uppercase; letter-spacing: 0.13em; color: #8B1A1A; margin-bottom: 1.5mm; }
+.section-title { font-family: "Playfair Display", Georgia, serif; font-size: 24pt; font-weight: 900; color: #111; line-height: 1.08; margin-bottom: 2.5mm; }
+.section-rule { border: none; border-top: 0.65mm solid #111; }
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5mm 7mm; margin-top: 5mm; overflow: hidden; }
+.summary-card { border-left: 1mm solid #8B1A1A; padding-left: 3.5mm; padding-bottom: 3mm; overflow: hidden; }
+.card-num { font-family: Inter, sans-serif; font-size: 20pt; font-weight: 900; color: #ebebeb; line-height: 1; margin-bottom: 1mm; }
+.card-cat { font-family: Inter, sans-serif; font-size: 6.5pt; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; color: #8B1A1A; margin-bottom: 1.5mm; }
+.card-title { font-family: Georgia, serif; font-size: 9.5pt; font-weight: 700; line-height: 1.38; color: #111; margin-bottom: 1.5mm; }
+.card-reason { font-family: Inter, sans-serif; font-size: 7.5pt; color: #666; line-height: 1.45; }
+.article-block { overflow: hidden; } .article-lead { padding-bottom: 4mm; }
+.article-divider { border: none; border-top: 0.35mm solid #ccc; margin: 3mm 0; }
+.article-meta { display: flex; gap: 5pt; margin-bottom: 2.5mm; font-family: Inter, sans-serif; font-size: 7pt; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0; }
+.meta-cat { color: #8B1A1A; } .meta-src { color: #555; } .meta-src::before { content: "·"; margin-right: 5pt; } .meta-date { color: #999; margin-left: auto; }
+.article-headline { font-family: "Playfair Display", Georgia, serif; font-weight: 900; line-height: 1.1; color: #111; margin-bottom: 2mm; }
+.article-lead .article-headline { font-size: 22pt; } .article-secondary .article-headline { font-size: 16pt; }
+.article-rule { border: none; border-top: 0.55mm solid #111; margin: 2mm 0 3mm; }
+.article-img-wrap { float: right; width: 56mm; height: 40mm; margin: 0 0 3mm 5mm; overflow: hidden; background: #e0e0e0; flex-shrink: 0; }
+.article-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.article-text { font-size: 9.5pt; line-height: 1.72; color: #222; text-align: justify; }
+.article-text::after { content: ""; display: table; clear: both; }
+.sources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin: 5mm 0 7mm; overflow: hidden; }
+.source-item { display: flex; gap: 2.5mm; align-items: baseline; border-bottom: 0.2mm solid #ebebeb; padding-bottom: 2mm; }
+.source-num { font-family: Inter, sans-serif; font-size: 8pt; font-weight: 900; color: #8B1A1A; flex-shrink: 0; }
+.source-name { font-family: Georgia, serif; font-size: 9pt; font-weight: 700; color: #111; }
+.sources-note { border-top: 0.45mm solid #111; padding-top: 4mm; max-width: 120mm; }
+.sources-note h3 { font-family: "Playfair Display", Georgia, serif; font-size: 14pt; margin-bottom: 2.5mm; color: #111; }
+.sources-note p { font-size: 8.5pt; color: #444; line-height: 1.65; margin-bottom: 2mm; }
+.sources-bar { position: absolute; left: 15mm; right: 15mm; bottom: 18mm; display: flex; justify-content: space-between; padding: 2mm 0; border-top: 0.55mm solid #111; border-bottom: 0.55mm solid #111; font-family: Inter, sans-serif; font-size: 7.5pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: #444; }
+@media print {
+  *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  @page { size: A4 portrait; margin: 0; }
+  html, body { background: #fff !important; padding-top: 0 !important; }
+  .topbar { display: none !important; }
+  .page { margin: 0 auto !important; box-shadow: none !important; page-break-after: always !important; break-after: page !important; }
+}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <span class="topbar-title">Smart Newspaper</span>
+    <div class="topbar-actions">
+      <button class="btn-secondary" onclick="window.close()">Kapat</button>
+      <button class="btn-primary" onclick="window.print()">PDF Olarak Kaydet</button>
+    </div>
+  </div>
+  
+<div class="page custom-cover">
+  <div class="custom-header">
+    <div class="header-kicker-wrap">
+      <div class="kicker-line"></div>
+      <div class="kicker-box">Gündem</div>
+      <div class="kicker-line"></div>
+    </div>
+    <h1 class="header-title">SMART NEWSPAPER</h1>
+    <div class="header-meta">
+      <div class="meta-item left">20 Haziran 2026</div>
+      <div class="meta-item center">AI Destekli Kişisel Baskı</div>
+      <div class="meta-item right">Sayın azraefzagur@gmail.com | Bölüm 1</div>
+    </div>
+  </div>
+  <div class="custom-body">
+    <div class="top-section">
+      <div class="top-left">
+        <h2 class="main-headline">Halkalı - İstanbul Havalimanı (Arnavutköy) Metro Durakları ve Güzergahı 2026</h2>
+        <div class="byline">Yazar: AI Editör</div>
+        <div class="text-2-col">İstanbul’un ulaşım altyapısında kritik bir adım olarak değerlendirilen Halkalı–Arnavutköy Metro Hattı 19 Haziran itibarıyla hizmete açıldı. Açılışla birlikte Gayrettepe–Halkalı Metro Hattı’nın toplam uzunluğu 69 kilometreye ulaşırken, Avrupa Yakası’ndaki birçok bölge kesintisiz raylı sistem ağıyla birbirine bağlanmış oldu. Hattın tam kapasite devreye alınmasıyla birlikte şehir içi ulaşım sürelerinde önemli bir düşüş yaşanacak ve İstanbul Havalimanı’na erişimin yaklaşık 30 dakikaya kadar inecek. İşte Halkalı İstanbul Havalimanı (Arnavutköy) metro durakları ve güzergahı ile ilgili bilgiler… Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet dapibus tempor. Donec non congue mauris. Curabitur elementum, velit id elementum porta, dui tortor euismod diam, eu pulvinar nulla eros sed enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet dapibus tempor. Donec non congue mauris. Curabitur elementum, velit id elementum porta, dui tortor euismod diam, eu pulvinar nulla eros sed enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet dapibus tempor. Donec non congue mauris. Curabitur elementum, velit id elementum porta, dui tortor euismod diam, eu pulvinar nulla eros sed enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet dapibus tempor. Donec non congue mauris. Curabitur elementum, velit id elementum porta, dui tortor euismod diam, eu pulvinar nulla eros sed enim.</div>
+      </div>
+      <div class="top-right">
+        <div class="top-right-wrap">
+          <img class="top-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a3538b9ba1c9ffde772e086.jpg" alt="">
+          <div class="red-box-overlap">
+            İstanbul’un ulaşım altyapısında kritik bir adım olarak değerlendirilen Halkalı–Arnavutköy Metro Hattı 19 Haziran itibarıyla hizmete açıldı. Açılışla…
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="bottom-left">
+        <h2 class="sub-headline">YKS GÜNÜ TOPLU TAŞIMA ÜCRETSİZ Mİ? 20-21 Haziran Toplu Taşıma Ücretsiz Mi? Bu Hafta Sonu Otobüsler Bedava Mı? Otobüs, Vapur, Metro, Marmaray, Metrobüs, Başkentray, EGO, ESHOT, İzban...</h2>
+        <div class="byline">Yazar: AI Yazar</div>
+        <div class="text-2-col">YKS 2026 heyecanı sürerken, sınav günlerinde ulaşımın ücretsiz olup olmayacağı adaylar ve aileleri tarafından en çok merak edilen konular arasına girdi. Özellikle büyük şehirlerde sınav merkezlerine ulaşım için otobüs, metro, metrobüs, Marmaray, vapur ve banliyö hatlarının ücretsiz olup olmayacağı araştırılıyor. Her yıl olduğu gibi bu yıl da sınav sabahında yaşanabilecek yoğunluğun önüne geçmek amacıyla yerel yönetimlerin alacağı kararlar yakından takip edilirken, öğrenciler için ulaşım kolaylığı sağlayacak uygulamalar gündemde yerini aldı. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet dapibus tempor. Donec non congue mauris. Curabitur elementum, velit id elementum porta, dui tortor euismod diam, eu pulvinar nulla eros sed enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet dapibus tempor. Donec non congue mauris. Curabitur elementum, velit id elementum porta, dui tortor euismod diam, eu pulvinar nulla eros sed enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet dapibus tempor. Donec non congue mauris. Curabitur elementum, velit id elementum porta, dui tortor euismod diam, eu pulvinar nulla eros sed enim.</div>
+      </div>
+      <div class="bottom-right">
+        <div class="blue-box">
+          <h3>Katiliyle dans etti, babası kaydetti: Ya seni alacağım ya da öldüreceğim</h3>
+          <p>Olay, Defne ilçesi Koçören Mahallesi&#039;nde bulunan konteyner kentte yaşandı. Yaklaşık 6 ay önce nişanlanan Lamiya Azazi (30) ve Üstün Ç. isimli şahıs arasında anlaşmazlık yaşandı. Yaşanan anlaşmazlık sonrası Lamiya Azazi, nişanlısından ayrılma kararı aldı. Ayrılma kararı sonrası damat, depremzede ailenin yaşadığı konteyneri bastı. Üstün Ç., yanında bulunan tabancayla nişanlısı Lamiya Azazi ve 65 yaşındaki babası Yusuf Azazi&#039;yi vurarak öldürdü. Olayın faali olan damat mahkemece tutuklandı. Olayın ardından ortaya Üstün Ç. ve vurarak öldürdüğü Lamiya&#039;nın dans ettiği nişan videosu çıktı. Görüntülerde; Lamiya ile katilinin dans ettiği ve baba Yusuf Azazi&#039;nin o anları cep telefonuyla kaydettiği görüldü. Genç kadının ölümünü getiren nişandan geriye kalan video yürekleri burktu. Özgür Özel&#039;in yeni partisinin kodları Ölen arkadaşı Lamiya&#039;nın en son kendisiyle telefonda konuştuğunu ifade eden N.H.,</p>
+        </div>
+        <div class="bottom-img" style="background:#0b1e40;display:flex;align-items:center;justify-content:center;color:#fff;font-family:sans-serif;font-weight:bold;">GÖRSEL</div>
+        <div class="red-box-bottom">
+          Olay, Defne ilçesi Koçören Mahallesi&#039;nde bulunan konteyner kentte yaşandı. Yaklaşık 6 ay önce…
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <header class="page-header">
+    <span>20 Haziran 2026</span>
+    <strong>Smart Newspaper</strong>
+    <span>Sayfa 2</span>
+  </header>
+  
+  <div class="article-block article-lead">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Halkalı - İstanbul Havalimanı (Arnavutköy) Metro Durakları ve Güzergahı 2026</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a3538b9ba1c9ffde772e086.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>İstanbul’un ulaşım altyapısında kritik bir adım olarak değerlendirilen Halkalı–Arnavutköy Metro Hattı 19 Haziran itibarıyla hizmete açıldı. Açılışla birlikte Gayrettepe–Halkalı Metro Hattı’nın toplam uzunluğu 69 kilometreye ulaşırken, Avrupa Yakası’ndaki birçok bölge kesintisiz raylı sistem ağıyla birbirine bağlanmış oldu. Hattın tam kapasite devreye alınmasıyla birlikte şehir içi ulaşım sürelerinde önemli bir düşüş yaşanacak ve İstanbul Havalimanı’na erişimin yaklaşık 30 dakikaya kadar inecek. İşte Halkalı…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">YKS GÜNÜ TOPLU TAŞIMA ÜCRETSİZ Mİ? 20-21 Haziran Toplu Taşıma Ücretsiz Mi? Bu Hafta Sonu Otobüsler Bedava Mı? Otobüs, Vapur, Metro, Marmaray, Metrobüs, Başkentray, EGO, ESHOT, İzban...</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a3516aa9a780d4c9a69f998.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>YKS 2026 heyecanı sürerken, sınav günlerinde ulaşımın ücretsiz olup olmayacağı adaylar ve aileleri tarafından en çok merak edilen konular arasına girdi. Özellikle büyük şehirlerde sınav merkezlerine ulaşım için otobüs, metro, metrobüs, Marmaray, vapur ve banliyö hatlarının ücretsiz olup olmayacağı araştırılıyor. Her yıl olduğu gibi bu yıl da sınav sabahında yaşanabilecek yoğunluğun önüne geçmek amacıyla yerel yönetimlerin alacağı kararlar yakından takip edilirken, öğrenciler için ulaşım kolaylığı sağlayacak…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Milliyet</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Katiliyle dans etti, babası kaydetti: Ya seni alacağım ya da öldüreceğim</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>Olay, Defne ilçesi Koçören Mahallesi&#039;nde bulunan konteyner kentte yaşandı. Yaklaşık 6 ay önce nişanlanan Lamiya Azazi (30) ve Üstün Ç. isimli şahıs arasında anlaşmazlık yaşandı. Yaşanan anlaşmazlık sonrası Lamiya Azazi, nişanlısından ayrılma kararı aldı. Ayrılma kararı sonrası damat, depremzede ailenin yaşadığı konteyneri bastı. Üstün Ç., yanında bulunan tabancayla nişanlısı Lamiya Azazi ve 65 yaşındaki babası Yusuf Azazi&#039;yi vurarak öldürdü. Olayın faali olan damat mahkemece tutuklandı. Olayın ardından ortaya…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Times of India</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">&#039;BJP busy buying parties, people can&#039;t afford necessities&#039;: Kharge targets govt over enflasyon</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://static.toiimg.com/photo/msid-131871161,imgsize-85659.cms" alt=""></div>
+    <div class="article-text text-2-col"><p>&#039;BJP busy buying parties, people can&#039;t afford necessities&#039;: Kharge targets govt over enflasyon</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">20 - 21 HAZİRAN HAVA DURUMU TAHMİNLERİ: Hafta sonu havalar nasıl olacak? Yağmur yağacak mı?</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a359c98af5d1b85ae224afd.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Hafta sonu hava durumu sorgulanıyor. Vatandaşlar 20 ve 21 Haziran tarihlerinde havaların nasıl olacağını merak ediyor. Meteoroloji Genel Müdürlüğü Hava Tahmin Uzmanı Abdullah Macit, hafta sonu yer yer sağanak ve gök gürültülü yağışların meydana geleceğini kaydetti. Öte yandan Meteoroloji&#039;den çok sayıdaki kente hava durumu uyarısı geldi. Peki hafta sonu havalar nasıl olacak? Yağmur yağacak mı? İşte 20 - 21 Haziran hava durumu tahminleri...</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Artık resmileşti: 2024&#039;e kadar kredi kartı faizinden kurtulun</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>Artık resmileşti: 2024&#039;e kadar kredi kartı faizinden kurtulun</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">South China Morning Post</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">ABD Küba için geldiğinde Vietnam ne yapabilir?</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://cdn.i-scmp.com/sites/default/files/styles/1280x720/public/d8/images/canvas/2026/06/19/702cd2c9-a78f-425b-8acd-f78676f9359b_053db6a8.jpg?itok=Zj11TB_x&amp;v=1781862362" alt=""></div>
+    <div class="article-text text-2-col"><p>Trump yönetiminin eski Küba başkanı Raul Castro&#039;ya yönelik suçlaması ve halefi Miguel Diaz-Canel&#039;e yönelik yaptırımlar, Washington&#039;un artık Havana&#039;da rejim değişikliğini uygulanabilir bir politika hedefi olarak gördüğünü gösteriyor. Bu da Küba&#039;nın artan sıkıntılarına katkıda bulunuyor. Ocak ayında Venezüellalı Nicolas Maduro&#039;nun devrilmesi, ada ülkesini uzun süredir ayakta tutan sübvansiyonlu petrol cankurtaran halatını keserek Küba&#039;yı 1990&#039;lardan bu yana en kötü sosyo-ekonomik krizine sürükledi. Çoğu ülke için bu…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">South China Morning Post</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Sınır ötesi kaynakların kolay akışından yararlanacak daha fazla Kuzey Metropolis bölgesi</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://cdn.i-scmp.com/sites/default/files/styles/1280x720/public/d8/images/canvas/2026/06/20/7579bacc-a4c8-4f93-92b3-2f1e9dca94e6_19596662.jpg?itok=UIW3-ye0&amp;v=1781937312" alt=""></div>
+    <div class="article-text text-2-col"><p>Kuzey Metropolis geliştirme kapsamındaki daha fazla alan, bu yıl Hong Kong&#039;un Shenzhen ile inovasyon bölgesinde başlatılacak pilot girişimlerle birlikte, sınır ötesi veri, malzeme ve sermaye akışını kolaylaştırmaya yönelik yeni önlemlerden yararlanabilir. Ayrıntılar Cumartesi günü Kalkınma Bürosu tarafından Yasama Konseyi&#039;ne sunulan ve 30.000 hektarlık (74.131 dönüm) bir girişim olan mega projenin gelişimini hızlandırmaya yönelik özel mevzuat taslağının güncellenmesini sağlayan bir belgede açıklandı.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">NHK World</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">“ABD&#039;nin İsviçre özel elçisi” bildirdi; Dikkatler ABD-İran görüşmelerinin yakında yapılıp yapılmayacağı üzerinde</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>ABD ile İran arasında İsviçre için planlanan görüşmeler ertelenirken, çok sayıda Amerikan medya kuruluşu 19&#039;unda Trump yönetiminin özel elçisi Witkoff&#039;un İsviçre&#039;ye gittiğini bildirdi. Ayrıca arabuluculuk yapan Katar, Başbakan Muhammed&#039;in İsviçre&#039;ye geldiğini duyurdu, bu nedenle yakın zamanda görüşmelerin yapılıp yapılmayacağını görmek ilginç olacak.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">South China Morning Post</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Binlerce kişi şehrin Çin yönetimine dönüşünü kutlamak için Hong Kong&#039;daki PLA kışlasını ziyaret etti</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://cdn.i-scmp.com/sites/default/files/styles/1280x720/public/d8/images/canvas/2026/06/20/cd100777-b63d-4c4d-add9-50b588d0452e_cd1514eb.jpg?itok=9XMZ1vex&amp;v=1781936709" alt=""></div>
+    <div class="article-text text-2-col"><p>Binlerce sakin, şehrin Çin yönetimine dönüşünün önümüzdeki 29. yıldönümünü kutlamak için kışlalarını halka açan Halk Kurtuluş Ordusu (PLA) Hong Kong Garnizonunun askeri üssüne akın etti. Ngong Shuen Chau Kışlası Cumartesi sabahı saat 9&#039;da ziyaretçilere açıldı; yüzlerce kişi erkenden sıraya girdi ve tesislere girmek için heyecan içinde bekledi. Bunların arasında küçük çocuklu aileler, öğrenciler ve yaşlılar da vardı. Jennifer Shao Xia ve onun...</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">France 24</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Bolivya Devlet Başkanı Paz, hükümet karşıtı ablukalar nedeniyle olağanüstü hal ilan etti</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://s.france24.com/media/display/45b5da52-6c73-11f1-abae-005056bfb2b6/w:1024/p:16x9/2026-06-20T014558Z-214182371-RC2DXLAXU2RG-RTRMADP-3-BOLIVIA-UNREST.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Bolivya Devlet Başkanı Rodrigo Paz, yaklaşık iki ay süren protestoların ekonomiyi felç etmesi ve istifa taleplerini artırmasının ardından Cumartesi günü olağanüstü hal ilan ederek orduyu konuşlandırma ve yol blokajlarını temizleme konusunda daha geniş yetkiler verdi.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Sözcü</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Hesapları kapatılan Dilan Polat&#039;ın ne halde olduğunu en yakınları açıkladı</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://sozcu01.sozcucdn.com/sozcu/production/uploads/images/2026/6/dilanpolatkapakjpg-DWLM-YLJcUyXJ449UcKwWg.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Hesapları kapatılan Dilan Polat&#039;ın ne halde olduğunu en yakınları açıkladı</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Deutsche Welle</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">İran war: Steve Witkoff heading to Switzerland for talks</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>ABD and İranian diplomats are reportedly heading to Switzerland for peace talks. An initial round of negotiations involving ABD Vice President JD Vance was delayed as fighting continued in Lebanon. DW has more.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">HAFTA SONU NE SINAVI VAR? 20 Haziran Cumartesi-21 Haziran Pazar ÖSYM - MEB Sınav Takvimi</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a353c95ba1c9ffde772e0af.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Hafta sonu sınav takvimi, milyonlarca adayın ve yakınlarının gündeminde yer almaya devam ediyor. Her hafta sonu olduğu gibi bu hafta da hangi sınavların yapılacağı merak ediliyor. 20 Haziran Cumartesi ve 21 Haziran Pazar günlerinde uygulanacak sınavlar, adaylar tarafından yakından takip edilirken, sınav merkezlerinde yoğunluk yaşanması bekleniyor. ÖSYM ve MEB tarafından açıklanan güncel takvimle birlikte, hafta sonu yapılacak sınavlar netlik kazanırken adayların sınav giriş belgelerini kontrol etmeleri gerektiği…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Times of India</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Düzeltin, çevirin — köhne bir evi para kazanmaya nasıl dönüştürebilirsiniz?</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://static.toiimg.com/photo/msid-131871664,imgsize-2671681.cms" alt=""></div>
+    <div class="article-text text-2-col"><p>Popüler bir yatırım stratejisi olan ev çevirme, eskimiş mülkleri satın almayı, yenilemeyi ve kâr amacıyla satmayı içerir. Başarı, değeri düşük evleri bulmaya, sıhhi tesisat veya temel sorunları gibi beklenmedik maliyetlerden kaçınmak için yenileme bütçelerini titizlikle yönetmeye ve pazarı hızlı bir satış için zamanlamaya bağlıdır. Bu girişim, önemli getiriler ve dönüşümün tatminini sunarken, önemli ön yatırımlar ve değişken piyasa koşulları nedeniyle doğası gereği riskler de taşıyor.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Özgür Özel&#039;in B planı: Hazırlıkları süren yeni partinin kodları ne?</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a3622988e789667b237fe61.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Mutlak Butlan kararı sonrası CHP Genel Başkanlığı görevine dönen Kemal Kılıçdaroğlu ve ekibinin aldığı ihraç kararları sonrası, Özgür Özel kanadında yeni parti hazırlıklarının hızlandığı iddia edildi. Söz konusu partinin kodları yazılırken, Türkiye&#039;nin birçok kesimine hitap etmesi, solda merkez demokrat çizgide olacağı belirtildi.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Evinizden Nakit Çıkışı mı İstiyorsunuz? İşte En İyi Seçenekleriniz</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>Evinizden Nakit Çıkışı mı İstiyorsunuz? İşte En İyi Seçenekleriniz</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Konut Sermayesi Kredisi ile Büyük Hayal Edin</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>Konut Sermayesi Kredisi ile Büyük Hayal Edin</p></div>
+  </div>
+  <footer class="page-footer">
+    <span>Bu gazete azraefzagur@gmail.com için yapay zeka tarafından özel olarak derlenmiştir.</span>
+    <span>2</span>
+  </footer>
+</div>
+
+<div class="page">
+  <header class="page-header">
+    <span>20 Haziran 2026</span>
+    <strong>Smart Newspaper</strong>
+    <span>Sayfa 3</span>
+  </header>
+  
+  <div class="article-block article-lead">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Halkalı - İstanbul Havalimanı (Arnavutköy) Metro Durakları ve Güzergahı 2026</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a3538b9ba1c9ffde772e086.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>İstanbul’un ulaşım altyapısında kritik bir adım olarak değerlendirilen Halkalı–Arnavutköy Metro Hattı 19 Haziran itibarıyla hizmete açıldı. Açılışla birlikte Gayrettepe–Halkalı Metro Hattı’nın toplam uzunluğu 69 kilometreye ulaşırken, Avrupa Yakası’ndaki birçok bölge kesintisiz raylı sistem ağıyla birbirine bağlanmış oldu. Hattın tam kapasite devreye alınmasıyla birlikte şehir içi ulaşım sürelerinde önemli bir düşüş yaşanacak ve İstanbul Havalimanı’na erişimin yaklaşık 30 dakikaya kadar inecek. İşte Halkalı…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">YKS GÜNÜ TOPLU TAŞIMA ÜCRETSİZ Mİ? 20-21 Haziran Toplu Taşıma Ücretsiz Mi? Bu Hafta Sonu Otobüsler Bedava Mı? Otobüs, Vapur, Metro, Marmaray, Metrobüs, Başkentray, EGO, ESHOT, İzban...</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a3516aa9a780d4c9a69f998.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>YKS 2026 heyecanı sürerken, sınav günlerinde ulaşımın ücretsiz olup olmayacağı adaylar ve aileleri tarafından en çok merak edilen konular arasına girdi. Özellikle büyük şehirlerde sınav merkezlerine ulaşım için otobüs, metro, metrobüs, Marmaray, vapur ve banliyö hatlarının ücretsiz olup olmayacağı araştırılıyor. Her yıl olduğu gibi bu yıl da sınav sabahında yaşanabilecek yoğunluğun önüne geçmek amacıyla yerel yönetimlerin alacağı kararlar yakından takip edilirken, öğrenciler için ulaşım kolaylığı sağlayacak…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Milliyet</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Katiliyle dans etti, babası kaydetti: Ya seni alacağım ya da öldüreceğim</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>Olay, Defne ilçesi Koçören Mahallesi&#039;nde bulunan konteyner kentte yaşandı. Yaklaşık 6 ay önce nişanlanan Lamiya Azazi (30) ve Üstün Ç. isimli şahıs arasında anlaşmazlık yaşandı. Yaşanan anlaşmazlık sonrası Lamiya Azazi, nişanlısından ayrılma kararı aldı. Ayrılma kararı sonrası damat, depremzede ailenin yaşadığı konteyneri bastı. Üstün Ç., yanında bulunan tabancayla nişanlısı Lamiya Azazi ve 65 yaşındaki babası Yusuf Azazi&#039;yi vurarak öldürdü. Olayın faali olan damat mahkemece tutuklandı. Olayın ardından ortaya…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Times of India</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">&#039;BJP busy buying parties, people can&#039;t afford necessities&#039;: Kharge targets govt over enflasyon</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://static.toiimg.com/photo/msid-131871161,imgsize-85659.cms" alt=""></div>
+    <div class="article-text text-2-col"><p>&#039;BJP busy buying parties, people can&#039;t afford necessities&#039;: Kharge targets govt over enflasyon</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">20 - 21 HAZİRAN HAVA DURUMU TAHMİNLERİ: Hafta sonu havalar nasıl olacak? Yağmur yağacak mı?</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a359c98af5d1b85ae224afd.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Hafta sonu hava durumu sorgulanıyor. Vatandaşlar 20 ve 21 Haziran tarihlerinde havaların nasıl olacağını merak ediyor. Meteoroloji Genel Müdürlüğü Hava Tahmin Uzmanı Abdullah Macit, hafta sonu yer yer sağanak ve gök gürültülü yağışların meydana geleceğini kaydetti. Öte yandan Meteoroloji&#039;den çok sayıdaki kente hava durumu uyarısı geldi. Peki hafta sonu havalar nasıl olacak? Yağmur yağacak mı? İşte 20 - 21 Haziran hava durumu tahminleri...</p></div>
+  </div>
+  <footer class="page-footer">
+    <span>Bu gazete azraefzagur@gmail.com için yapay zeka tarafından özel olarak derlenmiştir.</span>
+    <span>3</span>
+  </footer>
+</div>
+
+<div class="page">
+  <header class="page-header">
+    <span>20 Haziran 2026</span>
+    <strong>Smart Newspaper</strong>
+    <span>Sayfa 4</span>
+  </header>
+  
+  <div class="article-block article-lead">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Artık resmileşti: 2024&#039;e kadar kredi kartı faizinden kurtulun</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>Artık resmileşti: 2024&#039;e kadar kredi kartı faizinden kurtulun</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">South China Morning Post</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">ABD Küba için geldiğinde Vietnam ne yapabilir?</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://cdn.i-scmp.com/sites/default/files/styles/1280x720/public/d8/images/canvas/2026/06/19/702cd2c9-a78f-425b-8acd-f78676f9359b_053db6a8.jpg?itok=Zj11TB_x&amp;v=1781862362" alt=""></div>
+    <div class="article-text text-2-col"><p>Trump yönetiminin eski Küba başkanı Raul Castro&#039;ya yönelik suçlaması ve halefi Miguel Diaz-Canel&#039;e yönelik yaptırımlar, Washington&#039;un artık Havana&#039;da rejim değişikliğini uygulanabilir bir politika hedefi olarak gördüğünü gösteriyor. Bu da Küba&#039;nın artan sıkıntılarına katkıda bulunuyor. Ocak ayında Venezüellalı Nicolas Maduro&#039;nun devrilmesi, ada ülkesini uzun süredir ayakta tutan sübvansiyonlu petrol cankurtaran halatını keserek Küba&#039;yı 1990&#039;lardan bu yana en kötü sosyo-ekonomik krizine sürükledi. Çoğu ülke için bu…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">South China Morning Post</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Sınır ötesi kaynakların kolay akışından yararlanacak daha fazla Kuzey Metropolis bölgesi</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://cdn.i-scmp.com/sites/default/files/styles/1280x720/public/d8/images/canvas/2026/06/20/7579bacc-a4c8-4f93-92b3-2f1e9dca94e6_19596662.jpg?itok=UIW3-ye0&amp;v=1781937312" alt=""></div>
+    <div class="article-text text-2-col"><p>Kuzey Metropolis geliştirme kapsamındaki daha fazla alan, bu yıl Hong Kong&#039;un Shenzhen ile inovasyon bölgesinde başlatılacak pilot girişimlerle birlikte, sınır ötesi veri, malzeme ve sermaye akışını kolaylaştırmaya yönelik yeni önlemlerden yararlanabilir. Ayrıntılar Cumartesi günü Kalkınma Bürosu tarafından Yasama Konseyi&#039;ne sunulan ve 30.000 hektarlık (74.131 dönüm) bir girişim olan mega projenin gelişimini hızlandırmaya yönelik özel mevzuat taslağının güncellenmesini sağlayan bir belgede açıklandı.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">NHK World</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">“ABD&#039;nin İsviçre özel elçisi” bildirdi; Dikkatler ABD-İran görüşmelerinin yakında yapılıp yapılmayacağı üzerinde</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>ABD ile İran arasında İsviçre için planlanan görüşmeler ertelenirken, çok sayıda Amerikan medya kuruluşu 19&#039;unda Trump yönetiminin özel elçisi Witkoff&#039;un İsviçre&#039;ye gittiğini bildirdi. Ayrıca arabuluculuk yapan Katar, Başbakan Muhammed&#039;in İsviçre&#039;ye geldiğini duyurdu, bu nedenle yakın zamanda görüşmelerin yapılıp yapılmayacağını görmek ilginç olacak.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">South China Morning Post</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Binlerce kişi şehrin Çin yönetimine dönüşünü kutlamak için Hong Kong&#039;daki PLA kışlasını ziyaret etti</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://cdn.i-scmp.com/sites/default/files/styles/1280x720/public/d8/images/canvas/2026/06/20/cd100777-b63d-4c4d-add9-50b588d0452e_cd1514eb.jpg?itok=9XMZ1vex&amp;v=1781936709" alt=""></div>
+    <div class="article-text text-2-col"><p>Binlerce sakin, şehrin Çin yönetimine dönüşünün önümüzdeki 29. yıldönümünü kutlamak için kışlalarını halka açan Halk Kurtuluş Ordusu (PLA) Hong Kong Garnizonunun askeri üssüne akın etti. Ngong Shuen Chau Kışlası Cumartesi sabahı saat 9&#039;da ziyaretçilere açıldı; yüzlerce kişi erkenden sıraya girdi ve tesislere girmek için heyecan içinde bekledi. Bunların arasında küçük çocuklu aileler, öğrenciler ve yaşlılar da vardı. Jennifer Shao Xia ve onun...</p></div>
+  </div>
+  <footer class="page-footer">
+    <span>Bu gazete azraefzagur@gmail.com için yapay zeka tarafından özel olarak derlenmiştir.</span>
+    <span>4</span>
+  </footer>
+</div>
+
+<div class="page">
+  <header class="page-header">
+    <span>20 Haziran 2026</span>
+    <strong>Smart Newspaper</strong>
+    <span>Sayfa 5</span>
+  </header>
+  
+  <div class="article-block article-lead">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">France 24</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Bolivya Devlet Başkanı Paz, hükümet karşıtı ablukalar nedeniyle olağanüstü hal ilan etti</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://s.france24.com/media/display/45b5da52-6c73-11f1-abae-005056bfb2b6/w:1024/p:16x9/2026-06-20T014558Z-214182371-RC2DXLAXU2RG-RTRMADP-3-BOLIVIA-UNREST.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Bolivya Devlet Başkanı Rodrigo Paz, yaklaşık iki ay süren protestoların ekonomiyi felç etmesi ve istifa taleplerini artırmasının ardından Cumartesi günü olağanüstü hal ilan ederek orduyu konuşlandırma ve yol blokajlarını temizleme konusunda daha geniş yetkiler verdi.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Sözcü</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Hesapları kapatılan Dilan Polat&#039;ın ne halde olduğunu en yakınları açıkladı</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://sozcu01.sozcucdn.com/sozcu/production/uploads/images/2026/6/dilanpolatkapakjpg-DWLM-YLJcUyXJ449UcKwWg.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Hesapları kapatılan Dilan Polat&#039;ın ne halde olduğunu en yakınları açıkladı</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Deutsche Welle</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">İran war: Steve Witkoff heading to Switzerland for talks</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>ABD and İranian diplomats are reportedly heading to Switzerland for peace talks. An initial round of negotiations involving ABD Vice President JD Vance was delayed as fighting continued in Lebanon. DW has more.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">HAFTA SONU NE SINAVI VAR? 20 Haziran Cumartesi-21 Haziran Pazar ÖSYM - MEB Sınav Takvimi</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a353c95ba1c9ffde772e0af.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Hafta sonu sınav takvimi, milyonlarca adayın ve yakınlarının gündeminde yer almaya devam ediyor. Her hafta sonu olduğu gibi bu hafta da hangi sınavların yapılacağı merak ediliyor. 20 Haziran Cumartesi ve 21 Haziran Pazar günlerinde uygulanacak sınavlar, adaylar tarafından yakından takip edilirken, sınav merkezlerinde yoğunluk yaşanması bekleniyor. ÖSYM ve MEB tarafından açıklanan güncel takvimle birlikte, hafta sonu yapılacak sınavlar netlik kazanırken adayların sınav giriş belgelerini kontrol etmeleri gerektiği…</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">Times of India</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Düzeltin, çevirin — köhne bir evi para kazanmaya nasıl dönüştürebilirsiniz?</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://static.toiimg.com/photo/msid-131871664,imgsize-2671681.cms" alt=""></div>
+    <div class="article-text text-2-col"><p>Popüler bir yatırım stratejisi olan ev çevirme, eskimiş mülkleri satın almayı, yenilemeyi ve kâr amacıyla satmayı içerir. Başarı, değeri düşük evleri bulmaya, sıhhi tesisat veya temel sorunları gibi beklenmedik maliyetlerden kaçınmak için yenileme bütçelerini titizlikle yönetmeye ve pazarı hızlı bir satış için zamanlamaya bağlıdır. Bu girişim, önemli getiriler ve dönüşümün tatminini sunarken, önemli ön yatırımlar ve değişken piyasa koşulları nedeniyle doğası gereği riskler de taşıyor.</p></div>
+  </div>
+  <footer class="page-footer">
+    <span>Bu gazete azraefzagur@gmail.com için yapay zeka tarafından özel olarak derlenmiştir.</span>
+    <span>5</span>
+  </footer>
+</div>
+
+<div class="page">
+  <header class="page-header">
+    <span>20 Haziran 2026</span>
+    <strong>Smart Newspaper</strong>
+    <span>Sayfa 6</span>
+  </header>
+  
+  <div class="article-block article-lead">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN Türk</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Özgür Özel&#039;in B planı: Hazırlıkları süren yeni partinin kodları ne?</h2>
+    <div class="article-rule"></div>
+    <div class="article-img-wrap"><img class="article-img" src="https://image.cnnturk.com/i/cnnturk/75/720x490/6a3622988e789667b237fe61.jpg" alt=""></div>
+    <div class="article-text text-2-col"><p>Mutlak Butlan kararı sonrası CHP Genel Başkanlığı görevine dönen Kemal Kılıçdaroğlu ve ekibinin aldığı ihraç kararları sonrası, Özgür Özel kanadında yeni parti hazırlıklarının hızlandığı iddia edildi. Söz konusu partinin kodları yazılırken, Türkiye&#039;nin birçok kesimine hitap etmesi, solda merkez demokrat çizgide olacağı belirtildi.</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Evinizden Nakit Çıkışı mı İstiyorsunuz? İşte En İyi Seçenekleriniz</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>Evinizden Nakit Çıkışı mı İstiyorsunuz? İşte En İyi Seçenekleriniz</p></div>
+  </div>
+  <div class="article-divider"></div>
+
+  <div class="article-block article-secondary">
+    <div class="article-meta">
+      <span class="meta-cat">Gündem</span>
+      <span class="meta-src">CNN</span>
+      <span class="meta-date">20 Haziran 2026</span>
+    </div>
+    <h2 class="article-headline">Konut Sermayesi Kredisi ile Büyük Hayal Edin</h2>
+    <div class="article-rule"></div>
+    
+    <div class="article-text text-2-col"><p>Konut Sermayesi Kredisi ile Büyük Hayal Edin</p></div>
+  </div>
+  <footer class="page-footer">
+    <span>Bu gazete azraefzagur@gmail.com için yapay zeka tarafından özel olarak derlenmiştir.</span>
+    <span>6</span>
+  </footer>
+</div>
+
+<div class="page">
+  <header class="page-header">
+    <span>20 Haziran 2026</span>
+    <strong>Smart Newspaper</strong>
+    <span>Sayfa 7</span>
+  </header>
+  <div class="section-head">
+    <span class="section-eyebrow">Kaynaklar</span>
+    <h2 class="section-title">Bu Baskıda Kullanılan Kaynaklar</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="sources-grid">
+    <div class="source-item">
+      <span class="source-num">01</span>
+      <span class="source-name">CNN Türk</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">02</span>
+      <span class="source-name">Milliyet</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">03</span>
+      <span class="source-name">Times of India</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">04</span>
+      <span class="source-name">CNN</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">05</span>
+      <span class="source-name">South China Morning Post</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">06</span>
+      <span class="source-name">NHK World</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">07</span>
+      <span class="source-name">France 24</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">08</span>
+      <span class="source-name">Sözcü</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">09</span>
+      <span class="source-name">Deutsche Welle</span>
+    </div></div>
+  <div class="sources-note">
+    <h3>Okuma Notu</h3>
+    <p>AI özetleri kaynak haberin başlığı, açıklaması ve mevcut içerik alanları üzerinden hazırlanır.</p>
+    <p>Bu gazete <strong>azraefzagur@gmail.com</strong> için yapay zeka tarafından özel olarak derlenmiştir.</p>
+  </div>
+  <div class="sources-bar">
+    <span>Smart Newspaper</span>
+    <span>20 Haziran 2026</span>
+    <span>AI Destekli Kişisel Baskı</span>
+  </div>
+  <footer class="page-footer">
+    <span>Bu gazete azraefzagur@gmail.com için yapay zeka tarafından özel olarak derlenmiştir.</span>
+    <span>7</span>
+  </footer>
+</div>
+</body>
+</html>

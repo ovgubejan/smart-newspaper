@@ -118,7 +118,18 @@
       "Bash(taskkill //F //PID 18144)",
       "Bash(findstr :3000)",
       "Bash(findstr LISTENING)",
-      "Bash(taskkill //F //PID 27736)"
+      "Bash(taskkill //F //PID 27736)",
+      "Bash(start http://localhost:3000)",
+      "PowerShell(Stop-Process -Id 21352 -Force -Confirm:$false)",
+      "PowerShell($proc = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue; if \\($proc\\) { Stop-Process -Id $proc.OwningProcess -Force -Confirm:$false; Write-Output \"Killed process on port 3000\" } else { Write-Output \"Port 3000 is free\" })",
+      "Bash(start \"\" \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-Redmamba 1\\\\smart-newspaper-Redmamba\\\\test-pdf-output.pdf\")",
+      "PowerShell(Stop-Process -Id 17724 -Force -Confirm:$false)",
+      "Bash(ls -la \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-Redmamba 1\\\\smart-newspaper-Redmamba\\\\js\\\\components\\\\\\\\\")",
+      "Bash(ls -la \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-Redmamba 1\\\\smart-newspaper-Redmamba\\\\js\\\\utils\\\\\\\\\")",
+      "Bash(ls -la \"c:\\\\Users\\\\ibrah\\\\Desktop\\\\smart-newspaper-Redmamba 1\\\\smart-newspaper-Redmamba\\\\js\\\\services\\\\\\\\\")",
+      "PowerShell(try { $conn = Get-NetTCPConnection -LocalPort 3000 -ErrorAction Stop; Stop-Process -Id $conn.OwningProcess[0] -Force -Confirm:$false; \"Killed\" } catch { \"Port free\" })",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(f'{len\\(d[\\\\\"events\\\\\"]\\)} event\\(s\\)'\\)\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('message','ok'\\)\\)\")"
     ]
   }
 }

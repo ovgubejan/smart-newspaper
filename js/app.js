@@ -50,6 +50,9 @@ import {
   trustLabel,
   calculateSourcePreferenceBoost
 } from "./services/sourceService.js";
+import { initCalendarStore, isEventInCalendar, getCalendarNotifications } from "./utils/calendarStore.js";
+import { initReminderManager } from "./utils/reminderManager.js";
+import { initCalendarPanel, renderCalendarPage, showAddToCalendarModal } from "./components/calendarPanel.js";
 
 function renderArticlesChunked(articles, container, renderFn, chunkSize = 8) {
   if (articles.length <= chunkSize) {
@@ -1042,7 +1045,10 @@ function calculatePersonalizedScore(article, preferences = getPreferencesWithInt
   const existingScore = categoryScore * 0.35 + subcategoryScore * 0.40 + recencyScore * 0.15 + interactionScore * 0.10;
   const financePreferenceBoost = calculateFinancePreferenceBoost(article, state.finance?.preferences || loadLocalFinancePreferences());
   const sourcePreferenceBoost = calculateSourcePreferenceBoost(article, state.sources?.list || loadLocalUserSources());
-  return clampScore(existingScore + financePreferenceBoost + sourcePreferenceBoost);
+  const isTurkishUi = state.uiLanguage === "tr";
+  const isTurkeyArticle = article.sourceRegion === "turkey";
+  const turkeyBoost = (isTurkishUi && isTurkeyArticle) ? 15 : 0;
+  return clampScore(existingScore + financePreferenceBoost + sourcePreferenceBoost + turkeyBoost);
 }
 
 function interestInfoButtonHtml(extraClass = "") {
@@ -1115,6 +1121,7 @@ const state = {
   lastFetchedAt: 0,
   openArticleId: null,
   entityReturn: null,
+  uiLanguage: localStorage.getItem("smartnews_uiLanguage") || "tr",
   finance: {
     preferences: normalizeFinancePreferences(loadLocalFinancePreferences() || DEFAULT_FINANCE_PREFERENCES),
     assets: [],
@@ -1379,6 +1386,142 @@ async function api(path, options = {}) {
   return request;
 }
 
+function buildArticleShareSnapshot(article = {}) {
+  return {
+    title: article.title || article.displayTitle || "",
+    summary: article.summary || article.description || article.displaySummary || "",
+    source: article.source || article.sourceName || "",
+    url: article.sourceUrl || article.url || "",
+    publishedAt: article.publishedAt || article.date || "",
+    clusterId: article.clusterId || "",
+    sourceCount: article.sourceCount || 1,
+    sources: Array.isArray(article.sources) ? article.sources.slice(0, 10) : []
+  };
+}
+
+function userInitials(user = {}) {
+  const label = String(user.displayName || user.username || "?").trim();
+  const parts = label.split(/\s+/).filter(Boolean);
+  return (parts.length > 1 ? `${parts[0][0]}${parts[1][0]}` : label.slice(0, 2)).toLocaleUpperCase("tr-TR");
+}
+
+function renderShareTargetAvatar(user = {}) {
+  if (user.avatarUrl && user.avatarUrl !== "/avatars/default.png") {
+    return `<img src="${escapeHtml(user.avatarUrl)}" alt="" loading="lazy" onerror="this.remove();">`;
+  }
+  return `<span>${escapeHtml(userInitials(user))}</span>`;
+}
+
+function initModalSharePicker(root, article = {}) {
+  const picker = root?.querySelector("[data-modal-share-picker]");
+  const input = picker?.querySelector("[data-share-user-input]");
+  const menu = picker?.querySelector("[data-share-user-menu]");
+  const clearButton = picker?.querySelector("[data-share-user-clear]");
+  const chip = picker?.querySelector("[data-selected-chip]");
+  const sendButton = root?.querySelector("#modal-internal-share-btn");
+  if (!picker || !input || !menu || !sendButton) return;
+
+  let selectedUser = null;
+  let debounceTimer = null;
+  let requestSeq = 0;
+
+  const setMenu = (html, open = true) => {
+    menu.innerHTML = html;
+    menu.hidden = !open;
+  };
+  const setSelectedUser = (user) => {
+    selectedUser = user || null;
+    sendButton.disabled = !selectedUser;
+    if (selectedUser) {
+      input.value = "";
+      input.placeholder = "";
+      chip.textContent = `${selectedUser.displayName || selectedUser.username} @${selectedUser.username || "kullanici"}`;
+      chip.hidden = false;
+      if (clearButton) clearButton.hidden = false;
+      menu.hidden = true;
+    } else {
+      chip.hidden = true;
+      if (clearButton) clearButton.hidden = true;
+      input.placeholder = "Platform içi kullanıcı ara...";
+    }
+  };
+  const renderUsers = (users = []) => {
+    if (!users.length) {
+      setMenu(`<div class="modal-user-share-state">Kayıtlı kullanıcı bulunamadı.</div>`);
+      return;
+    }
+    setMenu(users.map((user) => `
+      <button type="button" class="modal-user-share-option" data-user-id="${escapeHtml(user.id)}">
+        <span class="modal-user-share-avatar">${renderShareTargetAvatar(user)}</span>
+        <span class="modal-user-share-text">
+          <strong>${escapeHtml(user.displayName || "Kullanıcı")}</strong>
+          <small>@${escapeHtml(user.username || "kullanici")}</small>
+        </span>
+      </button>
+    `).join(""));
+    menu.querySelectorAll("[data-user-id]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const user = users.find((item) => String(item.id) === String(button.dataset.userId));
+        setSelectedUser(user);
+      });
+    });
+  };
+  const loadUsers = async (query = "") => {
+    const seq = ++requestSeq;
+    setMenu(`<div class="modal-user-share-state"><span class="modal-user-share-spinner"></span>Kullanıcılar yükleniyor...</div>`);
+    try {
+      const path = `/api/users/share-targets${query ? `?q=${encodeURIComponent(query)}` : ""}`;
+      const payload = await api(path);
+      if (seq !== requestSeq) return;
+      renderUsers(payload.users || []);
+    } catch {
+      if (seq !== requestSeq) return;
+      setMenu(`<div class="modal-user-share-state is-error">Kullanıcı listesi alınamadı. Tekrar deneyin.</div>`);
+    }
+  };
+
+  input.addEventListener("focus", () => loadUsers(input.value.trim()));
+  input.addEventListener("input", () => {
+    setSelectedUser(null);
+    window.clearTimeout(debounceTimer);
+    const query = input.value.trim().slice(0, 80);
+    debounceTimer = window.setTimeout(() => loadUsers(query), 300);
+  });
+  clearButton?.addEventListener("click", () => {
+    setSelectedUser(null);
+    input.value = "";
+    input.focus();
+    loadUsers("");
+  });
+  document.addEventListener("click", (event) => {
+    if (!picker.contains(event.target)) menu.hidden = true;
+  });
+  picker.addEventListener("click", (event) => event.stopPropagation());
+  sendButton.addEventListener("click", async () => {
+    if (!selectedUser) return;
+    sendButton.disabled = true;
+    sendButton.classList.add("is-loading");
+    try {
+      await api(`/api/articles/${encodeURIComponent(article.id)}/share`, {
+        method: "POST",
+        body: JSON.stringify({
+          receiverUserId: selectedUser.id,
+          message: "Bu haberi seninle paylaşmak istedim.",
+          clusterId: article.clusterId || "",
+          articleSnapshot: buildArticleShareSnapshot(article)
+        })
+      });
+      showToast("Haber başarıyla gönderildi.", "success");
+      setSelectedUser(null);
+    } catch (error) {
+      showToast(error.message || "Paylaşım başarısız oldu.", "error");
+      sendButton.disabled = !selectedUser;
+    } finally {
+      sendButton.classList.remove("is-loading");
+    }
+  });
+}
+
 function toUiArticle(article) {
   const categoryInfo = detectNewsCategories(article);
   const category = categoryLabel(categoryInfo.primaryCategory);
@@ -1488,7 +1631,8 @@ async function loadBackendData({ force = false } = {}) {
   isLoadingData = true;
   setRefreshButtonState(true);
   try {
-    const feed = await api("/api/feed");
+    const regionParam = currentSelectedRegions().join(",");
+    const feed = await api(`/api/feed?lang=${state.uiLanguage || "tr"}&region=${regionParam}`);
     const articles = feed.articles.map(toUiArticle);
     state.data = {
       ...state.data,
@@ -1699,6 +1843,10 @@ function showPage(pageName) {
   if (pageName === "calendar") {
     renderEditionCalendar();
   }
+  if (pageName === "my-calendar") {
+    const calContainer = document.getElementById("my-calendar-content");
+    if (calContainer) renderCalendarPage(calContainer);
+  }
   if (pageName === "high-interest") {
     renderHighInterestPage();
   }
@@ -1712,6 +1860,8 @@ function showPage(pageName) {
     renderEGazeteDashboard();
   }
 }
+// Expose globally so eGazeteMode.returnToPreviousUI() can call it
+window.showPage = showPage;
 
 function showFilteredPersonalFeed({ scroll = false } = {}) {
   state.viewByCategory = false;
@@ -1762,6 +1912,71 @@ function applyReadabilityPreferences(preferences) {
   document.documentElement.style.setProperty("--read-scale", String(fontScale / 100));
   if (fontSizeValue) fontSizeValue.textContent = `${fontScale}%`;
   document.body.dataset.depth = preferences.contentDepth || "mixed";
+}
+
+/* ============================
+   UI LANGUAGE SYSTEM
+   ============================ */
+
+/**
+ * Returns localized text for an article field based on current UI language.
+ * Priority: translations[lang] > original field > fallback
+ */
+function getLocalizedText(article, field, fallback = "") {
+  const lang = state.uiLanguage || "tr";
+  // Check if article has translation for this language
+  const t = article.translations && article.translations[lang];
+  if (t) {
+    if (field === "title" && t.title) return t.title;
+    if (field === "summary" && t.summary) return t.summary;
+    if (field === "content" && t.content) return t.content;
+  }
+  // Fallback: if no translation, return original field
+  return article[field] || fallback;
+}
+
+/** Sets the active UI language, persists to localStorage, updates buttons, re-renders */
+function setUiLanguage(lang) {
+  if (lang !== "tr" && lang !== "en") return;
+  const isChanged = state.uiLanguage !== lang;
+  state.uiLanguage = lang;
+  localStorage.setItem("smartnews_uiLanguage", lang);
+  // Update button visual state
+  document.querySelectorAll("#lang-toggle-btns .lang-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+  // Update html lang attribute for accessibility
+  document.documentElement.lang = lang;
+  if (isChanged) {
+    loadBackendData({ force: true }).then(() => {
+      renderArticles();
+      if (state.openArticleId && detailPanel && !detailPanel.hidden) {
+        showDetail(state.openArticleId);
+      }
+    });
+  } else {
+    renderArticles();
+    if (state.openArticleId && detailPanel && !detailPanel.hidden) {
+      showDetail(state.openArticleId);
+    }
+  }
+}
+
+/** Initialize language toggle buttons */
+function initLangToggle() {
+  const langBtns = document.querySelectorAll("#lang-toggle-btns .lang-btn");
+  langBtns.forEach(btn => {
+    // Set initial active state
+    btn.classList.toggle("active", btn.dataset.lang === state.uiLanguage);
+    btn.addEventListener("click", () => {
+      const lang = btn.dataset.lang;
+      if (lang && lang !== state.uiLanguage) {
+        setUiLanguage(lang);
+      }
+    });
+  });
+  // Also set html lang
+  document.documentElement.lang = state.uiLanguage;
 }
 
 const READING_TIME_LABELS = {
@@ -2131,7 +2346,21 @@ function getNotificationItems() {
     }
   }
 
-  return [...personalReminders, ...corporateReminders, ...highInterestNotifs, ...trendNotifs].slice(0, 12);
+  const calNotifs = [];
+  try {
+    const calendarNotifications = getCalendarNotifications();
+    for (const cn of calendarNotifications.filter(n => !n.read).slice(0, 3)) {
+      calNotifs.push({
+        id: `calremind:${cn.id}`,
+        type: "Takvim Hatırlatıcı",
+        title: cn.title,
+        body: cn.message,
+        icon: "fa-bell"
+      });
+    }
+  } catch {}
+
+  return [...calNotifs, ...personalReminders, ...corporateReminders, ...highInterestNotifs, ...trendNotifs].slice(0, 15);
 }
 
 function sendBrowserNotification(title, body, icon = "fa-bell") {
@@ -2627,63 +2856,103 @@ function renderArticleCardHtml(article) {
   const category = inferArticleCategory(article);
   const subcategory = inferArticleSubcategory({ ...article, category });
   const color = categoryColor(category);
-  const fullSummary = article.summary || article.aiSummary || article.description || "";
-  const shortSummary = trimSummary(fullSummary);
-  const hasMore = fullSummary.length > shortSummary.length;
-  const similarArticles = getSimilarArticles(article);
-  const similarCount = similarArticles.length;
-  const regionInfo = enrichArticleRegion(article);
-  const primaryRegionLabel = regionInfo.primaryRegion && regionInfo.primaryRegion !== "global" ? regionLabel(regionInfo.primaryRegion) : "";
-  const relatedRegionLabels = (regionInfo.relatedRegions || [])
-    .filter((region) => region !== "global" && regionValue(region) !== regionValue(regionInfo.primaryRegion))
-    .map(regionLabel)
-    .slice(0, 2);
-  const continentLabel = primaryRegionLabel
-    ? `<span class="tag continent-tag">Ana Bölge: ${escapeHtml(primaryRegionLabel)}</span>${relatedRegionLabels.length ? `<span class="tag continent-tag region-related-tag">İlgili: ${escapeHtml(relatedRegionLabels.join(", "))}</span>` : ""}`
-    : "";
   const score = articleInterestScore(article);
   const sourceUrl = article.sourceUrl || article.url || "";
+  
+  // Use localized title and summary based on UI language
+  const localTitle = getLocalizedText(article, "title", article.title || "Başlıksız haber");
+  const localSummary = getLocalizedText(article, "summary", article.summary || article.description || "");
+  const noTextLabel = state.uiLanguage === "en" ? "Text unavailable." : "Metin bulunamadı.";
+
+  const hasSourceSentences = article.sourceSentences && article.sourceSentences.length > 0;
+  const fallbackText = article.originalExcerpt
+    || article.contentSnippet
+    || article.description
+    || localSummary
+    || noTextLabel;
+
+  const relatedSources = article.relatedSources || getSimilarArticles(article) || [];
+  const relatedCount = relatedSources.length;
+
+  const cardSourceName = article.sourceName || article.source || "Kaynak yok";
+  const cardReadTime = article.readTime || "3 dk";
+  const cardDateLabel = article.date || (article.publishedAt
+    ? new Date(article.publishedAt).toLocaleDateString("tr-TR", { day: "numeric", month: "short" })
+    : "");
+  const relatedPreview = relatedSources.slice(0, 5);
+  const sourceDotsHtml = relatedPreview.length ? `
+    <div class="news-card-source-stack" aria-label="Benzer kaynaklar">
+      ${relatedPreview.map((rs) => {
+        const rsUrl = rs.url || rs.sourceUrl || "";
+        const rsName = rs.sourceName || rs.source || "Kaynak";
+        return `<span class="news-card-source-dot" title="${escapeHtml(rsName)}">${renderSourceLogoHtml(rs, rsUrl, rsName, 22)}</span>`;
+      }).join("")}
+      ${relatedCount > relatedPreview.length ? `<span class="news-card-source-more">+${relatedCount - relatedPreview.length}</span>` : ""}
+    </div>
+  ` : "";
+  const visualHtml = article.imageUrl ? `
+    <img class="news-card-image article-thumb" src="${escapeHtml(article.imageUrl)}" alt="" loading="lazy" decoding="async"
+      onerror="this.hidden=true;this.closest('.news-card-image-wrap')?.classList.add('is-missing-image');">
+    <div class="news-card-placeholder" style="--cat-color:${color}" aria-hidden="true">
+      <i class="fa-solid ${articleCategoryIcon(category)}"></i>
+    </div>
+  ` : `
+    <div class="news-card-placeholder article-thumb article-thumb-placeholder" style="--cat-color:${color}" aria-hidden="true">
+      <i class="fa-solid ${articleCategoryIcon(category)}"></i>
+      <span>Görsel yok</span>
+    </div>
+  `;
+
   return `
-    <article class="article-card personal-news-card" style="--cat-color: ${color}" draggable="true" data-drag-article-id="${escapeHtml(String(article.id))}" data-drag-article-title="${escapeHtml(article.title || "")}">
-      ${renderArticleVisualHtml(article, category, color)}
-      <div class="personal-card-body">
-        <div class="card-topline personal-card-topline">
-          <span class="tag">${escapeHtml(category)}</span>
-          <span class="tag subcategory-tag">${escapeHtml(subcategory)}</span>
-          ${continentLabel}
-          <span class="relevance interest-score-chip">İlgi %${score} ${interestInfoButtonHtml()}</span>
+    <article class="article-card personal-news-card news-card" style="--cat-color:${color}" data-drag-article-id="${escapeHtml(String(article.id))}" draggable="true">
+      <div class="news-card-image-wrap">
+        ${visualHtml}
+      </div>
+
+      <div class="news-card-body personal-card-body">
+        <div class="news-card-meta-row card-topline personal-card-topline">
+          <span class="news-chip news-chip-category">${escapeHtml(category)}</span>
+          <span class="news-chip news-chip-source">${escapeHtml(cardSourceName)}</span>
+          ${score >= 70 ? `<span class="news-chip news-chip-hot"><i class="fa-solid fa-fire" aria-hidden="true"></i> Trend</span>` : ""}
         </div>
-        <h4><button type="button" class="title-link" data-action="detail" data-id="${escapeHtml(String(article.id))}">${escapeHtml(article.title || "Başlıksız haber")}</button></h4>
+
+        <h4 class="news-card-title">
+          <button type="button" class="title-link card-title" data-action="detail" data-id="${escapeHtml(String(article.id))}">${escapeHtml(localTitle)}</button>
+        </h4>
+
         <div class="card-summary-wrap">
-          <p class="card-summary">${escapeHtml(shortSummary || "Bu haber için kısa özet bulunamadı.")}</p>
-          ${hasMore ? `<p class="card-summary-full" hidden>${escapeHtml(fullSummary)}</p>
-          <button type="button" class="expand-summary-btn" data-expand-id="${escapeHtml(String(article.id))}">Devamını oku</button>` : ""}
+          ${hasSourceSentences ? `
+            <div class="news-card-source-sentences">
+              ${article.sourceSentences.slice(0, 2).map(s => `<p class="news-card-source-quote">"${escapeHtml(trimSummary(s, 160))}"</p>`).join("")}
+            </div>
+          ` : `
+            <p class="news-card-summary card-summary">${escapeHtml(trimSummary(fallbackText, 200))}</p>
+          `}
+          ${article.aiSummary ? `
+            <div class="news-card-ai-badge">
+              <i class="fa-solid fa-sparkles" aria-hidden="true"></i>
+              <span>${escapeHtml(trimSummary(article.aiSummary, 120))}</span>
+            </div>
+          ` : ""}
         </div>
-        <div class="source-line compact-source personal-source-line">
-          <span><i class="fa-solid fa-link"></i> ${escapeHtml(article.source || "Kaynak yok")}</span>
-          <span><i class="fa-regular fa-clock"></i> ${escapeHtml(article.readTime || "3 dk")}</span>
-          <span class="${article.status === "Okundu" ? "read-badge" : "unread-badge"}">${escapeHtml(article.status || "Okunmadı")}</span>
-        </div>
-        ${score >= 50 ? `<div class="card-reason-strip"><i class="fa-solid fa-wand-magic-sparkles"></i> ${escapeHtml(buildInterestReason(article))}</div>` : ""}
-        ${similarCount > 0 ? `<div class="card-multisource-strip"><i class="fa-solid fa-newspaper"></i> ${similarCount} kaynakta geçti${similarArticles.slice(0, 3).map(sa => {
-          const saUrl = sa.sourceUrl || sa.url || "";
-          const saFav = sourceLogoUrl(saUrl);
-          const saInit = getSourceInitials(sa.source || sa.sourceName || "");
-          return ` <span class="ms-source-chip" title="${escapeHtml(sa.source || sa.sourceName || "")}">${saFav ? `<img src="${escapeHtml(saFav)}" alt="" style="width:14px;height:14px;border-radius:3px;vertical-align:middle;margin-right:2px" onerror="this.style.display='none'">` : ""}${escapeHtml(sa.source || sa.sourceName || "")}</span>`;
-        }).join("")}</div>` : ""}
-        <div class="card-actions personal-card-actions">
-          <button type="button" data-action="bookmark" data-id="${escapeHtml(String(article.id))}">
-            <i class="${article.bookmarked ? "fa-solid" : "fa-regular"} fa-bookmark"></i>
-            ${article.bookmarked ? "Kaydedildi" : "Kaydet"}
-          </button>
-          <button type="button" data-action="newspaper" data-id="${escapeHtml(String(article.id))}">
-            <i class="fa-solid fa-file-circle-plus"></i>
-            ${state.newspaperArticles.includes(String(article.id)) ? "Gazetede" : "Gazeteye Ekle"}
-          </button>
-          ${similarCount > 0 ? `<button type="button" class="similar-btn" data-similar-id="${escapeHtml(String(article.id))}">
-            <i class="fa-solid fa-layer-group"></i> ${similarCount} Benzer
-          </button>` : ""}
-          ${sourceUrl ? `<a class="source-action-link" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-up-right-from-square"></i> Kaynak</a>` : ""}
+
+        <div class="news-card-footer source-line compact-source personal-source-line">
+          <div class="news-card-footer-main">
+            <span class="news-card-primary-source">${renderSourceLogoHtml(article, sourceUrl, cardSourceName, 22)}</span>
+            ${sourceDotsHtml}
+          </div>
+          <div class="news-card-footer-meta">
+            ${cardDateLabel ? `<span>${escapeHtml(cardDateLabel)}</span>` : ""}
+            <span>${escapeHtml(cardReadTime)}</span>
+          </div>
+          <div class="news-card-actions card-actions personal-card-actions">
+            <button type="button" data-action="bookmark" data-id="${escapeHtml(String(article.id))}" title="Kaydet" aria-label="Haberi kaydet">
+              <i class="${article.bookmarked ? "fa-solid" : "fa-regular"} fa-bookmark" aria-hidden="true"></i>
+            </button>
+            <button type="button" data-action="detail" data-id="${escapeHtml(String(article.id))}" title="Oku" aria-label="Haberi oku">
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>
     </article>
@@ -3347,8 +3616,11 @@ async function loadEvents() {
   } catch { state.events = []; }
 }
 
-function renderEvents() {
-  briefList.innerHTML = state.events.map((item) => `
+async function renderEvents() {
+  const calendarChecks = await Promise.all(state.events.map(item => isEventInCalendar(item.id)));
+  briefList.innerHTML = state.events.map((item, idx) => {
+    const inCalendar = calendarChecks[idx];
+    return `
     <article class="announcement-item event-ticket-card ${item.read ? "is-read" : ""}">
       <div class="event-ticket-media">
         ${item.imageUrl ? `<img src="${escapeHtml(item.imageUrl)}" alt="" loading="lazy">` : `<span>${escapeHtml(item.category)}</span>`}
@@ -3367,13 +3639,16 @@ function renderEvents() {
         <div class="event-actions">
           <button data-event-action="detail" data-id="${escapeHtml(item.id)}">Detay</button>
           ${item.ticketUrl ? `<a class="ticket-link" href="${escapeHtml(item.ticketUrl)}" target="_blank" rel="noopener">Bilet Al</a>` : ""}
-          <button data-event-action="read" data-id="${escapeHtml(item.id)}">${item.read ? "Okundu" : "Okundu İşaretle"}</button>
+          <button class="event-cal-btn ${inCalendar ? 'in-calendar' : ''}" data-event-action="add-to-calendar" data-id="${escapeHtml(item.id)}" ${inCalendar ? "disabled" : ""}>
+            <i class="fa-${inCalendar ? 'solid' : 'regular'} fa-calendar-plus"></i> ${inCalendar ? "Takvimde" : "Takvime Ekle"}
+          </button>
           <button data-event-action="reminder" data-id="${escapeHtml(item.id)}">${item.reminder ? "Hatırlatıcı Açık" : "Hatırlat"}</button>
+          <button data-event-action="read" data-id="${escapeHtml(item.id)}">${item.read ? "Okundu" : "Okundu İşaretle"}</button>
           <button data-event-action="dismiss" data-id="${escapeHtml(item.id)}">Gizle</button>
         </div>
       </div>
-    </article>
-  `).join("") || `<p class="empty-state inline">Kurumsal etkinlik veya duyuru bulunamadı.</p>`;
+    </article>`;
+  }).join("") || `<p class="empty-state inline">Kurumsal etkinlik veya duyuru bulunamadı.</p>`;
 }
 
 async function showEventDetail(eventId) {
@@ -3409,6 +3684,12 @@ async function handleEventAction(action, eventId) {
   const event = state.events.find((item) => String(item.id) === String(eventId));
   if (!event) return;
   if (action === "detail") { showEventDetail(event.id); return; }
+  if (action === "add-to-calendar") {
+    const alreadyAdded = await isEventInCalendar(event.id);
+    if (alreadyAdded) { showToast("Bu etkinlik zaten takviminde.", "info"); return; }
+    showAddToCalendarModal(event, () => renderEvents());
+    return;
+  }
   try {
     if (action === "read") {
       if (state.usingApi) await api(`/api/events/${event.id}/read`, { method: "POST", body: "{}" });
@@ -3744,7 +4025,12 @@ function updatePrintPreview() {
   const pages = buildNewspaperPdfPages(selected);
   state.exportPreviewPage = Math.min(state.exportPreviewPage || 0, Math.max(0, pages.length - 1));
   const activePage = pages[state.exportPreviewPage] || pages[0];
-  printPreview.innerHTML = `
+
+  // Preserve current height to prevent layout shift during page flip
+  const currentHeight = printPreview.offsetHeight;
+  if (currentHeight > 0) printPreview.style.minHeight = currentHeight + "px";
+
+  const newHtml = `
     <div class="pdf-preview-toolbar">
       <div><span>Sayfa Önizleme</span><strong>${escapeHtml(layoutNames[layout] || layoutNames.a4)} · ${selected.length} haber</strong></div>
       <div class="pdf-preview-controls">
@@ -3755,6 +4041,18 @@ function updatePrintPreview() {
     </div>
     ${selected.length ? renderNewspaperPreviewPage(activePage, state.exportPreviewPage, pages.length) : `<div class="pdf-preview-empty"><i class="fa-regular fa-newspaper"></i><strong>Gazete için haber seçilmedi</strong><p>Otomatik seçimle veya haber kartlarından “Gazeteye Ekle” ile kapağı, iç sayfaları ve kaynakçası olan bir PDF hazırlayabilirsin.</p></div>`}
   `;
+
+  // Apply with a short fade to avoid jarring visual shift
+  printPreview.style.transition = "opacity 120ms ease";
+  printPreview.style.opacity = "0";
+  requestAnimationFrame(() => {
+    printPreview.innerHTML = newHtml;
+    requestAnimationFrame(() => {
+      printPreview.style.opacity = "1";
+      // Release minHeight once new content is rendered
+      requestAnimationFrame(() => { printPreview.style.minHeight = ""; });
+    });
+  });
 }
 
 function buildInterestBasedPdfSelectionLegacy() {
@@ -3853,74 +4151,212 @@ function openPrintPreview() {
   window.print();
 }
 
+function exportPdfLayoutConfig(layout = getExportLayout()) {
+  const configs = {
+    a4: { format: "a4", widthMm: 210, heightMm: 297, orientation: "portrait", className: "pdf-export-layout-a4" },
+    tabloid: { format: [279.4, 431.8], widthMm: 279.4, heightMm: 431.8, orientation: "portrait", className: "pdf-export-layout-tabloid" },
+    booklet: { format: "a5", widthMm: 148, heightMm: 210, orientation: "portrait", className: "pdf-export-layout-booklet" },
+    egazete: { format: "a4", widthMm: 210, heightMm: 297, orientation: "portrait", className: "pdf-export-layout-egazete" }
+  };
+  return configs[layout] || configs.a4;
+}
+
+function exportPdfFilename(layout = getExportLayout()) {
+  const dateKeyText = new Date().toISOString().slice(0, 10);
+  return `kisisel-gazetem-${layout}-${dateKeyText}.pdf`;
+}
+
+function replacePdfImageWithPlaceholder(img) {
+  const placeholder = document.createElement("div");
+  placeholder.className = (img.className || "pdf-news-image") + " pdf-image-placeholder";
+  placeholder.innerHTML = '<span style="font-size:11px;font-weight:800;color:#888;">Görsel yüklenemedi</span>';
+  placeholder.style.cssText = "display:grid;place-items:center;background:linear-gradient(135deg,rgba(40,83,107,.10),rgba(164,63,47,.06));border-radius:6px;min-height:" + (img.classList.contains("pdf-cover-image") ? "200px" : "100px");
+  img.replaceWith(placeholder);
+}
+
+async function preparePdfImages(container) {
+  const images = [...container.querySelectorAll("img")];
+  await Promise.all(images.map((img) => new Promise((resolve) => {
+    img.crossOrigin = "anonymous";
+    img.referrerPolicy = "no-referrer";
+    img.loading = "eager";
+    img.decoding = "sync";
+    const done = () => {
+      if (!img.complete || img.naturalWidth <= 0 || img.naturalHeight <= 0) replacePdfImageWithPlaceholder(img);
+      resolve();
+    };
+    img.addEventListener("load", done, { once: true });
+    img.addEventListener("error", () => { replacePdfImageWithPlaceholder(img); resolve(); }, { once: true });
+    if (img.complete) done();
+    window.setTimeout(done, 4500);
+  })));
+}
+
+async function downloadPdfFromServerFallback(selected) {
+  const prefs = normalizePreferences(state.data.preferences);
+  const pdfTrends = computeTrendGroups().slice(0, 3).map((g) => ({
+    title: g.title, articleCount: g.articles.length, sourceCount: g.sources.size
+  }));
+  const response = await fetch(`${API_BASE_URL}/api/export/pdf`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      layout: getExportLayout(),
+      paperTitle: getExportPaperTitle(),
+      interests: prefs.interests || [],
+      trends: pdfTrends,
+      articles: selected.map((a) => ({
+        id: a.id, title: a.title, summary: a.summary, fullText: a.fullText,
+        category: a.category, sourceName: a.source, publishedAt: a.date,
+        imageUrl: exportArticleImage(a), image: exportArticleImage(a),
+        urlToImage: exportArticleImage(a), similarCount: a.similarCount || 0
+      }))
+    })
+  });
+  if (!response.ok) {
+    const payload = await response.json().catch(() => ({}));
+    throw new Error(payload.error || "Sunucu PDF fallback oluşturulamadı.");
+  }
+  const blob = await response.blob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = exportPdfFilename(getExportLayout());
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 30000);
+}
+
+function buildPdfExportAllPagesHtml(selected) {
+  const pages = buildNewspaperPdfPages(selected);
+  return pages.map((page, i) => renderNewspaperPreviewPage(page, i, pages.length)).join("\n");
+}
+
 async function downloadPdf() {
   const selected = getSelectedExportArticles();
+  let container = null;
+  const params = new URLSearchParams({
+    mode: "inline",
+    personalized: "true",
+    includeUserSources: "true",
+    layout: "egazete",
+    language: normalizePreferences(state.data.preferences).language || "tr",
+    articleIds: selected.map((article) => String(article.id)).filter(Boolean).join(",")
+  });
+  const activeCategory = state.selectedCategory && state.selectedCategory !== "all" ? state.selectedCategory : "";
+  const activeRegion = typeof currentSelectedRegions === "function"
+    ? currentSelectedRegions().filter((region) => region && region !== "global")[0] || ""
+    : "";
+  if (activeCategory) params.set("category", activeCategory);
+  if (activeRegion) params.set("region", activeRegion);
+  if (selected.length) {
+    showToast("PDF hazÄ±rlanÄ±yor, yeni sekmede aÃ§Ä±lacak...", "info");
+    window.open(`${API_BASE_URL}/api/export/pdf?${params.toString()}`, "_blank", "noopener,noreferrer");
+    return;
+  }
   if (!selected.length) { showToast("PDF için en az bir haber seç.", "error"); return; }
+
   try {
     downloadPdfButton.disabled = true;
-    downloadPdfButton.innerHTML = `<i class="fa-solid fa-download"></i> PDF hazırlanıyor...`;
-    const prefs = normalizePreferences(state.data.preferences);
-    const pdfPaperTitle = getExportPaperTitle();
-    /*
-      const mode = localStorage.getItem("newspaperTitleMode") || "personalized";
-      const name = state.authUser?.name || "Okuyucu";
-      return mode === "personalized" ? `${name.split(" ")[0]}'in Gazetesi` : "Kişisel Gazetem";
-    */
-    const pdfTrends = computeTrendGroups().slice(0, 3).map((g) => ({
-      title: g.title,
-      articleCount: g.articles.length,
-      sourceCount: g.sources.size
-    }));
-    const response = await fetch(`${API_BASE_URL}/api/export/pdf`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        layout: getExportLayout(),
-        paperTitle: pdfPaperTitle,
-        interests: prefs.interests || [],
-        trends: pdfTrends,
-        articles: selected.map((a) => ({
-          id: a.id, title: a.title, summary: a.summary, fullText: a.fullText,
-          category: a.category, sourceName: a.source, publishedAt: a.date,
-          imageUrl: exportArticleImage(a),
-          image: exportArticleImage(a),
-          urlToImage: exportArticleImage(a),
-          similarCount: a.similarCount || 0
-        }))
-      })
-    });
-    if (!response.ok) {
-      const payload = await response.json().catch(() => ({}));
-      throw new Error(payload.error || "PDF oluşturulamadı.");
-    }
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
+    downloadPdfButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> PDF hazırlanıyor...';
 
-    // Açılır pencere engelleyicilerini aşmak ve PDF'i yeni sekmede açmak için
-    const pdfWindow = window.open();
-    if (pdfWindow) {
-      pdfWindow.document.write(`<iframe width="100%" height="100%" style="border:none; margin:0; padding:0; overflow:hidden;" src="${url}"></iframe>`);
-      pdfWindow.document.title = `kisisel-gazetem-${getExportLayout()}.pdf`;
-      pdfWindow.document.body.style.margin = "0";
-      // Bellek sızıntısını önlemek için URL'yi bir süre sonra temizle
-      setTimeout(() => URL.revokeObjectURL(url), 60000);
-      showToast("PDF yeni sekmede açıldı.", "success");
-    } else {
-      // Eğer popup blocker varsa fallback olarak indirsin
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `kisisel-gazetem-${getExportLayout()}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-      showToast("PDF indirildi (Açılır pencere engellendi).", "success");
-    }
+    const config = exportPdfLayoutConfig(getExportLayout());
+    const allPagesHtml = buildPdfExportAllPagesHtml(selected);
+
+    // Build a self-contained off-screen DOM container with inline styles
+    container = document.createElement("div");
+    container.style.cssText = "position:absolute;left:-9999px;top:-9999px;width:" + config.widthMm + "mm;background:#fffdf8;font-family:'Playfair Display',Georgia,serif;color:#1f2933;";
+
+    // Inject critical inline styles so html2canvas renders properly
+    const styleEl = document.createElement("style");
+    styleEl.textContent = [
+      "*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }",
+      ".pdf-preview-page { display:flex;flex-direction:column;gap:16px;min-height:" + config.heightMm + "mm;padding:24px;background:linear-gradient(180deg,#fffdf8,#f7efe0);color:#1f2933;page-break-after:always;break-after:page;overflow:hidden; }",
+      ".pdf-preview-page:last-child { page-break-after:avoid;break-after:avoid; }",
+      ".pdf-preview-masthead { display:flex;flex-direction:column;align-items:center;gap:6px;padding-bottom:13px;border-bottom:4px double rgba(39,30,19,.72);text-align:center; }",
+      ".pdf-preview-masthead h2 { margin:0;font-family:'Playfair Display',Georgia,serif;color:#1f2933;font-size:42px;line-height:.95; }",
+      ".pdf-preview-masthead span,.pdf-preview-masthead em,.pdf-preview-page-head span { color:#6b7280;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase; }",
+      ".pdf-preview-page-head { display:flex;flex-direction:column;gap:6px;padding-bottom:10px;border-bottom:3px double rgba(39,30,19,.62); }",
+      ".pdf-preview-page-head h3 { margin:0;font-family:'Playfair Display',Georgia,serif;color:#17202a;font-size:32px;line-height:1.02; }",
+      ".pdf-cover-grid { display:grid;grid-template-columns:1.6fr .9fr;gap:18px; }",
+      ".pdf-cover-main { display:flex;flex-direction:column;gap:12px; }",
+      ".pdf-cover-main h3 { margin:0;font-family:'Playfair Display',Georgia,serif;color:#17202a;font-size:32px;line-height:1.02; }",
+      ".pdf-cover-main p,.pdf-preview-story p,.pdf-source-note { margin:0;color:#4b5563;font-size:13px;line-height:1.55; }",
+      ".pdf-cover-image,.pdf-news-image { width:100%;object-fit:cover;border:1px solid rgba(40,32,24,.18);background:#e7dcc9;border-radius:6px; }",
+      ".pdf-cover-image { height:220px; }",
+      ".pdf-news-image { height:120px; }",
+      ".pdf-image-placeholder { display:grid;place-items:center;gap:8px;color:rgba(40,83,107,.82);border-radius:6px;background:linear-gradient(135deg,rgba(40,83,107,.14),rgba(164,63,47,.08));font-size:12px;font-weight:900;min-height:100px; }",
+      ".pdf-cover-side { display:flex;flex-direction:column;gap:10px;padding-left:16px;border-left:1px solid rgba(115,88,54,.18); }",
+      ".pdf-cover-side>strong { color:#8f2f2a;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase; }",
+      ".pdf-mini-tags { display:flex;flex-wrap:wrap;gap:6px; }",
+      ".pdf-mini-tags span { padding:5px 8px;background:rgba(40,83,107,.09);border-radius:999px;font-size:11px;font-weight:850; }",
+      ".pdf-cover-side ol { margin:0 0 4px 18px;color:#1f2933;font-size:12px;line-height:1.45; }",
+      ".pdf-preview-story-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:14px; }",
+      ".pdf-preview-story { display:flex;flex-direction:column;gap:10px;min-width:0;padding:12px;border:1px solid rgba(115,88,54,.14);background:rgba(255,255,255,.58);border-radius:8px; }",
+      ".pdf-preview-story.is-lead { grid-column:1/-1;display:grid;grid-template-columns:.9fr 1.1fr;align-items:stretch; }",
+      ".pdf-preview-story.is-lead .pdf-news-image { height:180px; }",
+      ".pdf-preview-story-body { display:flex;flex-direction:column;gap:6px; }",
+      ".pdf-story-meta { display:flex;flex-wrap:wrap;gap:6px;align-items:center; }",
+      ".pdf-story-meta span { padding:4px 7px;border-radius:999px;font-size:10px;font-weight:950;background:rgba(139,26,26,.10);color:#8f2f2a; }",
+      ".pdf-story-meta em { color:#6b7280;font-size:10px;font-style:normal;font-weight:850; }",
+      ".pdf-preview-story h4 { margin:0;color:#17202a;font-family:'Playfair Display',Georgia,serif;font-size:18px;line-height:1.12; }",
+      ".pdf-source-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:10px; }",
+      ".pdf-source-grid div { display:grid;grid-template-columns:34px 1fr;gap:10px;padding:12px;border:1px solid rgba(115,88,54,.14);background:rgba(255,255,255,.55);border-radius:8px; }",
+      ".pdf-source-grid b { color:#8f2f2a; }",
+      ".pdf-source-grid span { color:#1f2933;font-weight:850; }",
+      ".pdf-preview-footer { display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:10px;border-top:1px solid rgba(39,30,19,.2);color:#6b7280;font-size:11px;font-weight:850; }"
+    ].join("\n");
+    container.appendChild(styleEl);
+
+    const content = document.createElement("div");
+    content.innerHTML = allPagesHtml;
+    container.appendChild(content);
+    document.body.appendChild(container);
+
+    await preparePdfImages(container);
+
+    const opt = {
+      margin: 0,
+      filename: exportPdfFilename(getExportLayout()),
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: "#fffdf8",
+        logging: false
+      },
+      jsPDF: {
+        unit: "mm",
+        format: config.format,
+        orientation: config.orientation
+      },
+      pagebreak: {
+        mode: ["css", "legacy"],
+        before: ".pdf-preview-page",
+        avoid: [".pdf-preview-story", ".pdf-source-grid div"]
+      }
+    };
+
+    await html2pdf().set(opt).from(container).save();
+    showToast("PDF önizleme düzeniyle indirildi!", "success");
+
   } catch (error) {
-    showToast(`PDF oluşturulamadı: ${error.message}`, "error");
+    console.error("PDF Client-side Error:", error);
+    try {
+      showToast("PDF istemci tarafında oluşturulamadı; sunucu fallback deneniyor...", "info");
+      await downloadPdfFromServerFallback(selected);
+      showToast("PDF sunucu fallback ile indirildi.", "success");
+    } catch (fallbackError) {
+      showToast("PDF oluşturulamadı: " + (fallbackError.message || error.message), "error");
+    }
   } finally {
+    if (container && container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
     downloadPdfButton.disabled = false;
-    downloadPdfButton.innerHTML = `<i class="fa-solid fa-download"></i> PDF İndir`;
+    downloadPdfButton.innerHTML = '<i class="fa-solid fa-download"></i> PDF İndir';
   }
 }
 
@@ -6712,6 +7148,20 @@ function getSourceColor(name) {
   return SOURCE_COLORS.default
 }
 
+function renderSourceLogoHtml(sourceObj, url, sourceName, size = 32) {
+  const sLogo = sourceObj?.logo;
+  const sFav = sourceObj?.favicon;
+  const gFav = url ? getSourceFaviconUrl(url) : null;
+  const initials = getSourceInitials(sourceName);
+  const color = getSourceColor(sourceName);
+
+  const imageUrl = sLogo || sFav || gFav;
+  if (imageUrl) {
+    return `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(sourceName)}" title="${escapeHtml(sourceName)} kaynağında oku" style="width:${size}px; height:${size}px; border-radius:50%; object-fit:cover; border:1px solid #eaeaea; background:#fff;" onerror="this.outerHTML='<div title=\\'${escapeHtml(sourceName)} kaynağında oku\\' style=\\'width:${size}px; height:${size}px; border-radius:50%; background:${color}; color:#fff; display:flex; align-items:center; justify-content:center; font-size:${Math.round(size*0.4)}px; font-weight:bold;\\'>${initials}</div>'"/>`;
+  }
+  return `<div title="${escapeHtml(sourceName)} kaynağında oku" style="width:${size}px; height:${size}px; border-radius:50%; background:${color}; color:#fff; display:flex; align-items:center; justify-content:center; font-size:${Math.round(size*0.4)}px; font-weight:bold;">${initials}</div>`;
+}
+
 function getSourceInitials(name) {
   return String(name || '').split(/[\s\-–]+/).filter(Boolean)
     .slice(0, 2).map(w => w[0]).join('').toUpperCase() || '?'
@@ -6727,6 +7177,23 @@ function getSourceFaviconUrl(sourceUrl) {
 }
 
 function renderComparisonPanel(insight = {}) {
+  if (insight.mode === "single_source") {
+    const singleSections = insight.sections || [];
+    return `
+      <div class="comparison-single-source">
+        <div class="comparison-single-notice">
+          <i class="fa-solid fa-info-circle" aria-hidden="true"></i>
+          <span>Bu haber tek kaynak üzerinden analiz edilmiştir. Daha kapsamlı karşılaştırma için birden fazla kaynak gerekir.</span>
+        </div>
+        ${singleSections.map(s => `
+          <div class="comparison-single-section">
+            <h4>${escapeHtml(s.title)}</h4>
+            <ul>${(s.items || []).map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>
+          </div>
+        `).join("")}
+      </div>`;
+  }
+
   const sections = [
     { key: 'common', icon: 'fa-link', title: 'Ortak Noktalar', items: insight.commonPoints || [], empty: 'Ortak nokta bulunamadı.' },
     { key: 'different', icon: 'fa-code-compare', title: 'Farklılaşan Noktalar', items: insight.differentPoints || [], empty: 'Belirgin fark bulunamadı.' },
@@ -6822,8 +7289,11 @@ async function showDetail(articleId) {
     const srcName = activeArticle.sourceName || activeArticle.source || "Bilinmiyor";
     const dateStr = formatDetailDate(activeArticle.publishedAt || activeArticle.date);
     const readTimeStr = activeArticle.readTime || article.readTime || "3 dk";
+    // Localized title and summary for detail view
+    const detailTitle = getLocalizedText(activeArticle, "title", activeArticle.title || "");
+    const detailSummary = getLocalizedText(activeArticle, "summary", activeArticle.contentSnippet || activeArticle.summary || activeArticle.description || "");
     const contentWarningHtml = activeArticle.contentStatus === "source_full_text_unavailable"
-      ? `<div class="reader-content-warning" role="note"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>${escapeHtml(activeArticle.contentWarning || "Tam metin alınamadı, kısa özet gösteriliyor.")}</span></div>`
+      ? `<div class="reader-content-warning" role="note"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>${escapeHtml(activeArticle.contentWarning || "Tam metin alınamadı — RSS açıklaması ve AI özeti gösteriliyor.")}</span></div>`
       : "";
 
     const currentFeed = state.data.articles || [];
@@ -6890,14 +7360,31 @@ async function showDetail(articleId) {
             </span>
           </div>
 
+          ${activeArticle.imageUrl ? `
+          <div class="reader-cover-image" style="margin-bottom: 24px; border-radius: 12px; overflow: hidden; max-height: 450px; background: #f0f0f0;">
+            <img src="${escapeHtml(activeArticle.imageUrl)}" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="">
+          </div>
+          ` : ""}
+
           <!-- Title -->
           <h2 class="reader-dynamic-title" style="font-family:'Playfair Display', Georgia, serif; font-size:clamp(24px, 4.5vw, 36px); line-height:1.25; margin:0 0 16px 0;">
-            ${escapeHtml(activeArticle.title)}
+            ${escapeHtml(detailTitle)}
           </h2>
 
-          <!-- Deck / Summary -->
-          <p class="reader-deck" style="font-style:italic; font-size:18px; line-height:1.6; margin:0 0 24px 0;">
-            ${escapeHtml(activeArticle.summary || activeArticle.description || "")}
+          <!-- Source Sentences & Deck -->
+          ${(activeArticle.sourceSentences && activeArticle.sourceSentences.length > 0) ? `
+          <div class="reader-source-sentences-block" style="margin: 0 0 24px 0;">
+            <div style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: ${categoryColor(categoryName)}; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-quote-left" aria-hidden="true"></i> Kaynaktan Alınan Haber Cümleleri
+            </div>
+            <div class="reader-source-sentences" style="font-family: 'Georgia', 'Times New Roman', serif; font-size: 1.15rem; line-height: 1.7; color: #1a202c; border-left: 5px solid ${categoryColor(categoryName)}; padding-left: 20px; font-style: italic; font-weight: 500; background: #fafbfc; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 20px;">
+              ${activeArticle.sourceSentences.map(s => `<p style="margin: 0 0 10px 0;">"${escapeHtml(s)}"</p>`).join("")}
+            </div>
+          </div>
+          ` : ""}
+
+          <p class="reader-deck" style="font-size:1.1rem; line-height:1.6; margin:0 0 24px 0; color: #4a5568;">
+            ${escapeHtml(detailSummary)}
           </p>
 
           <!-- AI Summary Container -->
@@ -6914,7 +7401,7 @@ async function showDetail(articleId) {
                 <span>${state.newspaperArticles.includes(String(activeArticle.id)) ? 'Gazeteden Çıkar' : 'Gazeteye Ekle'}</span>
               </button>
             </div>
-            <div class="reader-action-group reader-action-group-secondary">
+            <div class="reader-action-group reader-action-group-secondary" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
               <a href="${escapeHtml(activeArticle.sourceUrl || activeArticle.url || '#')}" target="_blank" rel="noopener noreferrer" class="action-btn read-original-btn">
                 <span>Orijinal Kaynak</span>
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -6923,13 +7410,38 @@ async function showDetail(articleId) {
                 <i class="fa-solid fa-arrow-right"></i>
                 <span>Sonraki Haberi Oku</span>
               </button>` : ""}
+              <div class="modal-share-buttons">
+                <div class="modal-user-share" data-modal-share-picker>
+                  <div class="modal-user-share-control">
+                    <span class="modal-user-share-chip" data-selected-chip hidden></span>
+                    <input type="text" data-share-user-input placeholder="Platform içi kullanıcı ara..." autocomplete="off" aria-label="Platform içi kullanıcı ara">
+                    <button type="button" class="modal-user-share-clear" data-share-user-clear aria-label="Seçili kullanıcıyı temizle" hidden>
+                      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <div class="modal-user-share-menu" data-share-user-menu hidden></div>
+                </div>
+                <button type="button" id="modal-internal-share-btn" class="modal-internal-share-btn" data-article-id="${escapeHtml(String(activeArticle.id))}" disabled>
+                  <i class="fa-solid fa-paper-plane"></i> Gönder
+                </button>
+                <div style="width: 1px; height: 24px; background: #ddd; margin: 0 4px;"></div>
+                <a href="https://api.whatsapp.com/send?text=${encodeURIComponent((activeArticle.title || '') + ' - ' + (activeArticle.sourceUrl || activeArticle.url || ''))}" target="_blank" rel="noopener noreferrer" title="WhatsApp'ta Paylaş" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #25D366; color: white; text-decoration: none; box-shadow: 0 2px 4px rgba(37,211,102,0.3); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                  <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(activeArticle.title || '')}&url=${encodeURIComponent(activeArticle.sourceUrl || activeArticle.url || '')}" target="_blank" rel="noopener noreferrer" title="X'te (Twitter) Paylaş" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #000000; color: white; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.3); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                  <i class="fa-brands fa-x-twitter" style="font-size: 18px;"></i>
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(activeArticle.sourceUrl || activeArticle.url || '')}" target="_blank" rel="noopener noreferrer" title="Facebook'ta Paylaş" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: #1877F2; color: white; text-decoration: none; box-shadow: 0 2px 4px rgba(24,119,242,0.3); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                  <i class="fa-brands fa-facebook-f" style="font-size: 18px;"></i>
+                </a>
+              </div>
             </div>
           </div>
 
           <hr style="border:0; border-top:1px solid var(--reader-border); margin:24px 0;">
 
           <!-- Article Body -->
-          <div class="reader-full-text" style="font-size:18px; line-height:1.8; margin-bottom:24px;">
+          <div class="reader-full-text" style="font-size:1.15rem; line-height:1.8; margin-bottom:24px; color: #2d3748; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
             ${contentWarningHtml}
             ${renderAnnotatedBody(activeArticle)}
           </div>
@@ -6959,16 +7471,24 @@ async function showDetail(articleId) {
               }).join("")}
             </div>
             <div class="reader-related-cards">
-              ${relatedArticles.slice(0, 3).map(ra => `
+              ${relatedArticles.slice(0, 3).map(ra => {
+                const raSourceName = ra.sourceName || ra.source || "";
+                const raSourceUrl = ra.sourceUrl || ra.url || "";
+                const raHasSentences = ra.sourceSentences && ra.sourceSentences.length > 0;
+                const raExcerpt = raHasSentences
+                  ? `"${trimSummary(ra.sourceSentences[0], 100)}"`
+                  : trimSummary(ra.contentSnippet || ra.summary || ra.description || "", 120);
+                return `
                 <div class="reader-related-card" data-related-id="${escapeHtml(String(ra.id))}">
                   <div class="rr-card-top">
-                    <span class="rr-card-source">${escapeHtml(ra.sourceName || ra.source || "")}</span>
+                    <span class="rr-card-source-logo">${renderSourceLogoHtml(ra, raSourceUrl, raSourceName, 18)}</span>
+                    <span class="rr-card-source">${escapeHtml(raSourceName)}</span>
                     <span class="rr-card-date">${escapeHtml(ra.date || "")}</span>
                   </div>
                   <h4 class="rr-card-title">${escapeHtml(ra.title || "")}</h4>
-                  <p class="rr-card-summary">${escapeHtml(trimSummary(ra.summary || ra.description || "", 120))}</p>
-                </div>
-              `).join("")}
+                  <p class="rr-card-summary ${raHasSentences ? 'rr-card-quote' : ''}">${escapeHtml(raExcerpt)}</p>
+                </div>`;
+              }).join("")}
             </div>
             ` : `<div class="reader-related-empty"><i class="fa-solid fa-magnifying-glass"></i><p>Bu haber için benzer veya ilgili içerik bulunamadı.</p></div>`}
           </div>
@@ -7012,6 +7532,8 @@ async function showDetail(articleId) {
           renderView();
         });
       });
+
+      initModalSharePicker(detailContent, activeArticle);
 
       // Accordion toggles
       detailContent.querySelectorAll('[data-acc-toggle]').forEach(btn => {
@@ -8398,6 +8920,13 @@ async function initAppData() {
   updateLastFetchedDisplay();
   setInterval(updateLastFetchedDisplay, 60000);
   startPushNotificationScheduler();
+  initLangToggle();
+  initCalendarStore(api, state.usingApi);
+  initCalendarPanel(showToast);
+  initReminderManager((event, notif) => {
+    showToast(notif.message, "info");
+    renderNotifications();
+  });
 }
 
 async function init() {
@@ -8531,7 +9060,7 @@ const chatbot = new Chatbot({
       }
       list.innerHTML = shares.slice(0, 10).map((s) => `
         <div class="share-inbox-item ${s.read ? "read" : "unread"}" data-share-id="${escapeHtml(s.id)}" data-article-id="${escapeHtml(s.articleId)}">
-          <div class="share-inbox-from"><i class="fa-solid fa-user"></i> ${escapeHtml(s.fromUserName)}</div>
+          <div class="share-inbox-from"><i class="fa-solid fa-user"></i> ${escapeHtml(s.fromUserName || s.senderName || "Birisi")}</div>
           <div class="share-inbox-title">${escapeHtml(s.articleTitle)}</div>
           <div class="share-inbox-time">${escapeHtml(new Date(s.createdAt).toLocaleString("tr-TR"))}</div>
         </div>
@@ -8553,7 +9082,7 @@ const chatbot = new Chatbot({
 
   async function shareArticle(articleId, targetUserId, targetName) {
     try {
-      await api("/api/share", { method: "POST", body: JSON.stringify({ articleId, targetUserId }) });
+      await api(`/api/articles/${articleId}/share`, { method: "POST", body: JSON.stringify({ targetUserId }) });
       showToast(`Haber "${targetName}" ile paylaşıldı!`);
     } catch {
       showToast("Paylaşım başarısız oldu.");

@@ -176,8 +176,10 @@ export function matchesRegion(newsItem, selectedRegion) {
     ...regionInfo.regions
   ]);
   if (selectedRegions.includes("global")) {
+    const isTurkishUi = typeof localStorage !== "undefined" && localStorage.getItem("smartnews_uiLanguage") === "tr";
     return newsItem.isGlobalSource === true
       || regionValue(newsItem.sourceRegion) === "global"
+      || (isTurkishUi && regionValue(newsItem.sourceRegion) === "turkey")
       || metadataRegions.length > 1
       || (Array.isArray(newsItem.propagationPath) && normalizeRegionList(newsItem.propagationPath).length > 1);
   }

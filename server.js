@@ -154,10 +154,25 @@ const REGIONAL_SOURCE_CATALOG = [
   { id: "bbc-turkce", sourceName: "BBC Türkçe", rssUrl: "https://feeds.bbci.co.uk/turkish/rss.xml", country: "United Kingdom", countryCode: "GB", region: "turkey", language: "tr", trustLevel: "high", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 1, category: "Dünya" },
   { id: "dw-turkce", sourceName: "DW Türkçe", rssUrl: "https://rss.dw.com/rdf/rss-tur-all", country: "Germany", countryCode: "DE", region: "turkey", language: "tr", trustLevel: "high", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 1, category: "Dünya" },
   { id: "ntv-tr", sourceName: "NTV Haber", rssUrl: "https://www.ntv.com.tr/son-dakika.rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Gündem" },
+  { id: "ntv-ekonomi", sourceName: "NTV Ekonomi", rssUrl: "https://www.ntv.com.tr/ekonomi.rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Ekonomi" },
+  { id: "ntv-spor", sourceName: "NTV Spor", rssUrl: "https://www.ntv.com.tr/spor.rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Spor" },
+  { id: "ntv-teknoloji", sourceName: "NTV Teknoloji", rssUrl: "https://www.ntv.com.tr/teknoloji.rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Teknoloji" },
   { id: "sabah-tr", sourceName: "Sabah", rssUrl: "https://www.sabah.com.tr/rss/anasayfa.xml", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Gündem" },
   { id: "haberturk-tr", sourceName: "Habertürk", rssUrl: "https://www.haberturk.com/rss/kategori/gundem.xml", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Gündem" },
+  { id: "haberturk-ekonomi", sourceName: "Habertürk Ekonomi", rssUrl: "https://www.haberturk.com/rss/ekonomi.xml", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Ekonomi" },
   { id: "sozcu-tr", sourceName: "Sözcü", rssUrl: "https://www.sozcu.com.tr/rss/anasayfa.xml", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 3, category: "Gündem" },
+  { id: "sozcu-ekonomi", sourceName: "Sözcü Ekonomi", rssUrl: "https://www.sozcu.com.tr/rss/ekonomi.xml", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 3, category: "Ekonomi" },
   { id: "milliyet-tr", sourceName: "Milliyet", rssUrl: "https://www.milliyet.com.tr/rss/rssNew/gundemRss.xml", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 3, category: "Gündem" },
+  { id: "bloomberght", sourceName: "Bloomberg HT", rssUrl: "https://www.bloomberght.com/rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "high", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Ekonomi" },
+  { id: "t24", sourceName: "T24", rssUrl: "https://t24.com.tr/rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Gündem" },
+  { id: "karar", sourceName: "Karar", rssUrl: "https://www.karar.com/rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 3, category: "Gündem" },
+  { id: "yenisafak", sourceName: "Yeni Şafak", rssUrl: "https://www.yenisafak.com/rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 3, category: "Gündem" },
+  { id: "cumhuriyet", sourceName: "Cumhuriyet", rssUrl: "https://www.cumhuriyet.com.tr/rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 3, category: "Gündem" },
+  { id: "cnnturk", sourceName: "CNN Türk", rssUrl: "https://www.cnnturk.com/feed/rss/all/news", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Gündem" },
+  { id: "webrazzi", sourceName: "Webrazzi", rssUrl: "https://webrazzi.com/feed/", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "high", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Teknoloji" },
+  { id: "shiftdelete", sourceName: "ShiftDelete", rssUrl: "https://shiftdelete.net/feed", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 3, category: "Teknoloji" },
+  { id: "trt-spor", sourceName: "TRT Spor", rssUrl: "https://www.trtspor.com.tr/rss/anasayfa.rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "high", sourceType: "official", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Spor" },
+  { id: "dunya-ekonomi", sourceName: "Dünya Gazetesi", rssUrl: "https://www.dunya.com/rss", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "high", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 2, category: "Ekonomi" },
   { id: "cnnturk-tr", sourceName: "CNN Türk", rssUrl: "https://www.cnnturk.com/feed/rss/turkiye/rss.xml", country: "Türkiye", countryCode: "TR", region: "turkey", language: "tr", trustLevel: "medium", sourceType: "rss", isGlobalSource: false, enabled: true, fetchPriority: 3, category: "Gündem" },
 ];
 
@@ -572,6 +587,34 @@ function flushDbSync() {
 
 setInterval(flushDb, 3000);
 
+function runReminderScheduler() {
+  const db = readDb();
+  if (!Array.isArray(db.calendarEvents)) return;
+  const now = new Date();
+  let changed = false;
+  for (const e of db.calendarEvents) {
+    if (!e.reminderEnabled || e.reminderSent || !e.reminderAt) continue;
+    if (new Date(e.reminderAt) <= now) {
+      e.reminderSent = true;
+      e.updatedAt = now.toISOString();
+      if (!Array.isArray(db.calendarNotifications)) db.calendarNotifications = [];
+      db.calendarNotifications.push({
+        id: "notif_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
+        userId: e.userId,
+        type: "calendar_reminder",
+        title: e.title,
+        message: `Hatırlatıcı: "${e.title}" etkinliği yaklaşıyor!`,
+        relatedEventId: e.id,
+        read: false,
+        createdAt: now.toISOString()
+      });
+      changed = true;
+    }
+  }
+  if (changed) writeDb(db);
+}
+setInterval(runReminderScheduler, 60_000);
+
 function normalizeDb(db) {
   db.users = Array.isArray(db.users) ? db.users : [];
   db.articles = Array.isArray(db.articles) ? db.articles.map((article) => {
@@ -600,6 +643,9 @@ function normalizeDb(db) {
   db.eventReminders = Array.isArray(db.eventReminders) ? db.eventReminders : [];
   db.hiddenEvents = Array.isArray(db.hiddenEvents) ? db.hiddenEvents : [];
   db.savedSearches = Array.isArray(db.savedSearches) ? db.savedSearches : [];
+  db.calendarEvents = Array.isArray(db.calendarEvents) ? db.calendarEvents : [];
+  db.calendarNotifications = Array.isArray(db.calendarNotifications) ? db.calendarNotifications : [];
+  db.userNewspaperItems = Array.isArray(db.userNewspaperItems) ? db.userNewspaperItems : [];
   db.financePreferences = db.financePreferences && typeof db.financePreferences === "object" ? db.financePreferences : {};
   db.userSources = normalizeUserSourcesDb(db.userSources || []);
   db.sourceContentCache = db.sourceContentCache && typeof db.sourceContentCache === "object" ? db.sourceContentCache : {};
@@ -715,6 +761,16 @@ function pdf(res, filename, content) {
   res.end(content);
 }
 
+function inlinePdf(res, filename, content) {
+  res.writeHead(200, {
+    "Content-Type": "application/pdf",
+    "Content-Disposition": `inline; filename=\"${filename}\"`,
+    "Content-Length": content.length,
+    "Cache-Control": "no-store"
+  });
+  res.end(content);
+}
+
 function hasEnv(name) {
   const value = process.env[name];
   return Boolean(value && value.trim() && !value.includes("your_") && !value.includes("_buraya"));
@@ -823,12 +879,59 @@ function decodeHtml(value) {
 }
 
 function stripHtml(value) {
-  return decodeHtml(value)
+  let cleaned = decodeHtml(value)
     .replace(/<script[\s\S]*?<\/script>/gi, "")
-    .replace(/<style[\s\S]*?<\/style>/gi, "")
+    .replace(/<style[\s\S]*?<\/style>/gi, "");
+
+  // ---- Guardian live blog JSON cleanup ----
+  // Guardian RSS / live blogs embed raw JSON metadata inline in the text.
+  // Strategy: strip known metadata keys first (safe, non-nested), then
+  // attempt to strip residual balanced brace blocks that still look like JSON.
+
+  // 1. Remove Guardian image block arrays (very long, nested)
+  cleaned = cleaned.replace(/,?\s*"allImages"\s*:\s*\[[\s\S]*?\](?=\s*[,}])/g, "");
+  cleaned = cleaned.replace(/,?\s*"imageSources"\s*:\s*\[[\s\S]*?\](?=\s*[,}])/g, "");
+  cleaned = cleaned.replace(/,?\s*"srcSet"\s*:\s*\[[\s\S]*?\](?=\s*[,}])/g, "");
+
+  // 2. Remove known scalar Guardian metadata fields
+  const guardianScalarKeys = [
+    "displayCredit", "blockCreatedOn", "blockCreatedOnDisplay",
+    "blockLastUpdated", "blockLastUpdatedDisplay",
+    "blockFirstPublished", "blockFirstPublishedDisplay",
+    "blockFirstPublishedDisplayNoTimezone",
+    "primaryDateLine", "secondaryDateLine",
+    "elementId", "renderingTarget", "serverTime",
+    "weighting", "index", "mimeType", "mediaType",
+    "isMaster", "height", "width", "quality", "credit"
+  ];
+  guardianScalarKeys.forEach(key => {
+    cleaned = cleaned.replace(new RegExp(',?\\s*"' + key + '"\\s*:\\s*(?:"[^"]*"|true|false|\\d+)', 'g'), "");
+  });
+
+  // 3. Remove leftover JSON object/array fragments containing Guardian keys
+  // Repeatedly apply balanced-brace removal for small blocks (no nested braces)
+  for (let i = 0; i < 8; i++) {
+    // Remove simple (non-nested) JSON objects that contain a Guardian marker
+    cleaned = cleaned.replace(/,?\s*\{[^{}]*(?:_type|dotcomrendering|displayCredit|allImages|imageSources|blockCreatedOn|elementId|renderingTarget|srcSet|isMaster)[^{}]*\}/g, " ");
+  }
+
+  // 4. Remove any remaining long raw-JSON-looking segments
+  // (sequences of key:value pairs without normal sentence patterns)
+  // Matches: ,{...} or [{...}] garbage containing quote-colon-quote triplets
+  cleaned = cleaned.replace(/,\s*\{(?:[^{}]|\{[^{}]*\})*"(?:url|src|href|type|role|alt|caption)"\s*:(?:[^{}]|\{[^{}]*\})*\}/g, " ");
+
+  // 5. Remove leftover JSON array closings and metadata lines
+  cleaned = cleaned.replace(/"contributors"\s*:\s*\[[^\]]*\]/g, "");
+  cleaned = cleaned.replace(/"attributes"\s*:\s*\{[^}]*\}/g, "");
+  cleaned = cleaned.replace(/"data"\s*:\s*\{[^}]*\}/g, "");
+
+  // 6. Strip HTML tags
+  cleaned = cleaned
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+
+  return cleaned;
 }
 
 function articleNeedsFullTextRefresh(article = {}) {
@@ -1212,7 +1315,7 @@ function normalizeRegionQueryInline(value) {
   return _CANONICAL_REGIONS_CJS.includes(key) ? key : aliases[key] || "";
 }
 
-function matchesRegionInline(article, selectedRegion) {
+function matchesRegionInline(article, selectedRegion, targetLang = "tr") {
   const region = normalizeRegionQueryInline(selectedRegion);
   if (!region) return true;
   const directRegions = [
@@ -1221,7 +1324,9 @@ function matchesRegionInline(article, selectedRegion) {
     ...(Array.isArray(article.mentionedRegions) ? article.mentionedRegions : [])
   ].map(normalizeRegionQueryInline).filter(Boolean);
   if (region === "global") {
+    const isTurkishUi = targetLang === "tr";
     return article.isGlobalSource === true || directRegions.includes("global")
+      || (isTurkishUi && directRegions.includes("turkey"))
       || new Set(directRegions.filter((item) => item !== "global")).size > 1
       || (Array.isArray(article.propagationPath) && new Set(article.propagationPath.map((item) => normalizeRegionQueryInline(item.region || item)).filter(Boolean)).size > 1);
   }
@@ -1645,7 +1750,14 @@ function parseRssItems(xml, source) {
     article.tags = [article.category, article.subcategory];
     article.topics = [...new Set([article.category, article.subcategory].filter(Boolean))];
     return article;
-  }).filter((article) => article.title);
+  }).filter((article) => {
+    if (!article.title || article.title.length < 15) return false;
+    if (!article.summary && !article.fullText) return false;
+    const spamKeywords = ["tıklayın", "şok", "büyük fırsat", "bedava", "tıklayınız", "tıkla"];
+    const lowerTitle = article.title.toLowerCase();
+    if (spamKeywords.some(keyword => lowerTitle.includes(keyword))) return false;
+    return true;
+  });
 }
 
 const RSS_CACHE_TTL_MS = Math.min(Math.max(Number(process.env.RSS_CACHE_TTL_MS || 300000) || 300000, 30000), 1800000);
@@ -3043,8 +3155,13 @@ function compareClusterSources(members) {
   const allTokenSets = members.map(m => new Set(storyTokens(`${m.title || ""} ${m.description || m.summary || ""}`)));
   const commonTokens = allTokenSets.length ? [...allTokenSets[0]].filter(t => allTokenSets.every(s => s.has(t))) : [];
   const commonKeywords = commonTokens.slice(0, 8);
+  
+  const similarities = commonKeywords.length > 0 
+    ? [`Tüm kaynaklar '${commonKeywords.slice(0, 3).join(", ")}' konularında birleşiyor.`] 
+    : ["Kaynaklar benzer bir olayı aktarıyor."];
 
   const differentAngles = [];
+  const differences = [];
   const seenFocus = new Set();
   for (const m of members) {
     const src = m.sourceName || m.source || "";
@@ -3053,6 +3170,7 @@ function compareClusterSources(members) {
     if (unique.length > 0 && !seenFocus.has(src)) {
       seenFocus.add(src);
       differentAngles.push({ source: src, focus: unique.join(", ") });
+      differences.push(`${src}: '${unique.join(", ")}' detaylarına odaklanıyor.`);
     }
   }
 
@@ -3060,7 +3178,9 @@ function compareClusterSources(members) {
     earliestSource,
     mostDetailedSource,
     commonKeywords,
-    differentAngles: differentAngles.slice(0, 6)
+    differentAngles: differentAngles.slice(0, 6),
+    similarities,
+    differences: differences.slice(0, 4)
   };
 }
 
@@ -3130,11 +3250,20 @@ function dedupeFeedArticles(articles, limit = 120) {
     representative.clusterId = clusterId;
     representative.sourceCount = uniqueSources.length;
     representative.sources = uniqueSources;
-    representative.clusterArticles = members.filter(m => m !== representative).map(m => ({
-      id: m.id, title: m.title, source: m.sourceName || m.source || "",
-      url: m.sourceUrl || m.url || "", publishedAt: m.publishedAt || m.date || "",
-      description: (m.description || m.summary || "").slice(0, 300)
-    }));
+    representative.relatedSources = members.filter(m => m !== representative).map(m => {
+      const srcName = m.sourceName || m.source || "";
+      const domain = m.sourceUrl ? new URL(m.sourceUrl).hostname : (m.url ? new URL(m.url).hostname : "");
+      return {
+        id: m.id,
+        sourceName: srcName,
+        sourceDomain: domain,
+        sourceLogo: "",
+        title: m.title,
+        excerpt: (m.description || m.summary || m.fullText || "").slice(0, 300),
+        url: m.sourceUrl || m.url || "",
+        publishedAt: m.publishedAt || m.date || ""
+      };
+    });
     if (members.length > 1) {
       representative.comparison = compareClusterSources(members);
       totalGrouped += members.length;
@@ -3410,6 +3539,15 @@ function scoreArticle(article, preferences, readingProfile = null) {
   let subcategoryScore = 52;
   let interactionScore = 50;
 
+  // Kalite skorlaması (başlık uzunluğu, metin doluluğu, kaynak güveni)
+  let qualityBoost = 0;
+  if ((article.title || "").length > 30) qualityBoost += 5;
+  if ((article.summary || article.description || "").length > 100) qualityBoost += 10;
+  if (article.sourceTrustLevel === "high") qualityBoost += 15;
+  if (article.sourceTrustLevel === "low") qualityBoost -= 15;
+  categoryScore += qualityBoost;
+  subcategoryScore += qualityBoost;
+
   if (readingProfile?.readArticles?.length) {
     const sameCategoryReads = readingProfile.categoryReads.get(category) || 0;
     const sameSubcategoryReads = readingProfile.subcategoryReads.get(subcategory) || 0;
@@ -3430,11 +3568,16 @@ function scoreArticle(article, preferences, readingProfile = null) {
     interactionScore += Math.round(bookmarkOverlap * 12);
   }
 
+  const isTurkishUi = preferences?.language === "tr";
+  const isTurkeyArticle = article.sourceRegion === "turkey";
+  const turkeyBoost = (isTurkishUi && isTurkeyArticle) ? 15 : 0;
+
   const finalScore =
     clampScore(categoryScore) * 0.35 +
     clampScore(subcategoryScore) * 0.40 +
     recencyScore(article) * 0.15 +
-    clampScore(interactionScore) * 0.10;
+    clampScore(interactionScore) * 0.10 +
+    turkeyBoost;
 
   return clampScore(finalScore, 50);
 }
@@ -3775,24 +3918,38 @@ async function generateAiSummary(article, options = {}) {
             role: "user",
             parts: [{
               text: [
-                "Aşağıdaki haberi inceleyip en fazla 2-3 cümlelik, akıcı, tarafsız ve bilgilendirici Türkçe bir yapay zeka özeti çıkar.",
-                "Haberin ana fikrini ve en önemli detaylarını özetle. Markdown kullanma.",
+                "Aşağıdaki haberi incele ve aşağıdaki JSON formatında veri üret:",
+                "1. aiSummary: En fazla 2-3 cümlelik, akıcı, tarafsız ve bilgilendirici Türkçe bir yapay zeka özeti.",
+                "2. sourceSentences: Haberin asıl metninden (İÇERİK kısmından) doğrudan alınmış, haberi en iyi yansıtan 2 veya 3 gerçek cümle. (Orijinalinden kopyala, değiştirme)",
+                "3. contentSnippet: Orijinal metinden haberin bağlamını veren kısa bir alıntı (yaklaşık 1 paragraf).",
+                "Markdown kullanma, sadece JSON döndür:",
+                `{
+                  "aiSummary": "özet metni",
+                  "sourceSentences": ["cümle 1", "cümle 2"],
+                  "contentSnippet": "alıntı"
+                }`,
                 `BAŞLIK: ${article.title || ""}`,
                 `İÇERİK:\n${contentToSummarize}`
               ].join("\n\n")
             }]
           }
         ],
-        generationConfig: geminiGenerationConfig({ model, temperature: 0.2, maxOutputTokens: 256 })
+        generationConfig: geminiGenerationConfig({ model, temperature: 0.2, maxOutputTokens: 512 })
       })
     });
-    const summary = payload.candidates?.[0]?.content?.parts?.map((part) => part.text).join("").trim();
-    if (summary) {
-      article.aiSummary = summary;
-      article.aiSummaryProvider = "gemini";
-      article.aiSummaryModel = model;
-      article.aiSummaryGeneratedAt = new Date().toISOString();
-      return summary;
+    const text = payload.candidates?.[0]?.content?.parts?.map((part) => part.text).join("").trim();
+    if (text) {
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        const parsed = JSON.parse(jsonMatch[0]);
+        article.aiSummary = parsed.aiSummary || articleSummary(article);
+        article.sourceSentences = parsed.sourceSentences || [];
+        article.contentSnippet = parsed.contentSnippet || "";
+        article.aiSummaryProvider = "gemini";
+        article.aiSummaryModel = model;
+        article.aiSummaryGeneratedAt = new Date().toISOString();
+        return article.aiSummary;
+      }
     }
   } catch (error) {
     logError("ai", "summary failed", error.message);
@@ -3819,14 +3976,14 @@ async function ensureRichDuplicates(article, existingDuplicates) {
   return [];
 }
 
-async function legacyGenerateMultiSourceAnalysis(mainArticle, duplicates) {
+async function generateMultiSourceComparison(mainArticle, duplicates) {
   const geminiKey = getGeminiApiKey();
   if (!geminiKey) return null;
 
   const model = getGeminiModel();
   const sourcesList = [
     { id: mainArticle.id || "main", sourceName: mainArticle.sourceName || mainArticle.source || "Ana Kaynak", sourceUrl: mainArticle.sourceUrl || mainArticle.url || mainArticle.link || "", title: mainArticle.title, summary: mainArticle.summary || mainArticle.fullText },
-    ...duplicates.map((d, i) => ({ id: d.id || `dup_${i}`, sourceName: d.sourceName || d.source || `Kaynak ${i + 1}`, sourceUrl: d.sourceUrl || d.url || d.link || "", title: d.title, summary: d.summary }))
+    ...duplicates.map((d, i) => ({ id: d.id || `dup_${i}`, sourceName: d.sourceName || d.source || `Kaynak ${i + 1}`, sourceUrl: d.sourceUrl || d.url || d.link || "", title: d.title, summary: d.summary || d.fullText }))
   ];
 
   try {
@@ -3842,16 +3999,10 @@ async function legacyGenerateMultiSourceAnalysis(mainArticle, duplicates) {
                 "Aşağıda aynı olayla ilgili farklı haber kaynaklarının başlık ve özetleri verilmiştir.",
                 "Bu kaynakları karşılaştırarak aşağıdaki JSON yapısında detaylı bir analiz üret:",
                 `{
-                  "overallComparison": "Tüm kaynaklar arasındaki genel anlatım, vurgu ve bakış açısı farklarını özetleyen 2-3 cümlelik karşılaştırmalı analiz.",
-                  "sourceAnalyses": [
-                    {
-                      "id": "main veya dup id",
-                      "sourceName": "Kaynak Adı",
-                      "tone": "Örn: Tarafsız ve resmi / Dramatik ve uyarıcı / Ekonomik odaklı",
-                      "emphasis": "Örn: Yağışların barajlara etkisi / Sel ve afet riski / Ulaşım aksamaları",
-                      "perspective": "Örn: Vatandaşı uyarma odaklı bir yaklaşım sergiliyor."
-                    }
-                  ]
+                  "commonPoints": ["Ortak vurgulanan birinci nokta", "Ortak vurgulanan ikinci nokta"],
+                  "differences": ["Kaynak A şu detaya, Kaynak B ise şu detaya odaklanıyor"],
+                  "numbers": ["Belirtilen oran, sayı veya tarih bilgisi"],
+                  "toneAndMissing": ["Haber dillerindeki tarafsızlık/uyarı farkları ve eksik bırakılan bağlamlar"]
                 }`,
                 "Sadece geçerli bir JSON nesnesi döndür. Markdown veya fazladan metin kullanma.",
                 "KAYNAKLAR:",
@@ -4129,8 +4280,9 @@ function fallbackMultiSourceAnalysis(mainArticle, duplicates) {
   const sourceList = diff.sourceNames.join(", ");
   return {
     commonPoints: commonPoints.length ? commonPoints : ["Yeterli karşılaştırma verisi bulunamadı"],
-    differentPoints: differentPoints.length ? differentPoints : ["Kaynaklar aynı olayı benzer şekilde aktarıyor"],
-    overallComparison: `${diff.sourceCount} kaynak karşılaştırıldı: ${sourceList}.`
+    differences: differentPoints.length ? differentPoints : ["Kaynaklar aynı olayı benzer şekilde aktarıyor"],
+    numbers: [],
+    toneAndMissing: [`${diff.sourceCount} kaynak karşılaştırıldı: ${sourceList}.`]
   };
 }
 
@@ -4157,8 +4309,8 @@ async function generateMultiSourceAnalysis(mainArticle, duplicates) {
               `KAYNAĞA ÖZGÜ CLAIM'LER: ${JSON.stringify(diff.uniqueClaimsBySource)}`,
               `KAYNAK SAYISI: ${diff.sourceCount}`,
               `KAYNAK İSİMLERİ: ${diff.sourceNames.join(", ")}`,
-              `Üretilecek JSON: {"commonPoints":["..."],"differentPoints":["..."],"overallComparison":"..."}`,
-              "Kurallar: Türkçe yaz. Markdown kullanma. Her madde bu habere özgü somut bilgi içersin. Şablon ifade kullanma. Gerçek fark yoksa differentPoints [\"Kaynaklar aynı olayı benzer şekilde aktarıyor\"] olsun. Veri yetersizse commonPoints [\"Yeterli karşılaştırma verisi bulunamadı\"] olsun."
+              `Üretilecek JSON: {"commonPoints":["..."],"differences":["..."],"numbers":["..."],"toneAndMissing":["..."]}`,
+              "Kurallar: Türkçe yaz. Markdown kullanma. Her madde bu habere özgü somut bilgi içersin. Şablon ifade kullanma. Gerçek fark yoksa differences [\"Kaynaklar aynı olayı benzer şekilde aktarıyor\"] olsun. numbers kısmı haberi oluşturan ana sayılar, oranlar, miktarlar olsun. toneAndMissing dil/vurgu farklarını açıklasın."
             ].join("\n")
           }]
         }],
@@ -4433,6 +4585,599 @@ async function fetchPdfImage(url) {
   } finally {
     clearTimeout(timer);
   }
+}
+
+function pdfFixText(value = "") {
+  let text = String(value || "");
+  for (let i = 0; i < 2 && /[ÃÄÅÂâ]/.test(text); i += 1) {
+    try {
+      const decoded = Buffer.from(text, "latin1").toString("utf8");
+      if (decoded && decoded !== text && !decoded.includes("\uFFFD")) text = decoded;
+    } catch {}
+  }
+  const replacements = {
+    "Ã¼": "ü", "Ãœ": "Ü", "Ã¶": "ö", "Ã–": "Ö", "Ã§": "ç", "Ã‡": "Ç",
+    "ÄŸ": "ğ", "Äž": "Ğ", "Ä±": "ı", "Ä°": "İ", "ÅŸ": "ş", "Åž": "Ş",
+    "â€™": "'", "â€œ": "\"", "â€�": "\"", "â€“": "-", "â€”": "-", "â€¦": "...",
+    "Â°": "°", "Â·": "·", "Â": ""
+  };
+  for (const [bad, good] of Object.entries(replacements)) text = text.split(bad).join(good);
+  const unicodeReplacements = {
+    "\u00c3\u00bc": "\u00fc", "\u00c3\u0153": "\u00dc", "\u00c3\u00b6": "\u00f6", "\u00c3\u2013": "\u00d6",
+    "\u00c3\u00a7": "\u00e7", "\u00c3\u2021": "\u00c7", "\u00c4\u0178": "\u011f", "\u00c4\u017e": "\u011e",
+    "\u00c4\u00b1": "\u0131", "\u00c4\u00b0": "\u0130", "\u00c5\u0178": "\u015f", "\u00c5\u017e": "\u015e",
+    "\u00e2\u20ac\u2122": "'", "\u00e2\u20ac\u0153": "\"", "\u00e2\u20ac\ufffd": "\"",
+    "\u00e2\u20ac\u201c": "-", "\u00e2\u20ac\u009d": "-", "\u00e2\u20ac\u00a6": "...",
+    "\u00c2\u00b0": "\u00b0", "\u00c2\u00b7": "\u00b7", "\u00c2": ""
+  };
+  for (const [bad, good] of Object.entries(unicodeReplacements)) text = text.split(bad).join(good);
+  return text.replace(/\s+/g, " ").trim();
+}
+
+function htmlEscape(value = "") {
+  return pdfFixText(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function pdfFixHtml(value = "") {
+  let text = String(value || "");
+  for (let i = 0; i < 2 && /[ÃÄÅÂâ]/.test(text); i += 1) {
+    try {
+      const decoded = Buffer.from(text, "latin1").toString("utf8");
+      if (decoded && decoded !== text && !decoded.includes("\uFFFD")) text = decoded;
+    } catch {}
+  }
+  const replacements = {
+    "\u00c3\u00bc": "\u00fc", "\u00c3\u0153": "\u00dc", "\u00c3\u00b6": "\u00f6", "\u00c3\u2013": "\u00d6",
+    "\u00c3\u00a7": "\u00e7", "\u00c3\u2021": "\u00c7", "\u00c4\u0178": "\u011f", "\u00c4\u017e": "\u011e",
+    "\u00c4\u00b1": "\u0131", "\u00c4\u00b0": "\u0130", "\u00c5\u0178": "\u015f", "\u00c5\u017e": "\u015e",
+    "\u00e2\u20ac\u2122": "'", "\u00e2\u20ac\u0153": "\"", "\u00e2\u20ac\ufffd": "\"",
+    "\u00e2\u20ac\u201c": "-", "\u00e2\u20ac\u009d": "-", "\u00e2\u20ac\u00a6": "...",
+    "\u00c2\u00b0": "\u00b0", "\u00c2\u00b7": "\u00b7", "\u00c2": ""
+  };
+  for (const [bad, good] of Object.entries(replacements)) text = text.split(bad).join(good);
+  return text;
+}
+
+function pdfClamp(value = "", max = 260) {
+  const clean = pdfFixText(value).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  return `${clean.slice(0, max).replace(/\s+\S*$/, "")}...`;
+}
+
+function pdfIssueNumber(date = new Date()) {
+  const start = new Date(date.getFullYear(), 0, 0);
+  const day = Math.floor((date - start) / 86400000);
+  return `${String(date.getFullYear()).slice(2)}${String(day).padStart(3, "0")}`;
+}
+
+function safePdfImageUrl(article = {}) {
+  const value = article.imageUrl || article.image || article.urlToImage || article.thumbnailUrl || "";
+  if (/^https?:\/\//i.test(value) || /^data:image\//i.test(value)) return value;
+  return "";
+}
+
+function fallbackPdfImageUrl(category = "", index = 0) {
+  const key = normalizeText(category);
+  const images = {
+    teknoloji: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+    bilim: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+    ekonomi: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=80",
+    finans: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=80",
+    saglik: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80",
+    kultur: "https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1200&q=80",
+    yasam: "https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1200&q=80",
+    dunya: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+    cevre: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80",
+    egitim: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+    gundem: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80"
+  };
+  const match = Object.entries(images).find(([name]) => key.includes(name));
+  if (match) return match[1];
+  return [images.gundem, images.teknoloji, images.kultur, images.ekonomi][index % 4];
+}
+
+function sourceIconUrl(source = {}) {
+  const value = source.icon || source.logoUrl || source.sourceLogo || "";
+  if (/^https?:\/\//i.test(value) || /^data:image\//i.test(value)) return value;
+  return "";
+}
+
+function normalizePdfSource(source = {}, fallbackName = "") {
+  const name = pdfFixText(source.name || source.sourceName || source.title || fallbackName || "Kaynak");
+  const url = source.url || source.sourceUrl || "";
+  let domain = "";
+  try { domain = new URL(url).hostname.replace(/^www\./, ""); } catch {}
+  return {
+    name: name || domain || "Kaynak",
+    icon: sourceIconUrl(source),
+    url,
+    domain
+  };
+}
+
+function normalizePdfArticle(article = {}, index = 0) {
+  const title = pdfFixText(article.displayTitle || article.translatedTitle || article.title || article.originalTitle || "Başlıksız haber");
+  const summary = pdfClamp(article.displaySummary || article.translatedSummary || article.aiSummary || article.summary || article.description || article.fullText || title, 360);
+  const primarySource = article.sourceName || article.source || article.publisher || article.author || "Kaynak";
+  const sources = Array.isArray(article.sources) && article.sources.length
+    ? article.sources.map((source) => normalizePdfSource(source, primarySource))
+    : [normalizePdfSource({
+      name: primarySource,
+      icon: article.sourceIcon || article.sourceLogo || "",
+      url: article.sourceUrl || article.url || ""
+    }, primarySource)];
+  return {
+    id: String(article.id || article.url || article.sourceUrl || title || `pdf-${index}`),
+    title,
+    summary,
+    category: pdfFixText(article.category || inferArticleCategory(article) || "Gündem"),
+    sourceName: sources[0]?.name || pdfFixText(primarySource),
+    sourceIcon: sources[0]?.icon || "",
+    publishedAt: article.publishedAt || article.date || article.fetchedAt || "",
+    imageUrl: safePdfImageUrl(article) || fallbackPdfImageUrl(article.category || inferArticleCategory(article), index),
+    url: article.url || article.sourceUrl || "",
+    clusterId: article.clusterId || article.dedupeKey || "",
+    sources: sources.slice(0, 6)
+  };
+}
+
+function articleMatchesPdfFilters(article = {}, filters = {}) {
+  const category = String(filters.category || "").trim();
+  if (category && !["Tumu", "all", "genel"].includes(normalizeText(category))) {
+    const articleCategory = normalizeText(article.category || inferArticleCategory(article));
+    if (articleCategory !== normalizeText(category)) return false;
+  }
+  if (Array.isArray(filters.categories) && filters.categories.length) {
+    const selected = new Set(filters.categories.map((item) => normalizeText(item)));
+    const articleCategory = normalizeText(article.category || inferArticleCategory(article));
+    if (!selected.has(articleCategory)) return false;
+  }
+  const language = String(filters.language || "").trim().toLowerCase();
+  if (language && language !== "all") {
+    const articleLanguage = String(article.language || article.sourceLanguage || "tr").toLowerCase();
+    if (articleLanguage && articleLanguage !== language) return false;
+  }
+  const region = String(filters.region || "").trim();
+  if (region && region !== "all" && !matchesRegionInline(article, region, filters.language || "tr")) return false;
+  return true;
+}
+
+function parsePdfList(value) {
+  if (Array.isArray(value)) return value.map(String).map((item) => item.trim()).filter(Boolean);
+  return String(value || "").split(",").map((item) => item.trim()).filter(Boolean);
+}
+
+function pdfOptionEnabled(body, url, key, fallback = true) {
+  const value = body[key] ?? url.searchParams.get(key);
+  if (value == null || value === "") return fallback;
+  return !["false", "0", "no", "hayir", "hay?r"].includes(String(value).trim().toLowerCase());
+}
+
+function findPdfArticleById(db, articleId) {
+  const id = String(articleId || "");
+  if (!id) return null;
+  if (db._articleById?.has(id)) return db._articleById.get(id);
+  return [
+    ...(_feedCacheStore.articles || []),
+    ...[...ARTICLE_CACHE.values()],
+    ...(db.articles || [])
+  ].find((article) => String(article.id) === id) || null;
+}
+
+function snapshotPdfArticle(article = {}) {
+  return {
+    id: article.id,
+    title: article.title || article.displayTitle || article.originalTitle || "",
+    summary: article.summary || article.description || article.displaySummary || article.originalSummary || "",
+    category: article.category || inferArticleCategory(article),
+    sourceName: article.sourceName || article.source || "",
+    sourceIcon: article.sourceIcon || article.icon || "",
+    imageUrl: safePdfImageUrl(article),
+    publishedAt: article.publishedAt || article.date || "",
+    url: article.url || article.sourceUrl || "",
+    clusterId: article.clusterId || article.dedupeKey || "",
+    sources: Array.isArray(article.sources) ? article.sources : []
+  };
+}
+
+async function collectPdfArticles(db, userId, req, url, body = {}) {
+  const requestedSections = parsePdfList(body.sections || url.searchParams.get("sections"));
+  const activeSections = new Set(requestedSections.length ? requestedSections : ["feed", "personalized", "myNewspaper"]);
+  const selectedCategories = parsePdfList(body.categories || url.searchParams.get("categories"));
+  const filters = {
+    category: body.category || url.searchParams.get("category") || "",
+    categories: selectedCategories,
+    region: body.region || url.searchParams.get("region") || "",
+    language: body.language || url.searchParams.get("language") || "tr"
+  };
+  const includeUserSources = pdfOptionEnabled(body, url, "includeUserSources", activeSections.has("mySources"));
+  const includeUserNewspaperItems = pdfOptionEnabled(body, url, "includeUserNewspaperItems", activeSections.has("myNewspaper"));
+  const includeSavedArticles = pdfOptionEnabled(body, url, "includeSavedArticles", activeSections.has("saved"));
+  const dedupe = pdfOptionEnabled(body, url, "dedupe", true);
+  const submitted = Array.isArray(body.articles) ? body.articles : [];
+  const queryArticleIds = String(url.searchParams.get("articleIds") || "").split(",").map((item) => item.trim()).filter(Boolean);
+  const articleIds = Array.isArray(body.articleIds) ? body.articleIds.map(String) : queryArticleIds;
+  const dbArticles = db.articles.filter((article) => !articleIds.length || articleIds.includes(String(article.id)));
+  const cachedArticles = _feedCacheStore.articles.length ? _feedCacheStore.articles : buildLocalFeedCacheArticles(db);
+  const articleCacheItems = [...ARTICLE_CACHE.values()];
+  const savedArticles = includeSavedArticles
+    ? db.bookmarks
+      .filter((item) => item.userId === userId)
+      .map((item) => findPdfArticleById(db, item.articleId))
+      .filter(Boolean)
+    : [];
+  const newspaperArticles = includeUserNewspaperItems
+    ? db.userNewspaperItems
+      .filter((item) => item.userId === userId)
+      .sort((a, b) => new Date(b.addedAt || 0) - new Date(a.addedAt || 0))
+      .map((item) => ({
+        ...(item.articleSnapshot || findPdfArticleById(db, item.articleId) || {}),
+        id: item.articleId || item.id,
+        clusterId: item.clusterId || item.articleSnapshot?.clusterId,
+        section: "myNewspaper"
+      }))
+      .filter((article) => article.title || article.id)
+    : [];
+  const userSources = includeUserSources
+    ? normalizeUserSourcesDb(db.userSources.filter((source) => source.userId === userId && source.enabled !== false))
+    : [];
+
+  let externalArticles = [];
+  if (userSources.length) {
+    const fetched = await Promise.allSettled(userSources.slice(0, 8).map((source) => fetchContentsForSource(source)));
+    externalArticles = fetched.flatMap((result) => {
+      if (result.status !== "fulfilled") return [];
+      const source = result.value.source || {};
+      return (result.value.items || []).map((item) => ({
+        ...item,
+        sourceName: source.title || item.sourceName,
+        source: source.title || item.sourceName,
+        sourceIcon: source.logoUrl || "",
+        sourceUrl: item.url || source.url || source.feedUrl || "",
+        userSourceId: source.id,
+        category: item.category || source.category || "Genel",
+        sources: [normalizePdfSource({
+          name: source.title || item.sourceName,
+          icon: source.logoUrl || "",
+          url: item.url || source.url || source.feedUrl || ""
+        })]
+      }));
+    });
+  }
+
+  const includeGeneralFeed = activeSections.has("feed") || activeSections.has("personalized") || activeSections.has("economy") || activeSections.has("events");
+  const pool = [
+    ...newspaperArticles,
+    ...savedArticles,
+    ...submitted,
+    ...(includeUserSources ? externalArticles : []),
+    ...(includeGeneralFeed ? cachedArticles : []),
+    ...dbArticles,
+    ...articleCacheItems
+  ].filter(Boolean);
+
+  const filtered = pool.filter((article) => articleMatchesPdfFilters(article, filters));
+  const fallback = filtered.length >= 8 ? filtered : [...filtered, ...pool.filter((article) => !filtered.includes(article))];
+  const unique = (dedupe ? dedupeFeedArticles(fallback, 80) : fallback.slice(0, 80))
+    .filter((article) => pdfFixText(article.title || article.displayTitle).length > 3)
+    .map((article) => decorateArticle(db, userId, article))
+    .map(normalizeArticleTransportFields)
+    .map((article, index) => normalizePdfArticle(article, index));
+
+  return {
+    articles: unique.slice(0, Math.min(Math.max(Number(body.limit || url.searchParams.get("limit") || 30) || 30, 10), 50)),
+    filters,
+    userSources,
+    includeUserSources,
+    includeUserNewspaperItems,
+    includeSavedArticles,
+    sections: [...activeSections],
+    categories: selectedCategories
+  };
+}
+
+function groupPdfArticlesByCategory(articles = []) {
+  const groups = new Map();
+  for (const article of articles) {
+    const key = article.category || "Gündem";
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(article);
+  }
+  return [...groups.entries()].slice(0, 8).map(([title, items]) => ({ title, items }));
+}
+
+function renderPdfSourceChips(sources = []) {
+  return sources.slice(0, 4).map((source) => {
+    const icon = source.icon ? `<img src="${htmlEscape(source.icon)}" alt="">` : `<b>${htmlEscape(source.name.slice(0, 1).toLocaleUpperCase("tr-TR"))}</b>`;
+    return `<span class="pdf-source-chip">${icon}${htmlEscape(source.name)}</span>`;
+  }).join("");
+}
+
+function renderPdfArticleCard(article, { lead = false } = {}) {
+  const image = article.imageUrl
+    ? `<img src="${htmlEscape(article.imageUrl)}" class="pdf-news-image" alt="">`
+    : `<div class="pdf-image-fallback"><span>${htmlEscape(article.category)}</span></div>`;
+  return `
+    <article class="pdf-card ${lead ? "is-lead" : ""}">
+      <div class="pdf-image-wrap">${image}</div>
+      <div class="pdf-card-body">
+        <div class="pdf-card-meta">
+          <span>${htmlEscape(article.category)}</span>
+          <em>${htmlEscape(article.sourceName)}</em>
+        </div>
+        <h3>${htmlEscape(article.title)}</h3>
+        <p>${htmlEscape(pdfClamp(article.summary, lead ? 460 : 230))}</p>
+        <div class="pdf-source-row">${renderPdfSourceChips(article.sources)}</div>
+      </div>
+    </article>
+  `;
+}
+
+function pdfArticleOrFallback(articles, index, fallback) {
+  return articles[index] || {
+    id: `fallback-${index}`,
+    title: fallback.title,
+    summary: fallback.summary,
+    category: fallback.category || "Gündem",
+    sourceName: fallback.sourceName || "e-Gazete",
+    imageUrl: "",
+    sources: [{ name: fallback.sourceName || "e-Gazete", icon: "", url: "" }],
+    publishedAt: ""
+  };
+}
+
+function renderPdfMiniCard(article) {
+  const image = article.imageUrl
+    ? `<img src="${htmlEscape(article.imageUrl)}" class="ep-mini-img" alt="">`
+    : `<div class="ep-mini-fallback">${htmlEscape(article.category)}</div>`;
+  return `
+    <article class="ep-mini-card">
+      ${image}
+      <span>${htmlEscape(article.category)}</span>
+      <h3>${htmlEscape(article.title)}</h3>
+      <p>${htmlEscape(pdfClamp(article.summary, 115))}</p>
+      <small>${htmlEscape(article.sourceName)} · 4 dk okuma</small>
+    </article>
+  `;
+}
+
+function renderPdfGridCard(article) {
+  const image = article.imageUrl
+    ? `<img src="${htmlEscape(article.imageUrl)}" class="ep-grid-img" alt="">`
+    : `<div class="ep-grid-fallback">${htmlEscape(article.category)}</div>`;
+  return `
+    <article class="ep-grid-card">
+      <div class="ep-grid-img-wrap">
+        ${image}
+        <span>${htmlEscape(article.category)}</span>
+      </div>
+      <div class="ep-grid-body">
+        <h3>${htmlEscape(article.title)}</h3>
+        <p>${htmlEscape(pdfClamp(article.summary, 145))}</p>
+        <small>${htmlEscape(article.sourceName)} · 5 dk okuma</small>
+        <div class="ep-source-row">${renderPdfSourceChips(article.sources)}</div>
+      </div>
+    </article>
+  `;
+}
+
+function buildEpaperPdfHtml({ articles, user, filters, userSources }) {
+  const now = new Date();
+  const dateLabel = now.toLocaleDateString("tr-TR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  const issue = pdfIssueNumber(now);
+  const paperTitle = `${pdfFixText(user?.name || "Okuyucu")} için e-Gazete`;
+  const hero = pdfArticleOrFallback(articles, 0, { title: "Günün ana gündemi hazırlanıyor", summary: "Kişisel haber havuzu güncellendiğinde ana manşet burada yer alacak.", category: "Gündem" });
+  const side = [pdfArticleOrFallback(articles, 1, hero), pdfArticleOrFallback(articles, 2, hero)];
+  const highlights = [3, 4, 5, 6].map((index) => pdfArticleOrFallback(articles, index, hero));
+  const sciencePool = articles.filter((article) => ["Teknoloji", "Bilim", "Çevre", "Eğitim", "Finans"].includes(article.category));
+  const culturePool = articles.filter((article) => ["Kültür-Sanat", "Kültür", "Yaşam", "Sağlık", "Dünya"].includes(article.category));
+  const science = (sciencePool.length >= 4 ? sciencePool : articles.slice(1)).slice(0, 4).map((article, index) => article || pdfArticleOrFallback(articles, index + 1, hero));
+  const culture = (culturePool.length >= 4 ? culturePool : articles.slice(5)).slice(0, 4).map((article, index) => article || pdfArticleOrFallback(articles, index + 5, hero));
+  const cultureBanner = culture[0] || hero;
+  const agendaNeedsSecondPage = [hero, ...side, ...highlights].some((article) =>
+    pdfFixText(article.title).length > 92 || pdfFixText(article.summary).length > 260
+  );
+  const totalPages = agendaNeedsSecondPage ? 4 : 3;
+  const sciencePageNumber = agendaNeedsSecondPage ? 3 : 2;
+  const culturePageNumber = agendaNeedsSecondPage ? 4 : 3;
+  const allSources = [];
+  for (const article of articles) for (const source of article.sources || []) allSources.push(source);
+  const uniqueSources = [...new Map(allSources.map((source) => [source.domain || source.name, source])).values()].slice(0, 30);
+  const sourceSummary = userSources.length
+    ? `${userSources.length} kişisel kaynak dahil edildi`
+    : "Genel haber havuzu ve tercih sinyalleri kullanıldı";
+  const filterBits = [
+    filters.category ? `Kategori: ${filters.category}` : "",
+    filters.region ? `Bölge: ${filters.region}` : "",
+    filters.language ? `Dil: ${filters.language}` : ""
+  ].filter(Boolean).join(" · ") || "Genel seçki";
+
+  return `<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>${htmlEscape(paperTitle)}</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #ffffff !important; color: #111827 !important; font-family: Arial, sans-serif; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pdf-page { width: 210mm; height: 297mm; page-break-after: always; overflow: hidden; padding: 9mm 8mm 11mm; background: linear-gradient(180deg,#ffffff,#f8fafc); position: relative; }
+    .pdf-page:last-child { page-break-after: auto; }
+    .ep-panel { border: 1px solid #dbe2f0; border-radius: 7px; background: rgba(255,255,255,.96); box-shadow: 0 12px 28px rgba(15,23,42,.08); padding: 8mm; height: 277mm; overflow: hidden; }
+    .ep-agenda-page .ep-panel { padding: 7mm; }
+    .ep-agenda-page.is-split .ep-main-grid ~ .ep-subhead,
+    .ep-agenda-page.is-split .ep-main-grid ~ .ep-highlight-row,
+    .ep-agenda-page.is-split .ep-main-grid ~ .ep-author-row { display: none; }
+    .ep-head { display: flex; align-items: end; justify-content: space-between; gap: 10px; padding-bottom: 5mm; border-bottom: 1.4px solid #111827; margin-bottom: 5mm; }
+    .ep-head span { display: block; margin-bottom: 2px; color: #4338ca; font-size: 9px; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+    .ep-head h1 { margin: 0; color: #050816; font-family: Georgia, serif; font-size: 25px; line-height: .95; }
+    .ep-head i { color: #c7d2fe; font-style: normal; font-size: 22px; }
+    .ep-main-grid { display: grid; grid-template-columns: 1.42fr .72fr; gap: 4mm; align-items: start; }
+    .ep-hero { position: relative; height: 126mm; border-radius: 6px; overflow: hidden; background: #111827; }
+    .ep-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ep-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,rgba(15,23,42,.05),rgba(15,23,42,.88)); }
+    .ep-hero-body { position: absolute; left: 7mm; right: 7mm; bottom: 7mm; z-index: 1; color: #fff; }
+    .ep-tag, .ep-mini-card span, .ep-grid-img-wrap span { display: inline-flex; width: fit-content; padding: 3px 6px; border-radius: 99px; background: #eef2ff; color: #4338ca; font-size: 8px; font-weight: 950; text-transform: uppercase; letter-spacing: .04em; }
+    .ep-hero .ep-tag { background: rgba(255,255,255,.22); color: #fff; }
+    .ep-hero h2 { margin: 4mm 0 2mm; font-family: Georgia, serif; font-size: 27px; line-height: .96; color: #fff; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical; overflow: hidden; }
+    .ep-hero p { margin: 0 0 3mm; color: rgba(255,255,255,.9); font-size: 10.5px; line-height: 1.38; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+    .ep-hero small, .ep-mini-card small, .ep-grid-card small { color: #475569; font-size: 9px; font-weight: 850; }
+    .ep-hero small { color: rgba(255,255,255,.85); }
+    .ep-side { display: grid; gap: 3mm; }
+    .ep-mini-card, .ep-grid-card { break-inside: avoid; page-break-inside: avoid; border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden; background: #fff; }
+    .ep-mini-img, .ep-mini-fallback { width: 100%; height: 27mm; object-fit: cover; display: block; background: #eef2ff; }
+    .ep-mini-fallback, .ep-grid-fallback { display: grid; place-items: center; color: #4338ca; font-weight: 950; font-size: 10px; }
+    .ep-mini-card span { margin: 3mm 3.5mm 0; }
+    .ep-mini-card h3 { margin: 2.2mm 3.5mm 1.5mm; color: #050816; font-family: Georgia, serif; font-size: 12px; line-height: 1.04; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+    .ep-mini-card p { margin: 0 3.5mm 2mm; color: #475569; font-size: 9px; line-height: 1.32; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+    .ep-mini-card small { display: block; margin: 0 3.5mm 3mm; }
+    .ep-subhead { display: flex; justify-content: space-between; align-items: center; margin: 3.5mm 0 2.5mm; }
+    .ep-subhead h2 { margin: 0; font-size: 13px; color: #111827; }
+    .ep-highlight-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 3mm; }
+    .ep-highlight-row .ep-mini-img, .ep-highlight-row .ep-mini-fallback { height: 24mm; }
+    .ep-highlight-row .ep-mini-card h3 { min-height: 18mm; font-size: 10.5px; -webkit-line-clamp: 4; }
+    .ep-agenda-extra .ep-highlight-row { grid-template-columns: repeat(2,1fr); gap: 5mm; }
+    .ep-agenda-extra .ep-mini-img, .ep-agenda-extra .ep-mini-fallback { height: 38mm; }
+    .ep-agenda-extra .ep-mini-card h3 { min-height: auto; font-size: 15px; -webkit-line-clamp: 4; }
+    .ep-agenda-extra .ep-mini-card p { font-size: 10.5px; -webkit-line-clamp: 5; }
+    .ep-author-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 3mm; margin-top: 3mm; }
+    .ep-author { border: 1px solid #e5e7eb; border-radius: 6px; padding: 3mm; background: #f8fafc; }
+    .ep-author b { display: block; color: #312e81; font-size: 10px; margin-bottom: 1mm; }
+    .ep-author span { color: #64748b; font-size: 9px; font-weight: 800; }
+    .ep-category-page .ep-panel { background: linear-gradient(180deg,#f8faff,#fff 40mm); }
+    .ep-card-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 5mm; }
+    .ep-grid-card { min-height: 119mm; }
+    .ep-grid-img-wrap { position: relative; height: 43mm; background: #eef2ff; overflow: hidden; }
+    .ep-grid-img, .ep-grid-fallback { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ep-grid-img-wrap span { position: absolute; top: 3mm; left: 3mm; background: rgba(255,255,255,.93); }
+    .ep-grid-body { padding: 4mm; }
+    .ep-grid-body h3 { margin: 0 0 3mm; font-family: Georgia, serif; color: #050816; font-size: 16px; line-height: 1.08; overflow-wrap: anywhere; }
+    .ep-grid-body p { margin: 0 0 3mm; color: #475569; font-size: 11px; line-height: 1.42; }
+    .ep-source-row { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 2mm; }
+    .pdf-source-chip { display: inline-flex; align-items: center; gap: 4px; max-width: 100%; padding: 3px 6px; border: 1px solid #e0e7ff; border-radius: 99px; color: #334155; background: #f8fafc; font-size: 8px; font-weight: 800; }
+    .pdf-source-chip img { width: 12px; height: 12px; border-radius: 50%; object-fit: contain; }
+    .pdf-source-chip b { width: 12px; height: 12px; display: inline-grid; place-items: center; border-radius: 50%; background: #312e81; color: #fff; font-size: 7px; }
+    .ep-feature { margin-top: 5mm; display: grid; grid-template-columns: 1fr auto; gap: 4mm; align-items: center; padding: 5mm; border-radius: 7px; background: linear-gradient(135deg,#312e81,#581c87); color: #fff; }
+    .ep-feature span { color: #ddd6fe; font-size: 9px; font-weight: 950; text-transform: uppercase; }
+    .ep-feature h3 { margin: 2mm 0; font-family: Georgia, serif; font-size: 17px; line-height: 1.05; }
+    .ep-feature p { margin: 0; color: rgba(255,255,255,.82); font-size: 10px; line-height: 1.4; }
+    .ep-feature b { width: 13mm; height: 13mm; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.14); }
+    .ep-source-note { margin-top: 4mm; padding-top: 3mm; border-top: 1px solid #e5e7eb; color: #64748b; font-size: 9px; line-height: 1.35; }
+    .pdf-footer { position: absolute; left: 8mm; right: 8mm; bottom: 4mm; display: flex; justify-content: space-between; gap: 10px; color: #64748b; font-size: 8px; font-weight: 850; }
+    .pdf-footer span:last-child { display: none; }
+    .pdf-footer::after { content: counter(page) " / " counter(pages); margin-left: auto; }
+    .no-print, .app-sidebar, .navbar, .modal, .floating-button { display: none !important; }
+    @media print {
+      body { background: #ffffff !important; color: #111827 !important; }
+      .pdf-page { width: 210mm; height: 297mm; page-break-after: always; overflow: hidden; }
+      .ep-mini-card, .ep-grid-card { break-inside: avoid; page-break-inside: avoid; }
+      img { max-width: 100%; object-fit: cover; }
+    }
+  </style>
+</head>
+<body>
+  <section class="pdf-page ep-agenda-page ${agendaNeedsSecondPage ? "is-split" : ""}">
+    <div class="ep-panel">
+      <header class="ep-head"><div><span>Günün sayfası</span><h1>Manşet ve öne çıkanlar</h1></div><i>▣</i></header>
+      <div class="ep-main-grid">
+        <article class="ep-hero">
+          ${hero.imageUrl ? `<img src="${htmlEscape(hero.imageUrl)}" alt="">` : `<div class="ep-grid-fallback">${htmlEscape(hero.category)}</div>`}
+          <div class="ep-hero-body"><span class="ep-tag">${htmlEscape(hero.category)}</span><h2>${htmlEscape(hero.title)}</h2><p>${htmlEscape(pdfClamp(hero.summary, 230))}</p><small>${htmlEscape(hero.sourceName)} · Sayı ${htmlEscape(issue)}</small></div>
+        </article>
+        <aside class="ep-side">${side.map(renderPdfMiniCard).join("")}</aside>
+      </div>
+      <div class="ep-subhead"><h2>Günün Öne Çıkanları</h2><span class="ep-tag">${htmlEscape(filterBits)}</span></div>
+      <div class="ep-highlight-row">${highlights.map(renderPdfMiniCard).join("")}</div>
+      <div class="ep-subhead"><h2>Yazarlar</h2><span class="ep-tag">${htmlEscape(sourceSummary)}</span></div>
+      <div class="ep-author-row"><div class="ep-author"><b>Gündem Notu</b><span>Kısa analiz</span></div><div class="ep-author"><b>Ekonomi Yorumu</b><span>Piyasa özeti</span></div><div class="ep-author"><b>Bilim Defteri</b><span>Haftalık bakış</span></div><div class="ep-author"><b>Kültür Ajandası</b><span>Etkinlik seçkisi</span></div></div>
+    </div>
+    <footer class="pdf-footer"><span>${htmlEscape(paperTitle)} · ${htmlEscape(dateLabel)}</span><span>1 / 3</span></footer>
+  </section>
+  ${agendaNeedsSecondPage ? `
+  <section class="pdf-page ep-agenda-page ep-agenda-extra">
+    <div class="ep-panel">
+      <header class="ep-head"><div><span>Gündem devam</span><h1>Günün Öne Çıkanları</h1></div><i>▣</i></header>
+      <div class="ep-highlight-row">${highlights.map(renderPdfMiniCard).join("")}</div>
+      <div class="ep-subhead"><h2>Yazarlar</h2><span class="ep-tag">${htmlEscape(sourceSummary)}</span></div>
+      <div class="ep-author-row"><div class="ep-author"><b>Gündem Notu</b><span>Kısa analiz</span></div><div class="ep-author"><b>Ekonomi Yorumu</b><span>Piyasa özeti</span></div><div class="ep-author"><b>Bilim Defteri</b><span>Haftalık bakış</span></div><div class="ep-author"><b>Kültür Ajandası</b><span>Etkinlik seçkisi</span></div></div>
+    </div>
+    <footer class="pdf-footer"><span>e-Gazete · Gündem devam</span><span>2 / ${totalPages}</span></footer>
+  </section>
+  ` : ""}
+  <section class="pdf-page ep-category-page">
+    <div class="ep-panel">
+      <header class="ep-head"><div><span>Araştırma · Dijital dönüşüm</span><h1>⚛ Bilim ve Teknoloji</h1></div><i>▣</i></header>
+      <div class="ep-card-grid">${science.map(renderPdfGridCard).join("")}</div>
+    </div>
+    <footer class="pdf-footer"><span>e-Gazete · Bilim ve Teknoloji</span><span>2 / 3</span></footer>
+  </section>
+  <section class="pdf-page ep-category-page">
+    <div class="ep-panel">
+      <header class="ep-head"><div><span>Kent · Etkinlik · Toplum</span><h1>🎭 Kültür ve Yaşam</h1></div><i>▣</i></header>
+      <div class="ep-card-grid">${culture.map(renderPdfGridCard).join("")}</div>
+      <article class="ep-feature"><div><span>Haftanın dosyası</span><h3>${htmlEscape(cultureBanner.title)}</h3><p>${htmlEscape(pdfClamp(cultureBanner.summary, 155))}</p></div><b>§</b></article>
+      <div class="ep-source-note">Bu gazete kişisel haber tercihlerinize göre oluşturulmuştur. Aynı haber farklı kaynaklarda geçtiğinde tek haber olarak gösterilir. Kaynak özeti: ${htmlEscape(uniqueSources.slice(0, 10).map((source) => source.name).join(", ") || "Kaynak bilgisi sınırlı")}.</div>
+    </div>
+    <footer class="pdf-footer"><span>${articles.length} haber · ${htmlEscape(now.toLocaleString("tr-TR"))}</span><span>3 / 3</span></footer>
+  </section>
+</body>
+</html>`;
+}
+
+async function renderHtmlToPdf(html) {
+  const { chromium } = require("playwright");
+  const browser = await chromium.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+  });
+  try {
+    const page = await browser.newPage({ viewport: { width: 1240, height: 1754 }, deviceScaleFactor: 1 });
+    await page.setContent(pdfFixHtml(html), { waitUntil: "networkidle", timeout: 45000 });
+    await page.emulateMedia({ media: "print", colorScheme: "light" });
+    return await page.pdf({
+      format: "A4",
+      printBackground: true,
+      preferCSSPageSize: true,
+      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+      timeout: 45000
+    });
+  } finally {
+    await browser.close();
+  }
+}
+
+async function buildEpaperPdfBuffer({ db, userId, req, url, body = {} }) {
+  const { articles, filters, userSources } = await collectPdfArticles(db, userId, req, url, body);
+  if (!articles.length) {
+    const emptyHtml = buildEpaperPdfHtml({
+      articles: [{
+        id: "empty",
+        title: "PDF için uygun haber bulunamadı",
+        summary: "Seçili filtrelere veya kişisel kaynaklara uygun haber bulunamadı. Filtreleri genişletip tekrar deneyebilirsiniz.",
+        category: "Bilgi",
+        sourceName: "e-Gazete",
+        imageUrl: "",
+        sources: [{ name: "e-Gazete", icon: "", url: "" }]
+      }],
+      user: db.users.find((item) => item.id === userId),
+      filters,
+      userSources: []
+    });
+    return renderHtmlToPdf(emptyHtml);
+  }
+  const html = buildEpaperPdfHtml({
+    articles,
+    user: db.users.find((item) => item.id === userId),
+    filters,
+    userSources
+  });
+  return renderHtmlToPdf(html);
 }
 
 async function buildSimplePdf({ title, layout, articles, events, paperTitle, interests, trends }) {
@@ -5231,9 +5976,9 @@ function buildLicenseRequiredQuote(symbol) {
     symbol,
     label: catalog.label,
     type: catalog.type,
-    value: (key === "GRAMALTIN" ? 6351.13 : (key === "BTCUSDT" ? 65400 : (key === "TCMBRATE" ? 50 : 100))),
-    currency: (key === "TCMBRATE" ? "%" : (catalog.type === "crypto" || key === "XAUUSD" ? "USD" : "TRY")),
-    changePercent: (key === "GRAMALTIN" ? -1.48 : (key === "BTCUSDT" ? -2.50 : (key === "USDTRY" ? 0.05 : (key === "EURTRY" ? -0.38 : (key === "TCMBRATE" ? 0 : null))))),
+    value: (symbol === "GRAMALTIN" ? 6351.13 : (symbol === "BTCUSDT" ? 65400 : (symbol === "TCMBRATE" ? 50 : 100))),
+    currency: (symbol === "TCMBRATE" ? "%" : (catalog.type === "crypto" || symbol === "XAUUSD" ? "USD" : "TRY")),
+    changePercent: (symbol === "GRAMALTIN" ? -1.48 : (symbol === "BTCUSDT" ? -2.50 : (symbol === "USDTRY" ? 0.05 : (symbol === "EURTRY" ? -0.38 : (symbol === "TCMBRATE" ? 0 : null))))),
     lastUpdated: new Date().toISOString(),
     source: catalog.source,
     sourceUrl: "",
@@ -5251,7 +5996,7 @@ function buildUnavailableQuote(symbol, sourceNote) {
   const catalog = financeCatalogItem(symbol) || { symbol, label: symbol, type: "unknown", source: "" };
   return {
     id: symbol, symbol, label: catalog.label, type: catalog.type,
-    value: (key === "GRAMALTIN" ? 6351.13 : (key === "BTCUSDT" ? 65400 : (key === "TCMBRATE" ? 50 : 100))), currency: (key === "TCMBRATE" ? "%" : (catalog.type === "crypto" || key === "XAUUSD" ? "USD" : "TRY")), changePercent: (key === "GRAMALTIN" ? -1.48 : (key === "BTCUSDT" ? -2.50 : (key === "USDTRY" ? 0.05 : (key === "EURTRY" ? -0.38 : (key === "TCMBRATE" ? 0 : null))))),
+    value: (symbol === "GRAMALTIN" ? 6351.13 : (symbol === "BTCUSDT" ? 65400 : (symbol === "TCMBRATE" ? 50 : 100))), currency: (symbol === "TCMBRATE" ? "%" : (catalog.type === "crypto" || symbol === "XAUUSD" ? "USD" : "TRY")), changePercent: (symbol === "GRAMALTIN" ? -1.48 : (symbol === "BTCUSDT" ? -2.50 : (symbol === "USDTRY" ? 0.05 : (symbol === "EURTRY" ? -0.38 : (symbol === "TCMBRATE" ? 0 : null))))),
     lastUpdated: new Date().toISOString(),
     source: catalog.source, sourceUrl: "",
     sourceNote, status: "error",
@@ -6092,15 +6837,17 @@ function buildFeedPayload(articles = [], options = {}) {
 
 function buildPersonalizedFeedPayload(db, userId, articles, region, options = {}) {
   const authenticated = options.authenticated === true;
+  const targetLang = options.targetLang || "tr";
   const payloadOptions = { ...options };
   delete payloadOptions.authenticated;
+  delete payloadOptions.targetLang;
   const storedPreferences = db.preferences[userId];
   const hasPersonalSignals = authenticated && (Boolean(storedPreferences)
     || db.readStatus.some((item) => item.userId === userId)
     || db.bookmarks.some((item) => item.userId === userId));
   if (!hasPersonalSignals) {
     const fastArticles = articles
-      .filter((article) => matchesRegionInline(article, region))
+      .filter((article) => matchesRegionInline(article, region, targetLang))
       .slice(0, NEWS_FEED_RESPONSE_LIMIT)
       .map((article) => {
         const decorated = decorateArticle(db, userId, article);
@@ -6111,7 +6858,7 @@ function buildPersonalizedFeedPayload(db, userId, articles, region, options = {}
     return buildFeedPayload(fastArticles, payloadOptions);
   }
 
-  const preferences = storedPreferences || normalizePreferences({});
+  const preferences = { ...(storedPreferences || normalizePreferences({})), language: targetLang };
   const readingProfile = buildReadingProfile(db, userId, articles);
   const personalized = articles.map((article) => {
     const decorated = decorateArticle(db, userId, article);
@@ -6122,7 +6869,7 @@ function buildPersonalizedFeedPayload(db, userId, articles, region, options = {}
     if (a.externalProvider && !b.externalProvider) return -1;
     if (!a.externalProvider && b.externalProvider) return 1;
     return b.relevance - a.relevance || new Date(b.publishedAt) - new Date(a.publishedAt);
-  }).filter((article) => matchesRegionInline(article, region)).slice(0, NEWS_FEED_RESPONSE_LIMIT);
+  }).filter((article) => matchesRegionInline(article, region, targetLang)).slice(0, NEWS_FEED_RESPONSE_LIMIT);
   return buildFeedPayload(personalized, payloadOptions);
 }
 
@@ -6157,6 +6904,61 @@ async function handleApi(req, res, url) {
   if (req.method === "GET" && url.pathname === "/api/sources") {
     const sources = normalizeUserSourcesDb(db.userSources.filter((source) => source.userId === userId));
     return json(res, 200, { sources });
+  }
+
+  // --- ADMIN APIs ---
+  if (url.pathname.startsWith("/api/admin/articles")) {
+    const parts = url.pathname.split("/");
+    const id = parts[4]; // /api/admin/articles/:id/...
+    const action = parts[5];
+
+    if (req.method === "GET" && !id) {
+      return json(res, 200, { articles: _feedCacheStore.articles });
+    }
+    
+    if (req.method === "PUT" && id) {
+      const article = _feedCacheStore.articles.find(a => String(a.id) === id);
+      if (!article) return json(res, 404, { error: "Makale bulunamadı" });
+      
+      let body = {};
+      try { body = await readBody(req); } catch (e) {}
+
+      if (action === "reclassify") {
+        if (body.category) {
+          article.category = body.category;
+          article.topics = [body.category];
+        }
+        if (body.region) {
+          article.continent = body.region;
+          article.primaryRegion = body.region;
+        }
+        return json(res, 200, { success: true, article });
+      }
+      if (action === "feature") {
+        article.relevance = 100;
+        article.interestScore = 100;
+        return json(res, 200, { success: true, article });
+      }
+      if (action === "hide") {
+        _feedCacheStore.articles = _feedCacheStore.articles.filter(a => String(a.id) !== id);
+        return json(res, 200, { success: true });
+      }
+    }
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/admin/clusters/merge") {
+    let body = {};
+    try { body = await readBody(req); } catch (e) {}
+    const { sourceId, targetId } = body;
+    const sourceArt = _feedCacheStore.articles.find(a => String(a.id) === String(sourceId));
+    const targetArt = _feedCacheStore.articles.find(a => String(a.id) === String(targetId));
+    if (!sourceArt || !targetArt) return json(res, 404, { error: "Makaleler bulunamadı" });
+    
+    if (!targetArt.clusterArticles) targetArt.clusterArticles = [];
+    targetArt.clusterArticles.push(sourceArt);
+    _feedCacheStore.articles = _feedCacheStore.articles.filter(a => String(a.id) !== String(sourceId));
+    
+    return json(res, 200, { success: true, target: targetArt });
   }
 
   if (req.method === "POST" && url.pathname === "/api/sources/detect") {
@@ -6422,6 +7224,107 @@ async function handleApi(req, res, url) {
     return json(res, 200, { deleted: true });
   }
 
+  // ======================== CALENDAR API ========================
+  if (!Array.isArray(db.calendarEvents)) { db.calendarEvents = []; }
+  if (!Array.isArray(db.calendarNotifications)) { db.calendarNotifications = []; }
+
+  if (req.method === "GET" && url.pathname === "/api/calendar/events") {
+    const events = db.calendarEvents.filter(e => e.userId === userId);
+    return json(res, 200, { events });
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/calendar/events") {
+    const body = await readBody(req);
+    if (!body.title) return json(res, 400, { success: false, message: "Etkinlik başlığı gerekli." });
+    const duplicate = db.calendarEvents.find(e => e.userId === userId && e.eventId === body.eventId);
+    if (duplicate) return json(res, 409, { success: false, message: "Bu etkinlik zaten takvimde.", event: duplicate });
+    const entry = {
+      id: body.id || ("cal_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7)),
+      userId,
+      eventId: body.eventId || "",
+      title: String(body.title || "").slice(0, 500),
+      description: String(body.description || "").slice(0, 2000),
+      location: String(body.location || "").slice(0, 300),
+      eventDate: body.eventDate || new Date().toISOString(),
+      eventTime: body.eventTime || "",
+      source: String(body.source || "").slice(0, 200),
+      image: String(body.image || "").slice(0, 1000),
+      category: String(body.category || "").slice(0, 100),
+      url: String(body.url || "").slice(0, 1000),
+      userNote: String(body.userNote || "").slice(0, 500),
+      reminderAt: body.reminderAt || null,
+      reminderEnabled: Boolean(body.reminderAt),
+      reminderSent: false,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    db.calendarEvents.push(entry);
+    writeDb(db);
+    return json(res, 201, { success: true, event: entry });
+  }
+
+  const calEventMatch = url.pathname.match(/^\/api\/calendar\/events\/([^/]+)$/);
+  if (calEventMatch) {
+    const calEventId = calEventMatch[1];
+    const idx = db.calendarEvents.findIndex(e => e.id === calEventId && e.userId === userId);
+
+    if (req.method === "PATCH") {
+      if (idx === -1) return json(res, 404, { success: false, message: "Takvim etkinliği bulunamadı." });
+      const body = await readBody(req);
+      const entry = db.calendarEvents[idx];
+      if (body.userNote !== undefined) entry.userNote = String(body.userNote).slice(0, 500);
+      if (body.reminderAt !== undefined) { entry.reminderAt = body.reminderAt; entry.reminderEnabled = Boolean(body.reminderAt); }
+      if (body.reminderSent !== undefined) entry.reminderSent = Boolean(body.reminderSent);
+      entry.updatedAt = new Date().toISOString();
+      writeDb(db);
+      return json(res, 200, { success: true, event: entry });
+    }
+
+    if (req.method === "DELETE") {
+      if (idx === -1) return json(res, 404, { success: false, message: "Takvim etkinliği bulunamadı." });
+      db.calendarEvents.splice(idx, 1);
+      writeDb(db);
+      return json(res, 200, { success: true, deleted: true });
+    }
+  }
+
+  const calReminderMatch = url.pathname.match(/^\/api\/calendar\/events\/([^/]+)\/reminder$/);
+  if (req.method === "POST" && calReminderMatch) {
+    const calEventId = calReminderMatch[1];
+    const idx = db.calendarEvents.findIndex(e => e.id === calEventId && e.userId === userId);
+    if (idx === -1) return json(res, 404, { success: false, message: "Takvim etkinliği bulunamadı." });
+    const body = await readBody(req);
+    const entry = db.calendarEvents[idx];
+    entry.reminderAt = body.reminderAt || null;
+    entry.reminderEnabled = Boolean(body.reminderAt);
+    entry.reminderSent = false;
+    entry.updatedAt = new Date().toISOString();
+    writeDb(db);
+    return json(res, 200, { success: true, event: entry });
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/calendar/reminders/due") {
+    const now = new Date();
+    const due = db.calendarEvents.filter(e => e.userId === userId && e.reminderEnabled && !e.reminderSent && e.reminderAt && new Date(e.reminderAt) <= now);
+    for (const e of due) {
+      e.reminderSent = true;
+      e.updatedAt = new Date().toISOString();
+      db.calendarNotifications.push({
+        id: "notif_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
+        userId,
+        type: "calendar_reminder",
+        title: e.title,
+        message: `Hatırlatıcı: "${e.title}" etkinliği yaklaşıyor!`,
+        relatedEventId: e.id,
+        read: false,
+        createdAt: new Date().toISOString()
+      });
+    }
+    if (due.length) writeDb(db);
+    return json(res, 200, { due: due.map(e => ({ id: e.id, title: e.title })) });
+  }
+  // ======================== END CALENDAR API ========================
+
   if (req.method === "GET" && url.pathname === "/api/events") {
     const hidden = new Set(db.hiddenEvents.filter((item) => item.userId === userId).map((item) => item.eventId));
     let liveEvents = [];
@@ -6448,9 +7351,22 @@ async function handleApi(req, res, url) {
     });
   }
 
-  if (req.method === "POST" && url.pathname === "/api/export/pdf") {
-    const body = await readBody(req);
-    const layout = ["a4", "tabloid", "booklet", "egazete"].includes(body.layout) ? body.layout : "a4";
+  // Alias: /api/export-pdf → same handler as /api/export/pdf
+
+  if ((req.method === "GET" || req.method === "POST") && (url.pathname === "/api/export/pdf" || url.pathname === "/api/export-pdf")) {
+    const body = req.method === "POST" ? await readBody(req) : {};
+    const requestedLayout = body.layout || url.searchParams.get("layout");
+    const layout = ["a4", "tabloid", "booklet", "egazete"].includes(requestedLayout) ? requestedLayout : "egazete";
+    const mode = String(body.mode || url.searchParams.get("mode") || "inline");
+    if (layout === "egazete" || req.method === "GET" || mode === "inline") {
+      try {
+        const content = await buildEpaperPdfBuffer({ db, userId, req, url, body: { ...body, layout, mode } });
+        return inlinePdf(res, "e-gazete.pdf", content);
+      } catch (error) {
+        logError("pdf", "egazete export failed", error.message || String(error));
+        return json(res, 500, { error: "PDF oluşturulamadı. Lütfen tekrar deneyin." });
+      }
+    }
     const submittedArticles = Array.isArray(body.articles) ? body.articles : [];
     const articleIds = Array.isArray(body.articleIds) ? body.articleIds.map(String) : [];
     const dbArticles = db.articles.filter((article) => !articleIds.length || articleIds.includes(String(article.id)));
@@ -6475,7 +7391,9 @@ async function handleApi(req, res, url) {
       articles,
       events
     });
-    return pdf(res, `kisisel-gazetem-${layout}.pdf`, content);
+    return mode === "inline"
+      ? inlinePdf(res, `kisisel-gazetem-${layout}.pdf`, content)
+      : pdf(res, `kisisel-gazetem-${layout}.pdf`, content);
   }
 
   const eventDetailMatch = url.pathname.match(/^\/api\/events\/([^/]+)$/);
@@ -6771,13 +7689,14 @@ async function handleApi(req, res, url) {
   }
 
   if (req.method === "POST" && url.pathname === "/api/feed/refresh") {
+    const targetLang = normalizeUiLanguage(url.searchParams.get("lang") || db.preferences[userId]?.language || "tr");
     try {
       const result = await backgroundRefreshFeed({ reason: "manual-refresh" });
-      const targetLang = normalizeUiLanguage(url.searchParams.get("lang") || db.preferences[userId]?.language || "tr");
       await ensureFeedTranslationsForResponse(_feedCacheStore.articles, targetLang, 16);
       triggerFeedTranslation(_feedCacheStore.articles, targetLang, "manual-refresh-language");
       const payload = buildPersonalizedFeedPayload(db, userId, _feedCacheStore.articles, url.searchParams.get("region"), {
         authenticated,
+        targetLang,
         success: result.success !== false || _feedCacheStore.articles.length > 0,
         warning: result.success === false ? "Canli haber yenileme tamamlanamadi; mevcut haberler gosteriliyor." : ""
       });
@@ -6795,6 +7714,7 @@ async function handleApi(req, res, url) {
       logWarn("feed-refresh", "manual refresh fallback", error.message);
       return json(res, 200, buildPersonalizedFeedPayload(db, userId, _feedCacheStore.articles, url.searchParams.get("region"), {
         authenticated,
+        targetLang,
         success: _feedCacheStore.articles.length > 0,
         error: {
           code: "FEED_REFRESH_FAILED",
@@ -6819,7 +7739,7 @@ async function handleApi(req, res, url) {
         }
         await ensureFeedTranslationsForResponse(_feedCacheStore.articles, targetLang, 16);
         triggerFeedTranslation(_feedCacheStore.articles, targetLang, seededFromLocal ? "local-seed-language" : "cached-feed-language");
-        const payload = buildPersonalizedFeedPayload(db, userId, _feedCacheStore.articles, region, { authenticated });
+        const payload = buildPersonalizedFeedPayload(db, userId, _feedCacheStore.articles, region, { authenticated, targetLang });
         await ensureFeedTranslationsForResponse(payload.articles, targetLang, 24);
         localizeFeedPayload(payload, targetLang);
         if (seededFromLocal) payload.warning = "Kayitli haberler gosteriliyor. Yeni haberler arka planda aliniyor.";
@@ -6839,6 +7759,7 @@ async function handleApi(req, res, url) {
       await ensureFeedTranslationsForResponse(localArticles, targetLang, 16);
       const localPayload = localArticles.length ? buildPersonalizedFeedPayload(db, userId, localArticles, region, {
         authenticated,
+        targetLang,
         warning: "Kayitli haberler gosteriliyor. Yeni haberler arka planda aliniyor."
       }) : null;
       if (localPayload) {
@@ -6901,10 +7822,19 @@ async function handleApi(req, res, url) {
     if (needsFullText || !hasSystemAiSummary(article) || !Array.isArray(article.duplicates) || article.duplicates.length === 0 || !article.multiSourceAnalysis) {
       const enrichedArticle = await fetchArticleFullText(article);
       const fullTextChanged = String(enrichedArticle.fullText || "") !== String(article.fullText || "");
-      const aiSummary = hasSystemAiSummary(enrichedArticle) && !fullTextChanged
-        ? enrichedArticle.aiSummary
-        : await generateAiSummary(enrichedArticle, { force: true });
-      enrichedArticle.aiSummary = aiSummary;
+      let newAiSummaryObj = null;
+      if (!hasSystemAiSummary(enrichedArticle) || fullTextChanged) {
+        newAiSummaryObj = await generateAiSummary(enrichedArticle, { force: true });
+      }
+
+      if (newAiSummaryObj && typeof newAiSummaryObj === 'object') {
+        enrichedArticle.aiSummary = newAiSummaryObj.aiSummary || "";
+        enrichedArticle.sourceSentences = newAiSummaryObj.sourceSentences || [];
+        enrichedArticle.contentSnippet = newAiSummaryObj.contentSnippet || "";
+        enrichedArticle.aiSummaryProvider = newAiSummaryObj.provider || "google";
+        enrichedArticle.aiSummaryModel = newAiSummaryObj.model || "";
+        enrichedArticle.aiSummaryGeneratedAt = new Date().toISOString();
+      }
       
       const rawDuplicates = await findDuplicates(db, enrichedArticle);
       const richDuplicates = await ensureRichDuplicates(enrichedArticle, rawDuplicates);
@@ -6920,7 +7850,9 @@ async function handleApi(req, res, url) {
         dbArticle.contentStatus = enrichedArticle.contentStatus;
         dbArticle.contentWarning = enrichedArticle.contentWarning || "";
         dbArticle.contentFallbackStatus = enrichedArticle.contentFallbackStatus || "";
-        dbArticle.aiSummary = aiSummary;
+        dbArticle.aiSummary = enrichedArticle.aiSummary;
+        dbArticle.sourceSentences = enrichedArticle.sourceSentences;
+        dbArticle.contentSnippet = enrichedArticle.contentSnippet;
         dbArticle.aiSummaryProvider = enrichedArticle.aiSummaryProvider;
         dbArticle.aiSummaryModel = enrichedArticle.aiSummaryModel;
         dbArticle.aiSummaryGeneratedAt = enrichedArticle.aiSummaryGeneratedAt;
@@ -6954,6 +7886,8 @@ async function handleApi(req, res, url) {
         sourceUrl: articlePayload.sourceUrl,
         url: articlePayload.url,
         aiSummary: article.aiSummary,
+        sourceSentences: article.sourceSentences,
+        contentSnippet: article.contentSnippet,
         duplicates: duplicatePayload,
         multiSourceAnalysis: multiSourcePayload
       }
@@ -6971,6 +7905,30 @@ async function handleApi(req, res, url) {
     }
     writeDb(db);
     return json(res, 200, { bookmarked: !existing });
+  }
+
+  const newspaperMatch = url.pathname.match(/^\/api\/articles\/([^/]+)\/newspaper$/);
+  if (req.method === "POST" && newspaperMatch) {
+    const articleId = newspaperMatch[1];
+    const body = await readBody(req);
+    const existing = db.userNewspaperItems.find((item) => item.userId === userId && item.articleId === articleId);
+    if (existing) {
+      db.userNewspaperItems = db.userNewspaperItems.filter((item) => !(item.userId === userId && item.articleId === articleId));
+    } else {
+      const sourceArticle = findPdfArticleById(db, articleId) || body.article || {};
+      db.userNewspaperItems.push({
+        id: `newspaper_${crypto.randomUUID()}`,
+        userId,
+        articleId,
+        clusterId: sourceArticle.clusterId || sourceArticle.dedupeKey || body.article?.clusterId || "",
+        addedAt: new Date().toISOString(),
+        section: "custom",
+        note: "",
+        articleSnapshot: snapshotPdfArticle({ ...sourceArticle, ...body.article, id: articleId })
+      });
+    }
+    writeDb(db);
+    return json(res, 200, { added: !existing });
   }
 
   const readMatch = url.pathname.match(/^\/api\/articles\/([^/]+)\/read$/);
@@ -7160,11 +8118,24 @@ async function handleApi(req, res, url) {
   const NOTIFICATION_LIMIT = 1000;
   const SHARE_RATE_WINDOW_MS = 60000;
   const SHARE_RATE_MAX = 10;
-  const shareError = (status, message) => json(res, status, { success: false, error: message });
+  const shareError = (status, message) => json(res, status, { success: false, message, error: message });
   const cleanShareText = (value, fallback = "", max = 500) => {
     const text = stripHtml(value).replace(/\s+/g, " ").trim() || fallback;
     return max ? text.slice(0, max) : text;
   };
+  const sanitizeShareUserId = (value) => String(value || "").replace(/[^\w-]/g, "").slice(0, 120);
+  const sanitizeShareSearch = (value) => stripHtml(value).replace(/\s+/g, " ").trim().slice(0, 80);
+  const shareUserDisplayName = (user = {}) => cleanShareText(user.displayName || user.name || user.username || user.email, "Kullanici", 120);
+  const shareUsername = (user = {}) => {
+    const base = String(user.username || user.name || (user.email || "").split("@")[0] || "kullanici").trim();
+    return base.replace(/^@+/, "").replace(/[^\p{L}\p{N}._-]+/gu, ".").replace(/\.+/g, ".").slice(0, 40) || "kullanici";
+  };
+  const toShareTargetDto = (user = {}) => ({
+    id: String(user.id || ""),
+    displayName: shareUserDisplayName(user),
+    username: shareUsername(user),
+    avatarUrl: typeof user.avatarUrl === "string" && user.avatarUrl.trim() ? user.avatarUrl.trim().slice(0, 300) : "/avatars/default.png"
+  });
   const findShareArticle = (articleId, snapshot = {}) => {
     const id = String(articleId || "").trim();
     const knownArticle = db._articleById?.get(id)
@@ -7211,8 +8182,28 @@ async function handleApi(req, res, url) {
   if (req.method === "GET" && url.pathname === "/api/users/list") {
     const otherUsers = db.users
       .filter((u) => u.id !== userId)
-      .map((u) => ({ id: u.id, name: u.name || u.email || "Kullanıcı" }));
+      .slice(0, 20)
+      .map((u) => ({ id: u.id, name: shareUserDisplayName(u) }));
     return json(res, 200, { users: otherUsers });
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/users/share-targets") {
+    try {
+      const q = sanitizeShareSearch(url.searchParams.get("q") || "");
+      const normalizedQ = normalizeText(q);
+      const users = (db.users || [])
+        .filter((u) => {
+          if (!u || !u.id || u.id === userId || u.isActive === false) return false;
+          if (!normalizedQ) return true;
+          return normalizeText(`${u.displayName || ""} ${u.name || ""} ${u.username || ""} ${u.email || ""}`).includes(normalizedQ);
+        })
+        .sort((a, b) => String(a.name || a.email || "").localeCompare(String(b.name || b.email || ""), "tr"))
+        .slice(0, 20)
+        .map(toShareTargetDto);
+      return json(res, 200, { success: true, users });
+    } catch {
+      return json(res, 500, { success: false, message: "Kullanıcılar alınamadı." });
+    }
   }
 
   if (req.method === "GET" && url.pathname === "/api/users/search") {
@@ -7230,10 +8221,11 @@ async function handleApi(req, res, url) {
   if (req.method === "POST" && url.pathname.startsWith("/api/articles/") && url.pathname.endsWith("/share")) {
     const body = await readBody(req);
     const articleId = String(body.articleId || url.pathname.split("/")[3] || "").trim();
-    const targetUserId = String(body.receiverUserId || body.targetUserId || "").trim();
-    const message = String(body.message || "").trim().slice(0, 500);
+    const targetUserId = sanitizeShareUserId(body.receiverUserId || body.targetUserId);
+    const message = cleanShareText(body.message || "", "", 500);
     if (!articleId) return shareError(400, "Haber bilgisi bulunamadı.");
     if (!targetUserId) return shareError(400, "Alıcı kullanıcı seçilmedi.");
+    if (targetUserId === userId) return shareError(400, "Kendine haber gönderemezsin.");
     const targetUser = db.users.find((u) => u.id === targetUserId);
     if (!targetUser) return shareError(404, "Alıcı kullanıcı bulunamadı.");
     const now = Date.now();
@@ -7243,6 +8235,13 @@ async function handleApi(req, res, url) {
       && (now - new Date(s.createdAt).getTime()) < SHARE_RATE_WINDOW_MS
     );
     if (recentShares.length >= SHARE_RATE_MAX) return shareError(429, "Bu kullanıcıya kısa sürede çok fazla haber gönderdin.");
+    const recentDuplicate = db.sharedNews.some((s) =>
+      (s.senderUserId || s.fromUserId) === userId
+      && (s.receiverUserId || s.toUserId) === targetUserId
+      && String(s.articleId) === articleId
+      && (now - new Date(s.createdAt).getTime()) < 5 * 60 * 1000
+    );
+    if (recentDuplicate) return shareError(429, "Bu haber aynı kullanıcıya az önce gönderildi.");
     const article = findShareArticle(articleId, body.articleSnapshot || {});
     if (!article) return shareError(404, "Haber bilgisi bulunamadı.");
     const sender = db.users.find((u) => u.id === userId);
@@ -7283,12 +8282,13 @@ async function handleApi(req, res, url) {
       articleSource: articleSnapshot.source,
       message,
       read: false,
+      isRead: false,
       createdAt: new Date().toISOString()
     };
     db.notifications.push(notification);
     if (db.notifications.length > NOTIFICATION_LIMIT) db.notifications = db.notifications.slice(-NOTIFICATION_LIMIT);
     writeDb(db);
-    return json(res, 201, { success: true, share: shareItem, notification });
+    return json(res, 201, { success: true, message: "Haber kullanıcıya gönderildi." });
   }
 
   // Legacy share endpoint (backward compat)
@@ -7668,7 +8668,7 @@ const server = http.createServer(async (req, res) => {
       serveStatic(req, res, url);
     }
   } catch (error) {
-    logError("http", "unhandled request error", `path=${url.pathname} method=${req.method} error=${error.message}`);
+    logError("http", "unhandled request error", `path=${url.pathname} method=${req.method} stack=\n${error.stack}`);
     json(res, 500, { error: error.message || "Sunucu hatası." });
   }
 });

@@ -158,7 +158,26 @@ export function buildSingleSourceAnalysis(article = {}, allVersions = []) {
   };
 }
 
-export function generateComparisonInsight(mainArticle = {}, allVersions = [], overallComparison = "") {
+export function generateComparisonInsight(mainArticle = {}, allVersions = [], aiComparison = null) {
+  if (aiComparison && (aiComparison.commonPoints || aiComparison.differences)) {
+    return {
+      mode: "ai_multi_source",
+      sourceCount: allVersions.length,
+      sections: [
+        { key: "common", title: "Ortak Noktalar", items: aiComparison.commonPoints || [] },
+        { key: "difference", title: "Farklılaşan Noktalar", items: aiComparison.differences || [] },
+        { key: "facts", title: "Sayısal Veriler / Gerçekler", items: aiComparison.numbers || [] },
+        { key: "tone", title: "Ton ve Eksikler", items: aiComparison.toneAndMissing || [] }
+      ],
+      commonPoints: aiComparison.commonPoints || [],
+      differentPoints: aiComparison.differences || [],
+      numericalData: aiComparison.numbers || [],
+      missingPoints: aiComparison.toneAndMissing || []
+    };
+  }
+
+  const overallComparison = typeof aiComparison === 'string' ? aiComparison : (aiComparison?.overallComparison || "");
+
   const fallbackSources = (allVersions || [])
     .filter((version) => version?.contentStatus && version.contentStatus !== "full_from_source_page")
     .map((version, index) => articleSource(version, index));
@@ -166,7 +185,7 @@ export function generateComparisonInsight(mainArticle = {}, allVersions = [], ov
     const singleInsight = buildSingleSourceAnalysis(mainArticle, allVersions);
     return {
       ...singleInsight,
-      commonPoints: ['Karşılaştırma için yeterli kaynak bulunamadı.'],
+      commonPoints: ['Karşılaştırma için en az 2 kaynak gerekiyor.'],
       differentPoints: [],
       numericalData: [],
       missingPoints: []

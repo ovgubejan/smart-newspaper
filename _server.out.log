@@ -1,29 +1,5 @@
-[server] started | url=http://localhost:3000 pid=4128
+[server] started | url=http://localhost:3000 pid=28192
 [feed-cluster] completed | raw=3 clusters=3 deduped=0 avgSources=1
 [feed-cache] seeded from local data | reason=startup-local-cache cachedArticles=12
 [scheduler] started | refreshHours=23 cleanupHours=24
-[rss] fetch started | sources=49 batch=8 timeoutMs=5000
-[translation] batch-done | translated=9/9 total=12 targets=tr
-[translation] batch-done | translated=0/0 total=12 targets=tr
-[translation] feed language translation queued | reason=cached-feed-language target=tr
-[rss] fetch completed | articles=120 regionCap=18 exactDuplicates=26 byRegion={"turkey":18,"global":18,"oceania":8,"north-america":18,"south-america":18,"asia":18,"middle-east":10,"africa":10,"europe":2}
-[feed-cluster] completed | raw=143 clusters=120 deduped=23 avgSources=1
-[translation] batch-done | translated=24/24 total=129 targets=tr,en
-[feed-refresh] completed | reason=startup-background durationMs=17905 cachedArticles=129
-[translation] batch-done | translated=16/16 total=129 targets=tr
-[translation] batch-done | translated=16/16 total=129 targets=tr
-[translation] feed language translation queued | reason=cached-feed-language target=tr
-[translation] batch-done | translated=17/17 total=60 targets=tr
-[translation] batch-done | translated=16/16 total=129 targets=tr
-[translation] batch-done | translated=6/6 total=60 targets=tr
-[translation] batch-done | translated=16/16 total=129 targets=tr
-[translation] feed language translation queued | reason=cached-feed-language target=tr
-[translation] batch-done | translated=16/16 total=129 targets=tr
-[translation] batch-done | translated=16/16 total=129 targets=tr
-[translation] feed language translation queued | reason=cached-feed-language target=tr
-[translation] batch-done | translated=5/5 total=129 targets=tr
-[translation] batch-done | translated=0/0 total=129 targets=tr
-[translation] feed language translation queued | reason=cached-feed-language target=tr
-[translation] batch-done | translated=16/16 total=129 targets=en
-[translation] batch-done | translated=10/10 total=129 targets=en
-[translation] feed language translation queued | reason=cached-feed-language target=en
+[rss] fetch started | sources=64 batch=8 timeoutMs=5000
